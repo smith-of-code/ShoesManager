@@ -18,8 +18,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('shoes','App\Http\Controllers\ShoesController');
-
-Route::resource('purpose','App\Http\Controllers\PurposeController');
-
-Route::resource('weather','App\Http\Controllers\WeatherController');
