@@ -1,57 +1,101 @@
 <script setup>
 import { reactive, ref } from "vue";
-import IconSun from "./icons/IconSun.vue";
-import IconRain from "./icons/IconRain.vue";
-import IconSpot from "./icons/IconSpot.vue";
-import IconSnow from "./icons/IconSnow.vue";
-import IconWork from "./icons/IconWork.vue";
-import IconSport from "./icons/IconSport.vue";
-import IconCasual from "./icons/IconCasual.vue";
-import IconParty from "./icons/IconParty.vue";
+import IconSun from "../components/icons/IconSun.vue";
+import IconRain from "../components/icons/IconRain.vue";
+import IconSpot from "../components/icons/IconSpot.vue";
+import IconSnow from "../components/icons/IconSnow.vue";
+import IconWork from "../components/icons/IconWork.vue";
+import IconSport from "../components/icons/IconSport.vue";
+import IconCasual from "../components/icons/IconCasual.vue";
+import IconParty from "../components/icons/IconParty.vue";
+import shoesBackground from "../components/images/ShoesPicture.jpg";
+import axios from "axios";
 
+//id клиента переданное в модуль из основного экрана
+//const client = defineProps(["id"]);
 //наименование обуви
 const name = ref("");
-//изображение обуви
-const shoesPicture = reactive({});
-const photo_path = ref("");
+//изображение обуви:
+//кртинка
+const photo = reactive({});
+const pathPhoto = ref(shoesBackground);
+const photoName = ref("");
 //назначение обуви
-const purpose_id = ref(["повседневная"]);
+const purpose = ref([]);
 //температура от
 const temp_from = ref(-5);
 //температура до
 const temp_to = ref(5);
 //погодные условия
-const weather_id = ref(["сухо"]);
+const weather = ref([]);
+
 //объект всех данных формы при "отправить"
 let formData = new FormData();
 
 function onChangeFile(e) {
-  shoesPicture.value = e.target.files[0];
-  photo_path.value = e.target.value;
-  console.log("file ", shoesPicture.value, "path ", photo_path.value);
+  photo.value = e.target.files[0];
+  //показ изображения в качестве превью
+  let reader = new FileReader();
+  reader.onload = (function (theFile) {
+    photoName.value = theFile.name;
+    return function (e) {
+      // convert image file to base64 string
+      pathPhoto.value = e.target.result;
+    };
+  })(photo.value);
+  //чтение пути для браузера
+  reader.readAsDataURL(photo.value);
 }
 
 function prepareCardForm() {
+  if (!name.value) {
+    //временная заглушка вместо валидации введенного имени
+    alert("Введите имя обуви");
+    return;
+  }
   formData.append("name", name.value);
-  formData.append("photo_file", shoesPicture.value);
-  formData.append("photo_path", photo_path.value);
-  formData.append("purpose_id", purpose_id.value);
+  formData.append("photo", photo.value);
+  formData.append("purposesIds", purpose.value);
   formData.append("temp_from", temp_from.value);
   formData.append("temp_to", temp_to.value);
-  formData.append("weather_id", weather_id.value);
-  console.log("output ", formData);
+  formData.append("weathersIds", weather.value);
+  axios.post("/api/shoes", formData);
+  for (let entry of formData.entries()) {
+    console.log("output ", entry);
+  }
+
+  //очистка файла передачи данных
+  formData = new FormData();
+  //очистка исходных данных формы до ввода следующей пары
+  name.value = "";
+  photo.value = {};
+  pathPhoto.value = shoesBackground;
+  purpose.value = [];
+  temp_from.value = -5;
+  temp_to.value = 5;
+  weather.value = [];
+
+  console.log("объект передачи данных на сервер очищен...");
+  //   for (let entry of formData.entries()) {
+  //     console.log("output ", entry);
+  //   }
 }
 </script>
 
 <template>
+  <h1>Ввод и редактирование карточки обуви</h1>
   <form class="shoes_card_form" method="post" enctype="multipart/form-data">
     <div class="shoes">
       <label for="shoes-name">Введите название обуви</label>
-      <input type="text" id="shoes-name" v-model="name" />
+      <input type="text" id="shoes-name" v-model="name" required />
     </div>
     <div class="shoes">
       <p>Выбрать/поменять изображение обуви</p>
-      <label class="shoes_img__label" for="shoes-img"></label>
+      <label
+        class="shoes_img__label"
+        for="shoes-img"
+        :style="{ backgroundImage: `url(${pathPhoto})` }"
+      ></label>
       <input
         class="shoes_img"
         type="file"
@@ -67,22 +111,22 @@ function prepareCardForm() {
         <div class="shoes">
           <IconCasual />
           <label for="casual">повседневная</label>
-          <input type="checkbox" id="casual" value="повседневная" v-model="purpose_id" />
+          <input type="checkbox" id="casual" value="1" v-model="purpose" />
         </div>
         <div class="shoes">
           <IconSport />
           <label for="sport">спортивная</label>
-          <input type="checkbox" id="sport" value="спортивная" v-model="purpose_id" />
+          <input type="checkbox" id="sport" value="2" v-model="purpose" />
         </div>
         <div class="shoes">
           <IconWork />
           <label for="work">деловая</label>
-          <input type="checkbox" id="work" value="деловая" v-model="purpose_id" />
+          <input type="checkbox" id="work" value="3" v-model="purpose" />
         </div>
         <div class="shoes">
           <IconParty />
           <label for="party">вечерняя</label>
-          <input type="checkbox" id="party" value="вечерняя" v-model="purpose_id" />
+          <input type="checkbox" id="party" value="4" v-model="purpose" />
         </div>
       </div>
     </div>
@@ -103,22 +147,22 @@ function prepareCardForm() {
         <div class="shoes">
           <IconSun />
           <label for="sun">сухо</label>
-          <input type="checkbox" id="sun" value="сухо" v-model="weather_id" />
+          <input type="checkbox" id="sun" value="1" v-model="weather" />
         </div>
         <div class="shoes">
           <IconRain />
           <label for="rain">дождь</label>
-          <input type="checkbox" id="rain" value="дождь" v-model="weather_id" />
+          <input type="checkbox" id="rain" value="2" v-model="weather" />
         </div>
         <div class="shoes">
           <IconSpot />
           <label for="dirt">грязь</label>
-          <input type="checkbox" id="dirt" value="грязь" v-model="weather_id" />
+          <input type="checkbox" id="dirt" value="3" v-model="weather" />
         </div>
         <div class="shoes">
           <IconSnow />
           <label for="snow">снег</label>
-          <input type="checkbox" id="snow" value="снег" v-model="weather_id" />
+          <input type="checkbox" id="snow" value="4" v-model="weather" />
         </div>
       </div>
     </div>
@@ -137,6 +181,7 @@ function prepareCardForm() {
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;
+  position: relative;
 }
 .shoes_img__label {
   display: block;
@@ -144,7 +189,6 @@ function prepareCardForm() {
   width: auto;
   height: 10vh;
   cursor: pointer;
-  background-image: url("../assets/images/ShoesPicture.jpg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
