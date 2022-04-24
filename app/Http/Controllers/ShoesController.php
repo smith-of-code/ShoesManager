@@ -10,11 +10,11 @@ class ShoesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Shoes[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
     public function index()
     {
-        return Shoes::with(['purposes','weathers'])->get();
+        return Shoes::all();
     }
 
     /**
