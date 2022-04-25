@@ -1,0 +1,26 @@
+@import "variables";
+.mainmenu {
+    margin: $all_margin;
+    background: $natural_gradient;
+    border-radius: 1%;
+    height: auto;
+    width: auto;
+    padding: 10px 50px;
+    font-family: $secondary_font;
+    font-size: large;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.mainmenu__item{
+    text-decoration: none;
+    padding: 10px;
+    color: black;
+}
+.mainmenu__item:hover{
+    box-shadow: 0 0 20px #2e3e78 inset
+}
+.temper{
+    height: auto;
+    width: 500px;
+    box-sizing: border-box;
+}
