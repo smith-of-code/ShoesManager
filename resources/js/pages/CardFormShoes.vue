@@ -53,9 +53,10 @@ function prepareCardForm() {
     alert("Введите имя обуви");
     return;
   }
+  let purposeArray = JSON.parse("[" + purpose.value + "]");
   formData.append("name", name.value);
   formData.append("photo", photo.value);
-  formData.append("purposesIds", purpose.value);
+  formData.append("purposesIds", purposeArray);
   formData.append("temp_from", temp_from.value);
   formData.append("temp_to", temp_to.value);
   formData.append("weathersIds", weather.value);
