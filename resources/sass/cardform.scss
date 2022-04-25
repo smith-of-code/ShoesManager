@@ -1,0 +1,23 @@
+@import "variables";
+.container {
+font-family: $main_font;
+background: $main_gradient;
+border-radius: 3%;
+height: auto;
+width: auto;
+padding: 30px 40px;
+margin: 50px;
+text-align: left;
+};
+
+.shoes_card_form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 0.1fr);
+}
+
+.shoes_photo {
+    grid-area: 1 / 2 / span 5 / span 1;
+    align-self: stretch;
+}
+
