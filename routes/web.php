@@ -12,10 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::group([
     'prefix' => 'api'
 ],function (){
@@ -25,3 +21,8 @@ Route::group([
 
     Route::resource('weather','App\Http\Controllers\WeatherController');
 });
+
+Route::get('/{any}', function () {
+    return view('welcome');
+})->where('any','.*');
+
