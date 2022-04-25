@@ -97,13 +97,10 @@ function prepareCardForm() {
           required
         />
       </div>
+
       <div class="shoes shoes_photo">
-        <p>Выбрать/поменять изображение обуви</p>
-        <label
-          class="shoes_img__label"
-          for="shoes-img"
-          :style="{ backgroundImage: `url(${pathPhoto})` }"
-        ></label>
+        <!--<p>Выбрать/поменять изображение обуви</p>-->
+        <label class="shoes_img__label" for="shoes-img"></label>
         <input
           class="shoes_img"
           type="file"
@@ -112,6 +109,7 @@ function prepareCardForm() {
           @change="onChangeFile"
           name="file"
         />
+        <span>Загрузить изображение</span>
       </div>
       <div class="shoes">
         <p>Отметьте назначение обуви:</p>

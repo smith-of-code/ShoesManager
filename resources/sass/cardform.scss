@@ -12,6 +12,7 @@ text-align: left;
 
 .shoes_card_form_title{
     letter-spacing: 2px;
+    font-weight: normal;
 }
 .shoes_card_form {
     display: grid;
@@ -94,5 +95,43 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 .shoes_save_button:hover {
 box-shadow: 0 0 20px #2e3e78 inset
+}
+.temper{
+    height: auto;
+    width: 500px;
+    box-sizing: border-box;
+}
+.shoes_photo{
+    background: #f1f1e6;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 3px;
+	color: #787878;
+	font-size: 1em;
+	overflow: hidden;
+	padding: 0.875em;
+	position: relative;
+	text-align: center;
+	width: 200px;
+    height: 30px;
+    cursor: pointer;
+}
+.shoes_photo:hover, .shoes_photo:active, .shoes_photo:focus {
+    box-shadow: 0 0 20px #2e3e78 inset;
+    cursor: pointer;
+}
+.shoes_photo input.shoes_img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 148px;
+    height: 46px;
+  cursor: pointer;
 }
 
