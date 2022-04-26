@@ -55,10 +55,14 @@ function prepareCardForm() {
   }
   formData.append("name", name.value);
   formData.append("photo", photo.value);
-  formData.append("purposesIds", purpose.value);
+  for (let i = 0; i < purpose.value.length; i++) {
+    formData.append(`purposesIds${[i]}`, purpose.value[i]);
+  }
   formData.append("temp_from", temp_from.value);
   formData.append("temp_to", temp_to.value);
-  formData.append("weathersIds", weather.value);
+  for (let i = 0; i < weather.value.length; i++) {
+    formData.append(`weathersIds${[i]}`, weather.value[i]);
+  }
   axios.post("/api/shoes", formData);
   for (let entry of formData.entries()) {
     console.log("output ", entry);

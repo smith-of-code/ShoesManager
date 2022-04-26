@@ -17,3 +17,7 @@ yarn-error.log
 /public/js/app.js
 
 # Project exclude paths
+/public/css/
+/public/js/
+/public/images/
+/public/mix-manifest.json

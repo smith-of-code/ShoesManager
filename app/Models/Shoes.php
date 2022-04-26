@@ -29,6 +29,7 @@ class Shoes extends Model
     public $timestamps = true;
 
     protected $fillable=[
+        'id',
         'name',
         'temp_from',
         'temp_to',
@@ -38,19 +39,35 @@ class Shoes extends Model
     protected $hidden=[
         "created_at",
         "updated_at",
-        'pivot'
+//        'pivot',
+//        "weathers",
+//        "purposes"
+
     ];
 
+    protected $appends = ['weathers_ids','purposes_ids'];
 
     public function purposes(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Purpose::class,'shoes_purpose','shoes_id','purpose_id');
     }
-
     public function weathers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Weather::class,'shoes_weather','shoes_id','weather_id');
     }
+
+    public function getWeathersIdsAttribute()
+    {
+        return $this->weathers->pluck('id');
+    }
+
+    public function getPurposesIdsAttribute()
+    {
+        return $this->purposes->pluck('id');
+    }
+
+
+
 
 
 
