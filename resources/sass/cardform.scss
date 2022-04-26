@@ -1,0 +1,137 @@
+@import "variables";
+.container {
+font-family: $secondary_font;
+background: $natural_gradient;
+border-radius: 1%;
+height: auto;
+width: auto;
+padding: 30px 50px;
+margin: $all_margin;
+text-align: left;
+}
+
+.shoes_card_form_title{
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+.shoes_card_form {
+    display: grid;
+    grid-template-columns: (2, 1fr);
+    grid-template-rows: (5, 1fr);
+}
+
+.shoes_photo {
+    grid-area: 1 / 2 / span 5 / span 1;
+    align-self: stretch;
+}
+.shoes_name {
+    display: flex;
+    flex-direction: column;
+}
+.shoes_name__input{
+    width: 70%;
+    height: 30px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #f1f1e6;
+    font-size: 16px;
+    font-family: $secondary_font;
+    color: #787878;
+}
+
+.check_purpose :checked +svg path{
+    fill: #99254a;
+}
+.shoes_purpose{
+    display: flex;
+    align-items: center;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    background: $heart_gradient;
+    border: none;
+    width: 200px;
+    height: 16px;
+    cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    width: 20px;
+    height: 20px;
+    background: #2e3e78;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    -webkit-appearance: none;
+  }
+  input[type=range]::-moz-range-track {
+    background: $heart_gradient;
+    border: 1px solid #000000;
+    width: 100%;
+    height: 16px;
+    cursor: pointer;
+  }
+  input[type=range]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #2e3e78;
+    border: 1.5px solid #000000;
+    border-radius: 10px;
+    -webkit-appearance: none;
+  }
+  p{
+    color: $titel_color;
+  }
+   .shoes_save_button{
+    width: 70%;
+    height: 30px;
+    padding: 5px 10px;
+    background-color: #f1f1e6;
+    border: none;
+    color: #787878;
+    letter-spacing: 2px;
+    border-radius: 2px;
+    margin: 30px 0px;
+    font-family: $secondary_font;
+    text-transform: uppercase;
+}
+.shoes_save_button:hover {
+box-shadow: 0 0 20px #2e3e78 inset
+}
+.temper{
+    height: auto;
+    width: 500px;
+    box-sizing: border-box;
+}
+.shoes_photo{
+    background: #f1f1e6;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 3px;
+	color: #787878;
+	font-size: 1em;
+	overflow: hidden;
+	padding: 0.875em;
+	position: relative;
+	text-align: center;
+	width: 200px;
+    height: 30px;
+    cursor: pointer;
+}
+.shoes_photo:hover, .shoes_photo:active, .shoes_photo:focus {
+    box-shadow: 0 0 20px #2e3e78 inset;
+    cursor: pointer;
+}
+.shoes_photo input.shoes_img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 148px;
+    height: 46px;
+  cursor: pointer;
+}
+
