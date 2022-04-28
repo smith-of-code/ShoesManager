@@ -2,27 +2,35 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "./pages/Home";
 
 const routes = [
-    {
-        path: "/",
-        name: "Home",
-        component: Home,
-    },
-    {
-        path: "/card",
-        name: "Card",
+  {
+    path: "/",
+    name: "Home",
+    component: Home,
+  },
+  {
+    path: "/card",
+    name: "Card",
+    props: true,
+   component: () => import("./pages/CardFormShoes.vue"),
+    children: [
+      {
+        path: '/card/:id',
+        name: "CardID",
+        props: true,
         component: () => import('./pages/CardFormShoes.vue')
-    },
-    {
-        path: "/list",
-        name: "ListShoes",
-        component: () => import('./pages/ListShoes.vue')
-    },
-
+      },
+    ]
+  },
+  {
+    path: "/list",
+    name: "ListShoes",
+    component: () => import("./pages/ListShoes.vue"),
+  },
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes,
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;

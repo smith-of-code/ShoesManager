@@ -1,8 +1,23 @@
 <template>
-  <svg style="width: 70px; height: 70px" viewBox="0 0 35 20">
+  <svg
+    :style="({ width: dimention.width + 'px' }, { height: dimention.height + 'px' })"
+    viewBox="0 0 24 24"
+  >
     <path
       fill="currentColor"
       d="M7.5,7L5.5,5H18.5L16.5,7M11,13V19H6V21H18V19H13V13L21,5V3H3V5L11,13Z"
     />
   </svg>
 </template>
+<script setup>
+const dimention = defineProps({
+  width: {
+    Number,
+    default: 20,
+  },
+  height: {
+    Number,
+    default: 20,
+  },
+});
+</script>

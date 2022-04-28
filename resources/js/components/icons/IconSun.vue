@@ -1,7 +1,7 @@
 <template>
   <svg
-    style="width: 70px; height: 70px"
-    viewBox="0 0 35 20"
+    :style="({ width: dimention.width + 'px' }, { height: dimention.height + 'px' })"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     fill="red"
   >
@@ -10,3 +10,15 @@
     />
   </svg>
 </template>
+<script setup>
+const dimention = defineProps({
+  width: {
+    Number,
+    default: 20,
+  },
+  height: {
+    Number,
+    default: 20,
+  },
+});
+</script>

@@ -10,7 +10,6 @@
   align-items: center;
   justify-content: flex-start;
   padding: 5px;
-  margin: 5px 0;
-  border: 1px solid red;
+  margin: 5px 10px;
 }
 </style>
