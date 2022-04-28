@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Validator;
 
 class SignInController extends Controller
 {
+
+        public function signinForm(){
+            return view('welcome');
+        }
+
     /**
      * Обработка попыток аутентификации.
      *
@@ -20,7 +25,7 @@ class SignInController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = Validator::make($request->all(),[
-            'email'=>'required|email',
+            'email'=>'required|email|exists:'.existByModel(User::class,'email'),
             'password'=>'required',
         ]);
         if (!$credentials->fails()){

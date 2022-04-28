@@ -17,6 +17,12 @@ const routes = [
         name: "ListShoes",
         component: () => import('./pages/ListShoes.vue')
     },
+    {
+        path: "/auth/:type",
+        name: "Signin",
+        component: () => import('./pages/Auth.vue'),
+        props:true
+    },
 
 ];
 
