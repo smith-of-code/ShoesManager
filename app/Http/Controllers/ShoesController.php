@@ -125,6 +125,8 @@ class ShoesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $is_deleted = (bool)Shoes::whereId($id)->delete();
+
+        return  response(['is_deleted' => $is_deleted],$is_deleted?200:400);
     }
 }
