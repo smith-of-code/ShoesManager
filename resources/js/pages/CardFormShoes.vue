@@ -16,7 +16,7 @@ import axios from "axios";
 //наименование обуви
 const name = ref("");
 //изображение обуви:
-//кртинка
+//картинка
 const photo = reactive({});
 const pathPhoto = ref(shoesBackground);
 const photoName = ref("");
@@ -91,29 +91,32 @@ function prepareCardForm() {
     <h1 class="shoes_card_form_title">Карточка обуви</h1>
     <form class="shoes_card_form" method="post" enctype="multipart/form-data">
       <div class="shoes shoes_name">
-        <label for="shoes-name"></label>
-        <input
-          placeholder="Введите наименование"
-          type="text"
-          id="shoes-name"
-          class="shoes_name__input"
-          v-model="name"
-          required
-        />
+        <label for="shoes-name">
+          <input
+            placeholder="Введите наименование"
+            type="text"
+            id="shoes-name"
+            class="shoes_name__input"
+            v-model="name"
+            required
+          />
+        </label>
       </div>
 
       <div class="shoes shoes_photo">
         <!--<p>Выбрать/поменять изображение обуви</p>-->
-        <label class="shoes_img__label" for="shoes-img"></label>
-        <input
-          class="shoes_img"
-          type="file"
-          id="shoes-img"
-          accept="image/*"
-          @change="onChangeFile"
-          name="file"
-        />
-        <span>Загрузить изображение</span>
+        <label class="shoes_img__label" for="shoes-img">
+          <input
+            class="shoes_img"
+            type="file"
+            id="shoes-img"
+            accept="image/*"
+            @change="onChangeFile"
+            name="file"
+          />
+          <span>Загрузить изображение:</span>
+          <div>{{ photoName }}</div>
+        </label>
       </div>
       <div class="shoes">
         <p>Отметьте назначение обуви:</p>
