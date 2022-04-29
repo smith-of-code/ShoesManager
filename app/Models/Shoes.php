@@ -5,6 +5,7 @@ namespace App\Models;
 use Database\Seeders\PurposeSeeder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Shoes
@@ -21,14 +22,16 @@ use Illuminate\Database\Eloquent\Model;
 class Shoes extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'shoes';
 
     protected $primaryKey = 'id';
 
     public $timestamps = true;
-
+    protected $dates = ['deleted_at'];
     protected $fillable=[
+        'id',
         'name',
         'temp_from',
         'temp_to',
@@ -38,19 +41,35 @@ class Shoes extends Model
     protected $hidden=[
         "created_at",
         "updated_at",
-        'pivot'
+//        'pivot',
+//        "weathers",
+//        "purposes"
+
     ];
 
+    protected $appends = ['weathers_ids','purposes_ids'];
 
     public function purposes(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Purpose::class,'shoes_purpose','shoes_id','purpose_id');
     }
-
     public function weathers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Weather::class,'shoes_weather','shoes_id','weather_id');
     }
+
+    public function getWeathersIdsAttribute()
+    {
+        return $this->weathers->pluck('id');
+    }
+
+    public function getPurposesIdsAttribute()
+    {
+        return $this->purposes->pluck('id');
+    }
+
+
+
 
 
 

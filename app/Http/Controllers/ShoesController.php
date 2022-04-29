@@ -10,11 +10,14 @@ class ShoesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Shoes[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Shoes::with(['purposes','weathers'])->get();
+        if ($request->exists('all')){
+            return Shoes::withTrashed()->get();
+        }
+        return Shoes::all();
     }
 
     /**
@@ -125,6 +128,8 @@ class ShoesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $is_deleted = (bool)Shoes::whereId($id)->delete();
+
+        return  response(['is_deleted' => $is_deleted],$is_deleted?200:400);
     }
 }

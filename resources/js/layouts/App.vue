@@ -1,17 +1,13 @@
 <template>
-    <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+  <div class="mainmenu" id="nav">
+    <router-link class="mainmenu__item" to="/">Главная</router-link>
+    <router-link class="mainmenu__item" to="/card">Карточка обуви</router-link>
+
+    <router-link class="mainmenu__item" to="/list">Моя коллекция</router-link>
+  </div>
+  <router-view />
 </template>
 
-<script>
-export default {
-    name: "App"
-}
-</script>
+<script setup></script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

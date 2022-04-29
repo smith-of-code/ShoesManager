@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orelega+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Orelega+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lato:wght@300&family=Orelega+One&display=swap");
+body {
+  background-color: white;
+}
+
+.container {
+  font-family: "Lato", sans-serif;
+  background-color: rgba(205, 205, 205, 0.373);
+  height: auto;
+  width: 800px;
+  padding: 30px 60px;
+  margin: 30px 0px;
+  text-align: left;
+}
+
+.shoes_card_form_title {
+  letter-spacing: 2px;
+  font-weight: normal;
+}
+
+.shoes_card_form {
+  background-color: #ffffff;
+  -webkit-box-shadow: 11px 12px 5px 0px #E2E2E2;
+          box-shadow: 11px 12px 5px 0px #E2E2E2;
+  padding: 60px;
+  border: double 2px #E2E2E2;
+  border-radius: 5px;
+}
+
+.shoes_card_form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 5, 1fr;
+      grid-template-rows: 5, 1fr;
+}
+
+.shoes_name {
+  width: 100%;
+  border: 1px solid #E2E2E2;
+}
+
+.shoes_name__input {
+  outline: 0;
+  display: block;
+  width: 100%;
+  height: 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px 10px;
+  border: none;
+  background-color: #ffffff;
+  font-size: 18px;
+  font-family: "Lato", sans-serif;
+}
+
+.shoes_photo {
+  margin: 20px 0px;
+  background: #f1f1e6;
+  border-radius: 3px;
+  color: #787878;
+  font-size: 1em;
+  overflow: hidden;
+  padding: 0.875em;
+  position: relative;
+  height: 50px;
+  border: 1px solid #E2E2E2;
+  cursor: pointer;
+}
+
+.shoes_photo:hover, .shoes_photo:active, .shoes_photo:focus {
+  cursor: pointer;
+}
+
+.shoes_photo input.shoes_img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.shoes_purpose {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.check_purpose :checked + svg path {
+  fill: #99254a;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  background: -webkit-gradient(linear, left top, right top, from(#284166), color-stop(#503d70), color-stop(#7b3167), color-stop(#99254a), to(#a33120));
+  background: linear-gradient(to right, #284166, #503d70, #7b3167, #99254a, #a33120);
+  border: none;
+  width: 200px;
+  height: 16px;
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  background: #2e3e78;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  -webkit-appearance: none;
+}
+
+input[type=range]::-moz-range-track {
+  background: linear-gradient(to right, #284166, #503d70, #7b3167, #99254a, #a33120);
+  border: 1px solid #000000;
+  width: 100%;
+  height: 16px;
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #2e3e78;
+  border: 1.5px solid #000000;
+  border-radius: 10px;
+  -webkit-appearance: none;
+}
+
+p {
+  color: #787878;
+}
+
+.shoes_save_button {
+  width: 100%;
+  height: 50px;
+  padding: 5px 10px;
+  background-color: #fefefe;
+  border: 2px solid #E2E2E2;
+  color: #787878;
+  letter-spacing: 2px;
+  border-radius: 2px;
+  margin: 30px 0px;
+  font-family: "Orelega One", cursive;
+  text-transform: uppercase;
+}
+
+.shoes_save_button:hover {
+  background: rgba(205, 205, 205, 0.373);
+}
+
+.temper {
+  height: auto;
+  width: 500px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@media (max-width: 375px) {
+  .container {
+    padding: 10px;
+    margin: 20px 0px;
+    width: 100%;
+  }
+  .shoes_card_form_title {
+    letter-spacing: 1px;
+    margin: 10px 0px;
+  }
+  .shoes_card_form {
+    padding: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .temper {
+    width: 100%;
+    font-size: 12px;
+  }
+}
+
+/*@import "variables";
+.mainmenu {
+    margin: $all_margin;
+    background: $natural_gradient;
+    border-radius: 1%;
+    height: auto;
+    width: auto;
+    padding: 10px 50px;
+    font-family: $secondary_font;
+    font-size: large;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.mainmenu__item{
+    text-decoration: none;
+    padding: 10px;
+    color: black;
+}
+.mainmenu__item:hover{
+    box-shadow: 0 0 20px #2e3e78 inset
+}
+*/
+/*# sourceMappingURL=app.css.map */
