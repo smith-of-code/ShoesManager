@@ -12,6 +12,10 @@ class SignUpController extends Controller
 {
     public function registration(Request $request){
 
+        if ($request->isMethod('get')){
+            return view('auth.signup');
+        }
+
         $credentials = Validator::make($request->all(),[
             'name'=>'required|string',
             'email'=>'required|email|unique:users',
