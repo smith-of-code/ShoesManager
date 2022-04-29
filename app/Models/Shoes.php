@@ -5,6 +5,7 @@ namespace App\Models;
 use Database\Seeders\PurposeSeeder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Shoes
@@ -21,13 +22,14 @@ use Illuminate\Database\Eloquent\Model;
 class Shoes extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'shoes';
 
     protected $primaryKey = 'id';
 
     public $timestamps = true;
-
+    protected $dates = ['deleted_at'];
     protected $fillable=[
         'id',
         'name',
