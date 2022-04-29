@@ -1,93 +1,3 @@
-<template>
-  <div>
-    <h1>Ввод и редактирование карточки обуви</h1>
-    <form class="shoes_card_form" method="post" enctype="multipart/form-data">
-      <div class="shoes">
-        <label for="shoes-name">Введите/измените название обуви</label>
-        <input type="text" id="shoes-name" v-model="name" required />
-      </div>
-      <div class="shoes">
-        <p>Выбрать/поменять изображение обуви</p>
-        <label
-          class="shoes_img__label"
-          for="shoes-img"
-          :style="{ backgroundImage: `url(${pathPhoto})` }"
-        ></label>
-        <input
-          class="shoes_img"
-          type="file"
-          id="shoes-img"
-          accept="image/*"
-          @change="onChangeFile"
-          name="file"
-        />
-      </div>
-      <div class="shoes">
-        <p>Назначение обуви, можно выбрать несколько вариантов:</p>
-        <div class="shoes_purpose">
-          <div class="shoes">
-            <IconCasual :width="40" :height="40" />
-            <label for="casual">повседневная</label>
-            <input type="checkbox" id="casual" value="1" v-model="purpose" />
-          </div>
-          <div class="shoes">
-            <IconSport :width="40" :height="40" />
-            <label for="sport">спортивная</label>
-            <input type="checkbox" id="sport" value="2" v-model="purpose" />
-          </div>
-          <div class="shoes">
-            <IconWork :width="40" :height="40" />
-            <label for="work">деловая</label>
-            <input type="checkbox" id="work" value="3" v-model="purpose" />
-          </div>
-          <div class="shoes">
-            <IconParty :width="40" :height="40" />
-            <label for="party">вечерняя</label>
-            <input type="checkbox" id="party" value="4" v-model="purpose" />
-          </div>
-        </div>
-      </div>
-      <div class="shoes">
-        <p>Задайте температурный режим эксплуатации:</p>
-        <p>
-          Минимальная температура носки:<span>{{ temp_from }}C</span>
-        </p>
-        <input type="range" min="-30" max="30" step="5" v-model="temp_from" />
-        <p>
-          Максимальная температура носки:<span>{{ temp_to }}C</span>
-        </p>
-        <input type="range" min="-30" max="30" step="5" v-model="temp_to" />
-      </div>
-      <div class="shoes">
-        <p>Погодные условия носки, можно выбрать несколько вариантов:</p>
-        <div class="shoes_purpose">
-          <div class="shoes">
-            <IconSun :width="40" :height="40" />
-            <label for="sun">сухо</label>
-            <input type="checkbox" id="sun" value="1" v-model="weather" />
-          </div>
-          <div class="shoes">
-            <IconRain :width="40" :height="40" />
-            <label for="rain">дождь</label>
-            <input type="checkbox" id="rain" value="2" v-model="weather" />
-          </div>
-          <div class="shoes">
-            <IconSpot :width="40" :height="40" />
-            <label for="dirt">грязь</label>
-            <input type="checkbox" id="dirt" value="3" v-model="weather" />
-          </div>
-          <div class="shoes">
-            <IconSnow :width="40" :height="40" />
-            <label for="snow">снег</label>
-            <input type="checkbox" id="snow" value="4" v-model="weather" />
-          </div>
-        </div>
-      </div>
-      <button type="submit" @click.prevent="prepareCardForm">Сохранить</button>
-    </form>
-  </div>
-</template>
-
 <script setup>
 import { reactive, ref, onBeforeMount, watch } from "vue";
 import IconSun from "../components/icons/IconSun.vue";
@@ -223,6 +133,96 @@ function prepareCardForm() {
   //   }
 }
 </script>
+
+<template>
+  <div>
+    <h1>Ввод и редактирование карточки обуви</h1>
+    <form class="shoes_card_form" method="post" enctype="multipart/form-data">
+      <div class="shoes">
+        <label for="shoes-name">Введите/измените название обуви</label>
+        <input type="text" id="shoes-name" v-model="name" required />
+      </div>
+      <div class="shoes">
+        <p>Выбрать/поменять изображение обуви</p>
+        <label
+          class="shoes_img__label"
+          for="shoes-img"
+          :style="{ backgroundImage: `url(${pathPhoto})` }"
+        ></label>
+        <input
+          class="shoes_img"
+          type="file"
+          id="shoes-img"
+          accept="image/*"
+          @change="onChangeFile"
+          name="file"
+        />
+      </div>
+      <div class="shoes">
+        <p>Назначение обуви, можно выбрать несколько вариантов:</p>
+        <div class="shoes_purpose">
+          <div class="shoes">
+            <IconCasual :width="40" :height="40" />
+            <label for="casual">повседневная</label>
+            <input type="checkbox" id="casual" value="1" v-model="purpose" />
+          </div>
+          <div class="shoes">
+            <IconSport :width="40" :height="40" />
+            <label for="sport">спортивная</label>
+            <input type="checkbox" id="sport" value="2" v-model="purpose" />
+          </div>
+          <div class="shoes">
+            <IconWork :width="40" :height="40" />
+            <label for="work">деловая</label>
+            <input type="checkbox" id="work" value="3" v-model="purpose" />
+          </div>
+          <div class="shoes">
+            <IconParty :width="40" :height="40" />
+            <label for="party">вечерняя</label>
+            <input type="checkbox" id="party" value="4" v-model="purpose" />
+          </div>
+        </div>
+      </div>
+      <div class="shoes">
+        <p>Задайте температурный режим эксплуатации:</p>
+        <p>
+          Минимальная температура носки:<span>{{ temp_from }}C</span>
+        </p>
+        <input type="range" min="-30" max="30" step="5" v-model="temp_from" />
+        <p>
+          Максимальная температура носки:<span>{{ temp_to }}C</span>
+        </p>
+        <input type="range" min="-30" max="30" step="5" v-model="temp_to" />
+      </div>
+      <div class="shoes">
+        <p>Погодные условия носки, можно выбрать несколько вариантов:</p>
+        <div class="shoes_purpose">
+          <div class="shoes">
+            <IconSun :width="40" :height="40" />
+            <label for="sun">сухо</label>
+            <input type="checkbox" id="sun" value="1" v-model="weather" />
+          </div>
+          <div class="shoes">
+            <IconRain :width="40" :height="40" />
+            <label for="rain">дождь</label>
+            <input type="checkbox" id="rain" value="2" v-model="weather" />
+          </div>
+          <div class="shoes">
+            <IconSpot :width="40" :height="40" />
+            <label for="dirt">грязь</label>
+            <input type="checkbox" id="dirt" value="3" v-model="weather" />
+          </div>
+          <div class="shoes">
+            <IconSnow :width="40" :height="40" />
+            <label for="snow">снег</label>
+            <input type="checkbox" id="snow" value="4" v-model="weather" />
+          </div>
+        </div>
+      </div>
+      <button type="submit" @click.prevent="prepareCardForm">Сохранить</button>
+    </form>
+  </div>
+</template>
 
 <style scoped>
 .shoes_card_form {
