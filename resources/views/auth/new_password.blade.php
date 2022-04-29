@@ -1,20 +1,25 @@
+@extends('layouts.auth')
+@section('action')
+    {{route('password.reset')}}
+@endsection
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('method'){{'post'}}@endsection
 
-    <title>shoes manager</title>
-    <link href="{{mix('css/app.css')}}" rel="stylesheet">
-</head>
-<body>
-<form action="{{route('password.reset')}}" method="post">
+@section('form_title')
+    Новый пароль
+@endsection
+
+@section('form_body')
     <input type="hidden" name="token" value="{{$token}}">
-    <label> email<input type="text" name="email"></label>
-    <label> Новый пароль<input type="text" name="password"></label>
-    <label> Новый пароль еще раз<input type="text" name="password_confirmation"></label>
-    <input type="submit">
-</form>
-</body>
-</html>
+    <input type="hidden" name="email" value="{{$email}}">
+    <label for="psw"><strong>Пароль</strong></label>
+    <input type="password" placeholder="Введите пароль" name="password" required>
+    <label for="psw"><strong>Повторите Пароль</strong></label>
+    <input type="password" placeholder="Введите пароль" name="password_confirmation" required>
+    <p class="auth__error-message">{{$errors->first('password')}}</p>
+    <p class="auth__error-message">{{$errors->first('password_confirmation')}}</p>
+    <p class="auth__error-message">{{$errors->first('message')}}</p>
+@endsection
+@section('button_text')Сохранить@endsection
+@section('form_footer')
+@endsection

@@ -31,7 +31,8 @@ Route::group(['prefix'=>'auth','as' => 'auth.'],function (){
 
     Route::get('signout','App\Http\Controllers\Auth\SignInController@signout')->name('signout');
 
-    Route::match(['post','get'],'reset-password','App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('reset-password');
+    Route::match(['post','get'],'forgot-password','App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('reset-password');
+
 });
 
 Route::match(['get','post'],'reset-password','App\Http\Controllers\Auth\ResetPasswordController@confirmResetPassword')->name('password.reset');

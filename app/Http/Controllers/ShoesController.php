@@ -15,9 +15,9 @@ class ShoesController extends Controller
     public function index(Request $request)
     {
         if ($request->exists('all')){
-            return Shoes::withTrashed()->get();
+            return Shoes::whereUserId(\Auth::id())->withTrashed()->get();
         }
-        return Shoes::all();
+        return Shoes::whereUserId(\Auth::id())->get();
     }
 
     /**
@@ -42,7 +42,9 @@ class ShoesController extends Controller
         $entity = new Shoes();
 
         $entity->fill($request->all());
-        $status =$entity->save();
+        $entity->user_id = \Auth::id();
+        $status = $entity->save();
+
         if ($status ){
             if ($request->exists('photo')){
 
@@ -68,7 +70,7 @@ class ShoesController extends Controller
      */
     public function show($id)
     {
-        $entity = Shoes::whereId($id)->first();
+        $entity = Shoes::whereUserId(\Auth::id())->whereId($id)->first();
         if ($entity){
             return response($entity, 200);
         }else{
@@ -96,7 +98,7 @@ class ShoesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $entity = Shoes::whereId($id)->first();
+        $entity = Shoes::whereUserId(\Auth::id())->whereId($id)->first();
         if ($entity){
             $entity->fill($request->all());
             $status =$entity->save();
@@ -128,7 +130,7 @@ class ShoesController extends Controller
      */
     public function destroy($id)
     {
-        $is_deleted = (bool)Shoes::whereId($id)->delete();
+        $is_deleted = (bool)Shoes::whereUserId(\Auth::id())->whereId($id)->delete();
 
         return  response(['is_deleted' => $is_deleted],$is_deleted?200:400);
     }

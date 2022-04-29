@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Cassandra\Exception\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,14 +28,15 @@ class SignInController extends Controller
     {
         $credentials = Validator::make($request->all(),[
             'email'=>'required|email|exists:'.existByModel(User::class,'email'),
-            'password'=>'required',
+            'password'=>'required|',
         ]);
 
         if (!$credentials->fails() && Auth::attempt($request->only(['email','password']))){
 
             return Redirect::route('home');
         }else{
-            return Redirect::route('auth.signin-form')->withErrors($credentials)->withInput(
+            $errors = $credentials->fails()?$credentials->errors():["message"=> trans('auth.failed')];
+            return Redirect::route('auth.signin-form')->withErrors($errors)->withInput(
                 $request->except('password')
             );
         }

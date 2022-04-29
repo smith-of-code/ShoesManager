@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple login form</title>
+    <title>@yield('title')</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <style>
         html, body {
@@ -51,10 +51,16 @@
         .auth__footer{
             background-color: #eee;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             min-height: 35px;
             padding-right: 20px;
+            min-width: 300px;
+        }
+        .auth__error-message{
+            color: red;
+            font-size: 15px;
+            margin-top: -5px;
         }
         /* Change styles for span on extra small screens */
         @media screen and (max-width: 460px) {
@@ -66,7 +72,6 @@
     </style>
 </head>
 <body>
-{{$errors->first()}}
 <form action="@yield('action')" method="@yield('method')">
     @csrf
     <h1>@yield('form_title')</h1>
@@ -76,7 +81,7 @@
             @yield('form_body')
 
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">@yield('button_text')</button>
         <div class="auth__footer">
             @yield('form_footer')
         </div>
