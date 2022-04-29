@@ -12,8 +12,11 @@ class ShoesController extends Controller
      *
      * @return Shoes[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->exists('all')){
+            return Shoes::withTrashed()->get();
+        }
         return Shoes::all();
     }
 
