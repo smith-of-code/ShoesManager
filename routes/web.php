@@ -21,7 +21,14 @@ Route::group([
 
     Route::resource('weather','App\Http\Controllers\WeatherController');
 });
+Route::group(['prefix'=>'auth','as' => 'auth.'],function (){
+    Route::get('signin','App\Http\Controllers\Auth\SignInController@signinForm')->name('signin-form');
+    Route::post('signin','App\Http\Controllers\Auth\SignInController@authenticate')->name('signin');
+    Route::post('signup','App\Http\Controllers\Auth\SignUpController@registration')->name('signup');
+    Route::match(['post','get'],'reset-password','App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('reset-password');
+});
 
+Route::match(['get','post'],'reset-password','App\Http\Controllers\Auth\ResetPasswordController@confirmResetPassword')->name('password.reset');
 Route::get('/{any}', function () {
     return view('welcome');
 })->where('any','.*');

@@ -1,8 +1,9 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/card">Запись и редактирование карточки обуви</router-link> |
-    <router-link to="/list">Посмотреть список обуви</router-link>
+  <div class="mainmenu" id="nav">
+    <router-link class="mainmenu__item" to="/">Главная</router-link>
+    <router-link class="mainmenu__item" to="/card">Карточка обуви</router-link>
+
+    <router-link class="mainmenu__item" to="/list">Моя коллекция</router-link>
   </div>
   <router-view />
 </template>

@@ -7,25 +7,33 @@ const routes = [
     name: "Home",
     component: Home,
   },
+
   {
     path: "/card",
     name: "Card",
     props: true,
    component: () => import("./pages/CardFormShoes.vue"),
     children: [
-      {
+        {
         path: '/card/:id',
         name: "CardID",
         props: true,
         component: () => import('./pages/CardFormShoes.vue')
-      },
-    ]
-  },
-  {
-    path: "/list",
-    name: "ListShoes",
-    component: () => import("./pages/ListShoes.vue"),
-  },
+        },
+            ]
+    },
+
+    {
+        path: "/list",
+        name: "ListShoes",
+        component: () => import('./pages/ListShoes.vue')
+    },
+    {
+        path: "/auth/:type",
+        name: "Signin",
+        component: () => import('./pages/Auth.vue'),
+        props:true
+    },
 ];
 
 const router = createRouter({
