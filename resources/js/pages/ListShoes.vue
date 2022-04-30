@@ -114,8 +114,8 @@ const listSearch = reactive([]);
 const router = useRouter();
 
 //непосредственно загрузчик обуви
-const loader = function () {
-  axios
+const loader = async () => {
+  await axios
     .get("/api/shoes")
     .then((response) => {
       shoesStore.value = response.data;
@@ -159,6 +159,7 @@ watch(
     } else loader();
   }
 );
+
 watch(
   () => searchTemp.value,
   () => {
@@ -167,6 +168,7 @@ watch(
     );
   }
 );
+
 watch(
   () => searchWeather.value,
   () => {

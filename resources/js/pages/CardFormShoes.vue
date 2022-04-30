@@ -121,18 +121,22 @@ function prepareCardForm() {
   } else {
     //для карточки, которая уже была и редактируется
     if (name.value != shoesData.value.name) formData.append("name", name.value);
-    if (JSON.stringify(purpose.value) != JSON.stringify(shoesData.value.purposes_ids))
-      for (let i = 0; i < purpose.value.length; i++) {
-        formData.append(`purposesIds[${i}]`, purpose.value[i]);
-      }
+    //if (JSON.stringify(purpose.value) != JSON.stringify(shoesData.value.purposes_ids))
+    //purpose.value.length purpose.value[i]
+    //purpose.value = [5, 5, 5, 5];
+    console.log("перед занесением", purpose.value);
+    for (let i = 0; i < purpose.value.length; i++) {
+      //есть проблема которую надо решить через БЭ
+      formData.append(`purposesIds[${i}]`, purpose.value[i]);
+    }
     if (temp_from.value != shoesData.value.temp_from)
       formData.append("temp_from", temp_from.value);
     if (temp_to.value != shoesData.value.temp_to)
       formData.append("temp_to", temp_to.value);
-    if (JSON.stringify(weather.value) != JSON.stringify(shoesData.value.weathers_ids))
-      for (let i = 0; i < weather.value.length; i++) {
-        formData.append(`weathersIds[${i}]`, weather.value[i]);
-      }
+    //if (JSON.stringify(weather.value) != JSON.stringify(shoesData.value.weathers_ids))
+    for (let i = 0; i < weather.value.length; i++) {
+      formData.append(`weathersIds[${i}]`, weather.value[i]);
+    }
     axios.post(`/api/shoes/${cardID.id}`, formData);
     for (let entry of formData.entries()) {
       console.log("output old", entry);
