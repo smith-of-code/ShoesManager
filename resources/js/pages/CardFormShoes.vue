@@ -73,7 +73,8 @@ watch(
 //объект всех данных формы при "отправить"
 let formData = new FormData();
 
-//загрузка выбранного изображения
+//загрузка выбранного изображения,
+//ЕСЛИ! загрузка через тег input type="file"
 function onChangeFile(e) {
   photo.value = e.target.files[0];
   //показ изображения в качестве превью
@@ -91,27 +92,47 @@ function onChangeFile(e) {
 
 //фоормируем, отправляем и очищаем файл отправки данных карточки !photo.value ||
 function prepareCardForm() {
-  if (!name.value || !photo.value) {
+  if (!name.value) {
     //временная заглушка вместо валидации введенного имени
-    alert("Введите имя обуви и/или загрузите фото");
+    alert("Введите имя обуви");
     return;
   }
-  formData.append("name", name.value);
-  formData.append("photo", photo.value);
-  for (let i = 0; i < purpose.value.length; i++) {
-    formData.append(`purposesIds[${i}]`, purpose.value[i]);
-  }
-  formData.append("temp_from", temp_from.value);
-  formData.append("temp_to", temp_to.value);
-  for (let i = 0; i < weather.value.length; i++) {
-    formData.append(`weathersIds[${i}]`, weather.value[i]);
-  }
   if (!cardID.id) {
+    //для новой карточки
+    if (!photo.value) {
+      //временная заглушка вместо валидации введенного имени
+      alert("Загрузите изображение обуви");
+      return;
+    }
+    formData.append("name", name.value);
+    formData.append("photo", photo.value);
+    for (let i = 0; i < purpose.value.length; i++) {
+      formData.append(`purposesIds[${i}]`, purpose.value[i]);
+    }
+    formData.append("temp_from", temp_from.value);
+    formData.append("temp_to", temp_to.value);
+    for (let i = 0; i < weather.value.length; i++) {
+      formData.append(`weathersIds[${i}]`, weather.value[i]);
+    }
     axios.post("/api/shoes", formData);
     for (let entry of formData.entries()) {
       console.log("output new", entry);
     }
   } else {
+    //для карточки, которая уже была и редактируется
+    if (name.value != shoesData.value.name) formData.append("name", name.value);
+    if (JSON.stringify(purpose.value) != JSON.stringify(shoesData.value.purposes_ids))
+      for (let i = 0; i < purpose.value.length; i++) {
+        formData.append(`purposesIds[${i}]`, purpose.value[i]);
+      }
+    if (temp_from.value != shoesData.value.temp_from)
+      formData.append("temp_from", temp_from.value);
+    if (temp_to.value != shoesData.value.temp_to)
+      formData.append("temp_to", temp_to.value);
+    if (JSON.stringify(weather.value) != JSON.stringify(shoesData.value.weathers_ids))
+      for (let i = 0; i < weather.value.length; i++) {
+        formData.append(`weathersIds[${i}]`, weather.value[i]);
+      }
     axios.patch(`/api/shoes/${cardID.id}`, formData);
     for (let entry of formData.entries()) {
       console.log("output old", entry);
