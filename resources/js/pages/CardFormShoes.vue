@@ -133,7 +133,7 @@ function prepareCardForm() {
       for (let i = 0; i < weather.value.length; i++) {
         formData.append(`weathersIds[${i}]`, weather.value[i]);
       }
-    axios.patch(`/api/shoes/${cardID.id}`, formData);
+    axios.post(`/api/shoes/${cardID.id}`, formData);
     for (let entry of formData.entries()) {
       console.log("output old", entry);
     }

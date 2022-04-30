@@ -22,7 +22,6 @@ const routes = [
         },
             ]
     },
-
     {
         path: "/list",
         name: "ListShoes",
@@ -33,6 +32,11 @@ const routes = [
         name: "Signin",
         component: () => import('./pages/Auth.vue'),
         props:true
+    },
+    {
+        path: "/adviser",
+        name: "ShoesAdviser",
+        component: () => import('./pages/ShoesAdviser.vue')
     },
 ];
 
