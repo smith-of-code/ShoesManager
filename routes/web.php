@@ -17,7 +17,7 @@ Route::group([
     'middleware' => ['isAuth']
 ],function (){
     Route::resource('shoes','App\Http\Controllers\ShoesController');
-
+    Route::post('shoes/{id}','App\Http\Controllers\ShoesController@update');
     Route::resource('purpose','App\Http\Controllers\PurposeController');
 
     Route::resource('weather','App\Http\Controllers\WeatherController');

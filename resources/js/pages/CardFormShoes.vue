@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, onBeforeMount, watch } from "vue";
+import { reactive, ref, onBeforeMount, watch, computed } from "vue";
 import IconSun from "../components/icons/IconSun.vue";
 import IconRain from "../components/icons/IconRain.vue";
 import IconSpot from "../components/icons/IconSpot.vue";
@@ -10,6 +10,7 @@ import IconCasual from "../components/icons/IconCasual.vue";
 import IconParty from "../components/icons/IconParty.vue";
 import shoesBackground from "../components/images/ShoesPicture.jpg";
 import axios from "axios";
+import { notEqual } from "assert";
 
 //передача через роутер номера id обуви
 const cardID = defineProps({
@@ -57,7 +58,26 @@ const temp_to = ref(5);
 //погодные условия
 const weather = ref([]);
 
+const deltaTemp = computed(() => {
+  return temp_to.value - temp_from.value;
+});
+
+const note = computed(() => {
+  return deltaTemp.value == 0;
+});
+
+watch(
+  () => deltaTemp.value,
+  () => {
+    note.value = false;
+    if (deltaTemp.value < 0) {
+      temp_from.value -= 5;
+          }
+  }
+);
+
 //следит, если id передан, подгружает данные пары в текущие переменный
+//ситуация для редактирования карточки обуви
 watch(
   () => shoesData.value,
   () => {
@@ -73,7 +93,8 @@ watch(
 //объект всех данных формы при "отправить"
 let formData = new FormData();
 
-//загрузка выбранного изображения
+//загрузка выбранного изображения,
+//ЕСЛИ! загрузка через тег input type="file"
 function onChangeFile(e) {
   photo.value = e.target.files[0];
   //показ изображения в качестве превью
@@ -91,28 +112,53 @@ function onChangeFile(e) {
 
 //фоормируем, отправляем и очищаем файл отправки данных карточки !photo.value ||
 function prepareCardForm() {
-  if (!name.value || !photo.value) {
+  if (!name.value) {
     //временная заглушка вместо валидации введенного имени
-    alert("Введите имя обуви и/или загрузите фото");
+    alert("Введите имя обуви");
     return;
   }
-  formData.append("name", name.value);
-  formData.append("photo", photo.value);
-  for (let i = 0; i < purpose.value.length; i++) {
-    formData.append(`purposesIds[${i}]`, purpose.value[i]);
-  }
-  formData.append("temp_from", temp_from.value);
-  formData.append("temp_to", temp_to.value);
-  for (let i = 0; i < weather.value.length; i++) {
-    formData.append(`weathersIds[${i}]`, weather.value[i]);
-  }
   if (!cardID.id) {
+    //для новой карточки
+    if (!photo.value) {
+      //временная заглушка вместо валидации введенного имени
+      alert("Загрузите изображение обуви");
+      return;
+    }
+    formData.append("name", name.value);
+    formData.append("photo", photo.value);
+    for (let i = 0; i < purpose.value.length; i++) {
+      formData.append(`purposesIds[${i}]`, purpose.value[i]);
+    }
+    formData.append("temp_from", temp_from.value);
+    formData.append("temp_to", temp_to.value);
+    for (let i = 0; i < weather.value.length; i++) {
+      formData.append(`weathersIds[${i}]`, weather.value[i]);
+    }
     axios.post("/api/shoes", formData);
     for (let entry of formData.entries()) {
       console.log("output new", entry);
     }
   } else {
-    axios.patch(`/api/shoes/${cardID.id}`, formData);
+    //для карточки, которая уже была и редактируется
+    if (name.value != shoesData.value.name) formData.append("name", name.value);
+    console.log("photo ", photo.value);
+    if (photo.value) formData.append("photo", photo.value);
+    //if (JSON.stringify(purpose.value) != JSON.stringify(shoesData.value.purposes_ids))
+    console.log("перед занесением", purpose.value);
+
+    for (let i = 0; i < purpose.value.length; i++) {
+      //есть проблема которую надо решить через БЭ
+      formData.append(`purposesIds[${i}]`, purpose.value[i]);
+    }
+    if (temp_from.value != shoesData.value.temp_from)
+      formData.append("temp_from", temp_from.value);
+    if (temp_to.value != shoesData.value.temp_to)
+      formData.append("temp_to", temp_to.value);
+    //if (JSON.stringify(weather.value) != JSON.stringify(shoesData.value.weathers_ids))
+    for (let i = 0; i < weather.value.length; i++) {
+      formData.append(`weathersIds[${i}]`, weather.value[i]);
+    }
+    axios.post(`/api/shoes/${cardID.id}`, formData);
     for (let entry of formData.entries()) {
       console.log("output old", entry);
     }
@@ -160,7 +206,7 @@ function prepareCardForm() {
           переход из листинга
           :style="{ backgroundImage: `url(${pathPhoto})` }
           Если не нравиться условное изображение пары при новой карточке,
-           просто удалите его программно:) или мне скажите, сделаю (Александр)
+           просто удали его программно:) или мне скажи, сделаю (Александр)
            ВРЕМЕННО включил стиль shoes_img__label в локальной оласти компонента,
             инае не видно изображения обуви.
            Кога будешь по своему делать, проверь, пожалуйста, чтобы обувь появлялась
@@ -198,7 +244,6 @@ function prepareCardForm() {
               <IconSport :width="40" :height="40" :color="`#2e3e78`" />
             </label>
           </div>
-
           <div class="shoes">
             <label class="check_purpose" title="Деловая">
               <input type="checkbox" id="work" value="3" v-model="purpose" hidden />
@@ -222,6 +267,7 @@ function prepareCardForm() {
         <p>
           Максимальная температура использования:
           <span>{{ temp_to }} &#176;C</span>
+          <p v-show="note">Макисмальная температура не может быть ниже минимальной</p>
         </p>
         <input type="range" min="-30" max="30" step="5" v-model="temp_to" />
       </div>
@@ -257,7 +303,6 @@ function prepareCardForm() {
       <button class="shoes_save_button" type="submit" @click.prevent="prepareCardForm">
         Сохранить
       </button>
-      >>>>>>> 16324de7cba581657bcf1053ca28e70245ddb344
     </form>
   </div>
 </template>

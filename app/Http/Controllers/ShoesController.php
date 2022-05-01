@@ -53,10 +53,10 @@ class ShoesController extends Controller
                 $entity->save();
             }
             if ($request->exists('weathersIds')){
-                Shoes::find($entity->id)->weathers()->syncWithoutDetaching($request->weathersIds);
+                Shoes::find($entity->id)->weathers()->sync($request->weathersIds);
             }
             if ($request->exists('purposesIds')){
-                Shoes::find($entity->id)->purposes()->syncWithoutDetaching($request->purposesIds);
+                Shoes::find($entity->id)->purposes()->sync($request->purposesIds);
             }
         }
         return response($entity,$status?200:400);
@@ -110,10 +110,10 @@ class ShoesController extends Controller
                     $entity->save();
                 }
                 if ($request->exists('weathersIds')){
-                    Shoes::find($id)->weathers()->syncWithoutDetaching($request->weathersIds);
+                    Shoes::find($id)->weathers()->sync($request->weathersIds);
                 }
                 if ($request->exists('purposesIds')){
-                    Shoes::find($id)->purposes()->syncWithoutDetaching($request->purposesIds);
+                    Shoes::find($id)->purposes()->sync($request->purposesIds);
                 }
             }
             return response($entity,$status?200:400);
