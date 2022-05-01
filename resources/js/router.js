@@ -22,17 +22,15 @@ const routes = [
         },
             ]
     },
-
     {
         path: "/list",
         name: "ListShoes",
         component: () => import('./pages/ListShoes.vue')
     },
     {
-        path: "/auth/:type",
-        name: "Signin",
-        component: () => import('./pages/Auth.vue'),
-        props:true
+        path: "/adviser",
+        name: "ShoesAdviser",
+        component: () => import('./pages/ShoesAdviser.vue')
     },
 ];
 

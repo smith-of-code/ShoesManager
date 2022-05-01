@@ -4,16 +4,18 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Cassandra\Exception\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class SignInController extends Controller
 {
 
         public function signinForm(){
-            return view('welcome');
+            return view('auth.signin');
         }
 
     /**
@@ -22,17 +24,27 @@ class SignInController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function authenticate(Request $request)
+    public function signin(Request $request)
     {
         $credentials = Validator::make($request->all(),[
             'email'=>'required|email|exists:'.existByModel(User::class,'email'),
-            'password'=>'required',
+            'password'=>'required|',
         ]);
-        if (!$credentials->fails()){
-            Auth::attempt($request->only(['email','password']));
-            return response(Auth::getUser(),200);
+
+        if (!$credentials->fails() && Auth::attempt($request->only(['email','password']))){
+
+            return Redirect::route('home');
         }else{
-            return response($credentials->errors(),422);
+            $errors = $credentials->fails()?$credentials->errors():["message"=> trans('auth.failed')];
+            return Redirect::route('auth.signin-form')->withErrors($errors)->withInput(
+                $request->except('password')
+            );
         }
+    }
+
+    public function signout()
+    {
+        session()->flush();
+        return Redirect::route('auth.signin');
     }
 }

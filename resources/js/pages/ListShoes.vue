@@ -3,7 +3,53 @@
   <div>
     <label for="shoes-search">Укажите название пары</label>
     <input type="search" id="shoes-search" name="q" v-model="searchWord" />
-    <!-- <button @click="fff">Поиск</button> -->
+    <div class="search">
+      <div>
+        <p for="purpose-search">Укажите назначение пары</p>
+        <label for="casual" class="check_purpose" title="Повседневная">
+          <input type="checkbox" id="casual" value="1" v-model="searchPurpose" hidden />
+          <IconCasual :width="40" :height="40" :color="`#2e3e78`" />
+        </label>
+        <label class="check_purpose" title="Спортивная">
+          <input type="checkbox" id="sport" value="2" v-model="searchPurpose" hidden />
+          <IconSport :width="40" :height="40" :color="`#2e3e78`" />
+        </label>
+        <label class="check_purpose" title="Деловая">
+          <input type="checkbox" id="work" value="3" v-model="searchPurpose" hidden />
+          <IconWork :width="40" :height="40" :color="`#2e3e78`" />
+        </label>
+        <label class="check_purpose" title="Праздничная">
+          <input type="checkbox" id="party" value="4" v-model="searchPurpose" hidden />
+          <IconParty :width="40" :height="40" :color="`#2e3e78`" />
+        </label>
+      </div>
+      <div>
+        <p>Предпочтительная температура ношения:</p>
+        <input type="range" min="-30" max="30" step="5" v-model="searchTemp" /><span
+          >{{ searchTemp }} &#176;C</span
+        >
+      </div>
+      <div>
+        <p for="purpose-search">Укажите погодные условия</p>
+        <label class="check_purpose" title="солнечно">
+          <input type="checkbox" id="sun" value="1" v-model="searchWeather" hidden />
+          <IconSun :width="40" :height="40" :color="`#2e3e78`" />
+        </label>
+        <label class="check_purpose" title="дождь">
+          <input type="checkbox" id="rain" value="2" v-model="searchWeather" hidden />
+          <IconRain :width="40" :height="40" :color="`#2e3e78`" />
+        </label>
+        <label class="check_purpose" title="грязь">
+          <input type="checkbox" id="dirt" value="3" v-model="searchWeather" hidden />
+          <IconSpot :width="40" :height="40" :color="`#2e3e78`" />
+        </label>
+        <label class="check_purpose" title="снег">
+          <input type="checkbox" id="snow" value="4" v-model="searchWeather" hidden />
+          <IconSnow :width="40" :height="40" :color="`#2e3e78`" />
+        </label>
+      </div>
+    </div>
+    <button @click="eraseAll">Сбросить фильтры</button>
   </div>
   <div>
     <li v-for="(item, index) in listSearch.value" :key="index" class="serch_item">
@@ -55,23 +101,35 @@ import { useRouter } from "vue-router";
 
 import SearchList from "../components/slot/SearchList.vue";
 
-let searchWord = ref("");
+//поиск по названию
+const searchWord = ref("");
+//выбор назначения обуви
+const searchPurpose = ref([]);
+//выбор температуры
+const searchTemp = ref(0);
+//выбор погодных условий
+const searchWeather = ref([]);
 const shoesStore = reactive([]);
 const listSearch = reactive([]);
 const router = useRouter();
 
-//загрузка списка обуви
-onMounted(async () => {
+//непосредственно загрузчик обуви
+const loader = async () => {
   await axios
     .get("/api/shoes")
     .then((response) => {
       shoesStore.value = response.data;
-      //console.log(response.status, shoesStore.value);
+      console.log(response.status, shoesStore.value);
       listSearch.value = shoesStore.value;
     })
     .catch((error) => {
       error.response.data;
     });
+};
+
+//загрузка списка обуви при первой отрисовке
+onMounted(async () => {
+  loader();
 });
 
 //динамический поиск и вывод результата
@@ -83,14 +141,70 @@ watch(
     );
   }
 );
+
+watch(
+  () => searchPurpose.value,
+  () => {
+    if (searchPurpose.value.length !== 0) {
+      //console.log("searchPurpose.value ", searchPurpose.value);
+      let lastElement = searchPurpose.value[searchPurpose.value.length - 1];
+      console.log("lastElement P", lastElement);
+      if (lastElement !== undefined) {
+        listSearch.value = shoesStore.value.filter((e) => {
+          return e.purposes_ids.filter((element) => {
+            return element == lastElement;
+          }).length;
+        });
+      }
+    } else loader();
+  }
+);
+
+watch(
+  () => searchTemp.value,
+  () => {
+    listSearch.value = shoesStore.value.filter(
+      (e) => searchTemp.value >= e.temp_from && searchTemp.value <= e.temp_to
+    );
+  }
+);
+
+watch(
+  () => searchWeather.value,
+  () => {
+    if (searchWeather.value.length !== 0) {
+      //console.log("searchWeather.value ", searchWeather.value);
+      let lastElement = searchWeather.value[searchWeather.value.length - 1];
+      console.log("lastElement W ", lastElement);
+      if (lastElement !== undefined) {
+        listSearch.value = shoesStore.value.filter((e) => {
+          return e.weathers_ids.filter((element) => {
+            return element == lastElement;
+          }).length;
+        });
+      }
+    } else loader();
+  }
+);
+
+//очистка полей фильтров
+function eraseAll() {
+  searchWord.value = "";
+  searchPurpose.value = [];
+  loader();
+}
+
 //передача id обуви в карточку редактирования
 function editCard(shoesID) {
   //  console.log("id ", shoesID);
   router.push({ name: "CardID", params: { id: shoesID } });
 }
+
 //удаление карточки
 function deleteCard(shoesID) {
   axios.delete(`/api/shoes/${shoesID}`);
+  //loader() ради принудительного обновления страницы
+  loader();
 }
 </script>
 
@@ -100,5 +214,8 @@ function deleteCard(shoesID) {
   flex-direction: row;
   height: 10vh;
   border: 1px solid rgb(52, 143, 56);
+}
+.search {
+  display: flex;
 }
 </style>
