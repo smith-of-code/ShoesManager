@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group([
-    'prefix' => 'api'
+    'prefix' => 'api',
+    'middleware' => ['isAuth']
 ],function (){
     Route::resource('shoes','App\Http\Controllers\ShoesController');
     Route::post('shoes/{id}','App\Http\Controllers\ShoesController@update');
@@ -21,15 +22,26 @@ Route::group([
 
     Route::resource('weather','App\Http\Controllers\WeatherController');
 });
+
 Route::group(['prefix'=>'auth','as' => 'auth.'],function (){
     Route::get('signin','App\Http\Controllers\Auth\SignInController@signinForm')->name('signin-form');
-    Route::post('signin','App\Http\Controllers\Auth\SignInController@authenticate')->name('signin');
+    Route::post('signin','App\Http\Controllers\Auth\SignInController@signin')->name('signin');
+    Route::get('signup','App\Http\Controllers\Auth\SignUpController@registration')->name('signup-form');
     Route::post('signup','App\Http\Controllers\Auth\SignUpController@registration')->name('signup');
-    Route::match(['post','get'],'reset-password','App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('reset-password');
+
+    Route::get('signout','App\Http\Controllers\Auth\SignInController@signout')->name('signout');
+
+    Route::match(['post','get'],'forgot-password','App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('reset-password');
+
 });
 
 Route::match(['get','post'],'reset-password','App\Http\Controllers\Auth\ResetPasswordController@confirmResetPassword')->name('password.reset');
+
+Route::get('/',function (){
+    return view('welcome');
+})->name('home')->middleware('isAuth');
+
 Route::get('/{any}', function () {
     return view('welcome');
-})->where('any','.*');
+})->where('any','.*')->middleware('isAuth');
 

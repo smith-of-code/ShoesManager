@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, onBeforeMount, watch } from "vue";
+import { reactive, ref, onBeforeMount, watch, computed } from "vue";
 import IconSun from "../components/icons/IconSun.vue";
 import IconRain from "../components/icons/IconRain.vue";
 import IconSpot from "../components/icons/IconSpot.vue";
@@ -10,6 +10,7 @@ import IconCasual from "../components/icons/IconCasual.vue";
 import IconParty from "../components/icons/IconParty.vue";
 import shoesBackground from "../components/images/ShoesPicture.jpg";
 import axios from "axios";
+import { notEqual } from "assert";
 
 //передача через роутер номера id обуви
 const cardID = defineProps({
@@ -57,7 +58,26 @@ const temp_to = ref(5);
 //погодные условия
 const weather = ref([]);
 
+const deltaTemp = computed(() => {
+  return temp_to.value - temp_from.value;
+});
+
+const note = computed(() => {
+  return deltaTemp.value == 0;
+});
+
+watch(
+  () => deltaTemp.value,
+  () => {
+    note.value = false;
+    if (deltaTemp.value < 0) {
+      temp_from.value -= 5;
+          }
+  }
+);
+
 //следит, если id передан, подгружает данные пары в текущие переменный
+//ситуация для редактирования карточки обуви
 watch(
   () => shoesData.value,
   () => {
@@ -121,19 +141,24 @@ function prepareCardForm() {
   } else {
     //для карточки, которая уже была и редактируется
     if (name.value != shoesData.value.name) formData.append("name", name.value);
-    if (JSON.stringify(purpose.value) != JSON.stringify(shoesData.value.purposes_ids))
-      for (let i = 0; i < purpose.value.length; i++) {
-        formData.append(`purposesIds[${i}]`, purpose.value[i]);
-      }
+    console.log("photo ", photo.value);
+    if (photo.value) formData.append("photo", photo.value);
+    //if (JSON.stringify(purpose.value) != JSON.stringify(shoesData.value.purposes_ids))
+    console.log("перед занесением", purpose.value);
+
+    for (let i = 0; i < purpose.value.length; i++) {
+      //есть проблема которую надо решить через БЭ
+      formData.append(`purposesIds[${i}]`, purpose.value[i]);
+    }
     if (temp_from.value != shoesData.value.temp_from)
       formData.append("temp_from", temp_from.value);
     if (temp_to.value != shoesData.value.temp_to)
       formData.append("temp_to", temp_to.value);
-    if (JSON.stringify(weather.value) != JSON.stringify(shoesData.value.weathers_ids))
-      for (let i = 0; i < weather.value.length; i++) {
-        formData.append(`weathersIds[${i}]`, weather.value[i]);
-      }
-    axios.patch(`/api/shoes/${cardID.id}`, formData);
+    //if (JSON.stringify(weather.value) != JSON.stringify(shoesData.value.weathers_ids))
+    for (let i = 0; i < weather.value.length; i++) {
+      formData.append(`weathersIds[${i}]`, weather.value[i]);
+    }
+    axios.post(`/api/shoes/${cardID.id}`, formData);
     for (let entry of formData.entries()) {
       console.log("output old", entry);
     }
@@ -219,7 +244,6 @@ function prepareCardForm() {
               <IconSport :width="40" :height="40" :color="`#2e3e78`" />
             </label>
           </div>
-
           <div class="shoes">
             <label class="check_purpose" title="Деловая">
               <input type="checkbox" id="work" value="3" v-model="purpose" hidden />
@@ -243,6 +267,7 @@ function prepareCardForm() {
         <p>
           Максимальная температура использования:
           <span>{{ temp_to }} &#176;C</span>
+          <p v-show="note">Макисмальная температура не может быть ниже минимальной</p>
         </p>
         <input type="range" min="-30" max="30" step="5" v-model="temp_to" />
       </div>
@@ -278,7 +303,6 @@ function prepareCardForm() {
       <button class="shoes_save_button" type="submit" @click.prevent="prepareCardForm">
         Сохранить
       </button>
-      >>>>>>> 16324de7cba581657bcf1053ca28e70245ddb344
     </form>
   </div>
 </template>

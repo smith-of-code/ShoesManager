@@ -6,11 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class SignUpController extends Controller
 {
     public function registration(Request $request){
+
+        if ($request->isMethod('get')){
+            return view('auth.signup');
+        }
 
         $credentials = Validator::make($request->all(),[
             'name'=>'required|string',
@@ -25,8 +30,12 @@ class SignUpController extends Controller
                'password'=>Hash::make($request->password),
            ]);
             \Auth::login($user);
+            return Redirect::route('home');
         }else{
-            return response($credentials->errors(),422);
+            $errors = $credentials->errors();
+            return Redirect::route('auth.signup-form')->withErrors($errors)->withInput(
+                $request->except(['password','password_confirmation'])
+            );
         }
 
     }

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -16,7 +17,7 @@ class ResetPasswordController extends Controller
     public function resetPassword(Request $request){
 
         if ($request->isMethod('get')){
-            return view('welcome');
+            return view('auth.resetPassword');
         }
         $credentials = Validator::make($request->all(),[
             'email'=>'required|email|exists:'.existByModel(User::class,'email'),
@@ -26,6 +27,7 @@ class ResetPasswordController extends Controller
             Password::sendResetLink(
                 $request->only('email')
             );
+            return view('auth.message')->with(['message'=>'сообщение отправлено']);
         }else{
             return response($credentials->errors(),422);
         }
@@ -35,7 +37,7 @@ class ResetPasswordController extends Controller
 
     public function confirmResetPassword(Request $request){
             if ($request->isMethod('get')){
-                return view('auth.new_password')->with(['token'=>$request->token]);
+                return view('auth.new_password')->with(['token'=>$request->token,'email'=>$request->email]);
             }else{
                 $credentials = Validator::make($request->all(),[
                     'email'=>'required|email|exists:'.existByModel(User::class,'email'),
@@ -54,9 +56,13 @@ class ResetPasswordController extends Controller
                         }
                     );
                     if ($status){
-                        return redirect(\route('auth.signin-form'));
+                        return Redirect::route('auth.signin-form');
                     }
                 }else{
+                    $errors = $credentials->errors();
+                    return Redirect::back()->withErrors($errors)->withInput(
+                        $request->except(['password','password_confirmation'])
+                    );
                     return response($credentials->errors(),422);
                 }
 
