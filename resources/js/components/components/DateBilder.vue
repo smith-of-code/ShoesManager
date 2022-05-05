@@ -1,9 +1,13 @@
 <template>
-  <p>Сегодня {{ currentDate.day }}, {{ currentDate.period }}</p>
+  <div>
+    <p>Сегодня {{ currentDate.day }}, {{ currentDate.period }}</p>
+  </div>
 </template>
 
 <script setup>
 const currentDate = [];
+
+const emit = defineEmits(["ondaydata"]);
 
 let d = new Date();
 
@@ -24,4 +28,6 @@ if (currentDate.hour > 4 && currentDate.hour < 11) currentDate.period = "утр�
 else if (currentDate.hour > 10 && currentDate.hour < 18) currentDate.period = "день";
 else if (currentDate.hour > 17 && currentDate.hour < 23) currentDate.period = "вечер";
 else currentDate.period = "ночь";
+
+emit("ondaydata", currentDate);
 </script>

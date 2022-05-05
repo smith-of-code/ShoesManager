@@ -27,7 +27,7 @@ class SignInController extends Controller
     public function signin(Request $request)
     {
         $credentials = Validator::make($request->all(),[
-            'email'=>'required|email|exists:'.existByModel(User::class,'email'),
+             'email'=>'required|email|exists:'.existByModel(User::class,'email'),
             'password'=>'required|',
         ]);
 
