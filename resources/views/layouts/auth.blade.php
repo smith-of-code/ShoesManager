@@ -14,31 +14,50 @@
             height: 100%;
         }
         form {
-            border: 5px solid #f1f1f1;
+            /*border: 5px solid #f1f1f1;*/
+        }
+        .auth__label{
+            display: block;
+            margin-bottom: 4px;
+            margin-top: 25px;
+        }
+        .auth__label-first{
+            display: block;
+            margin-bottom: 4px;
+            margin-top: 0px;
         }
         input[type=text], input[type=password] {
             width: 100%;
-            padding: 16px 8px;
+            padding: 16px 24px;
             margin: 8px 0;
             display: inline-block;
-            border: 1px solid #ccc;
+            border: none;
             box-sizing: border-box;
+            box-shadow: 8px -10px 23px #F1F1F1, -8px 10px 23px #F1F1F1;
+            border-radius: 35px;
         }
+
+        input:focus-visible{
+            outline: none;
+        }
+
         button {
-            background-color: #8ebf42;
+            background: #883CDA;
+            border-radius: 35px;
             color: white;
             padding: 14px 0;
             margin: 10px 0;
             border: none;
             cursor: grabbing;
             width: 100%;
+            transition: all 0.3s;
         }
         h1 {
             text-align:center;
             fone-size:18;
         }
         button:hover {
-            opacity: 0.8;
+            box-shadow: 0px 1px 18px #9F8FB0;
         }
         .auth__formcontainer {
             text-align: left;
@@ -49,13 +68,22 @@
             text-align:left;
         }
         .auth__footer{
-            background-color: #eee;
             display: flex;
             justify-content: space-around;
             align-items: center;
             min-height: 35px;
-            padding-right: 20px;
             min-width: 300px;
+        }
+        .auth__footer a{
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 19px;
+            color: #883CDA;
+            text-decoration: none;
+        }
+        .auth__footer a:hover{
+            text-decoration: underline;
         }
         .auth__error-message{
             color: red;
@@ -76,7 +104,6 @@
     @csrf
     <h1>@yield('form_title')</h1>
     <div class="auth__formcontainer">
-        <hr/>
         <div class="auth__fieldsbox">
             @yield('form_body')
 
