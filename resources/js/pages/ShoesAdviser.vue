@@ -103,14 +103,16 @@ const comments = ref([]);
 
 //загружаем обувь для последующей обработки
 const loader = async () => {
-  await axios.get("/api/shoes").then((response) => {
-    shoesStore.value = response.data;
-    listSearch.value = shoesStore.value;
-    byTemp(listSearch.value);
-  });
-  // .catch((error) => {
-  //   error.response.data;
-  // });
+  await axios
+    .get("/api/shoes")
+    .then((response) => {
+      shoesStore.value = response.data;
+      listSearch.value = shoesStore.value;
+      byTemp(listSearch.value);
+    })
+    .catch((error) => {
+      error.response.data;
+    });
 };
 
 //выбираем обувь по температуре
