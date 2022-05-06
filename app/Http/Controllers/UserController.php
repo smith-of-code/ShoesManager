@@ -12,7 +12,12 @@ class UserController extends Controller
    }
     public function updateUserInfo(Request $request){
         $user = User::find(\Auth::id());
-        $user->ow_city_id = $request->ow_city_id;
+        if ($request->exists('name')){
+            $user->name = $request->name;
+        }
+        if ($request->exists('ow_city_id')){
+            $user->ow_city_id = $request->ow_city_id;
+        }
         return response('',$user->save()?200:400);
     }
 
