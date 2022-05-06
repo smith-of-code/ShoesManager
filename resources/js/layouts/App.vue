@@ -8,7 +8,7 @@
         alt=""
       />
     </div>
-    <div class="mainmenu_router">
+    <div class="mainmenu_router" v-if="$attrs.isAuth">
       <div class="mainmenu_router__mask"></div>
       <!-- просто блок маски для прирывистой границы блока. Можно убрать, если меню не нужно как в макете  -->
       <div class="mainmenu_router__box">
