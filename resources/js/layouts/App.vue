@@ -5,7 +5,7 @@
       <img
         class="mainmenu_titel__logo"
         src="storage/shoes_img/bootlogo.png"
-        alt=""
+        alt="logo"
       />
     </div>
     <div class="mainmenu_router" v-if="$attrs.isAuth">

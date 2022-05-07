@@ -46,7 +46,7 @@
 .mainmenu_router__mask{
     position: absolute;
     bottom:-1px;
-    right:1px;
+    right:-1px;
     width:30%;
     height: 1px;
     background-color:#fff;
@@ -54,7 +54,7 @@
 .hamburger__list{
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 10px 5px;
 }
 .mainmenu__item{
     font-size: 18px;
@@ -69,8 +69,8 @@
 }
 
 .mainmenu__item:hover{
-    background-color: #883CDA;
-    border: solid 1px #883CDA;
+    background-color: $main_color;
+    border: solid 1px $main_color;
     border-radius: 35px;
     color: #ebedef;
 }
@@ -142,7 +142,7 @@
         padding: 80px 0;
         list-style: none;
         text-align: center;
-        background-color: #883CDA;
+        background-color: $main_color;
       }
 
       /* элементы меню */
