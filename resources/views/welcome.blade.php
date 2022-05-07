@@ -11,5 +11,5 @@
 <script>window.isAuth = {{Auth::check()?"true":"false"}}</script>
 <div id="app"></div>
 </body>
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 </html>
