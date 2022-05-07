@@ -1,0 +1,25 @@
+//кнопки подтверждения
+@mixin standart_btn {
+    color: white;
+    height: 64px;
+    width: 196px;
+    background-color: $main_color;
+    font-family: $roboto_font;
+    padding: 18px 32px;
+    box-sizing: border-box;
+    border-radius: 35px;
+    border: none;
+}
+//внешний вид инпутов
+@mixin enter_form {
+    outline: 0;
+    height: 52px;
+    width: 448px;
+    background-color: #FFFFFF;
+    color: black;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 35px;
+    font-family: $lato_font;
+    font-size: 18px;
+ }
