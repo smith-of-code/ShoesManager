@@ -164,6 +164,7 @@ function prepareCardForm() {
     for (let entry of formData.entries()) {
       console.log("output old", entry);
     }
+
   }
 
   //очистка файла передачи данных

@@ -1,7 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Orelega+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Orelega+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lato:wght@300&family=Orelega+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lato:wght@300&family=Orelega+One&family=Roboto&display=swap");
 .container {
   font-family: "Lato", sans-serif;
   background-color: rgba(205, 205, 205, 0.373);
@@ -159,7 +157,7 @@ p {
   letter-spacing: 2px;
   border-radius: 2px;
   margin: 30px 0px;
-  font-family: "Orelega One", cursive;
+  font-family: "Lato", sans-serif;
   text-transform: uppercase;
 }
 
