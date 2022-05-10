@@ -164,6 +164,7 @@ function prepareCardForm() {
     for (let entry of formData.entries()) {
       console.log("output old", entry);
     }
+    goToListing();
   }
 
   //очистка файла передачи данных
@@ -171,17 +172,18 @@ function prepareCardForm() {
   //очистка исходных данных формы до ввода следующей пары
   name.value = "";
   photo.value = {};
+  photoName.value ="";
   pathPhoto.value = shoesBackground;
   purpose.value = [];
   temp_from.value = -5;
   temp_to.value = 5;
   weather.value = [];
 
-  console.log("объект передачи данных на сервер очищен...");
+  console.log("объект передачи данных на сервер очищен...", cardID.id);
   //   for (let entry of formData.entries()) {
   //     console.log("output ", entry);
   //   }
-  goToListing();
+
 }
 
 //возврат на страницу листинга обуви

@@ -72,7 +72,7 @@ function takeDateData(e) {
       dayPeriod.value = "утру";
       break;
     case "день":
-      dayPeriod.value = "дню";
+      dayPeriod.value = "середине";
       break;
     case "вечер":
       dayPeriod.value = "вечеру";
@@ -103,14 +103,16 @@ const comments = ref([]);
 
 //загружаем обувь для последующей обработки
 const loader = async () => {
-  await axios.get("/api/shoes").then((response) => {
-    shoesStore.value = response.data;
-    listSearch.value = shoesStore.value;
-    byTemp(listSearch.value);
-  });
-  // .catch((error) => {
-  //   error.response.data;
-  // });
+  await axios
+    .get("/api/shoes")
+    .then((response) => {
+      shoesStore.value = response.data;
+      listSearch.value = shoesStore.value;
+      byTemp(listSearch.value);
+    })
+    .catch((error) => {
+      error.response.data;
+    });
 };
 
 //выбираем обувь по температуре
@@ -160,7 +162,7 @@ function byPurpose(list) {
             dayType.value === "буднего") ||
           (element === 4 &&
             dayPeriod.value !== "утру" &&
-            dayPeriod.value !== "дню" &&
+            dayPeriod.value !== "середине" &&
             dayType.value === "выходного")
         );
       }).length //такая конструкция позволяет возвращать истину или ложь из вложенного массива для filter
