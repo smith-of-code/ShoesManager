@@ -1,11 +1,7 @@
 <template>
   <h1>Home Page</h1>
-
-  <example text="home page" />
 </template>
 
-<script setup>
-import example from "../components/Example";
-</script>
+<script setup></script>
 
 <style scoped></style>
