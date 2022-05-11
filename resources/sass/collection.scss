@@ -1,0 +1,92 @@
+@import "variables";
+@import "mixins";
+
+.collection_container {
+    padding: 24px 64px;
+    margin: 0px;
+    height: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px;
+}
+
+.collection__filter {
+    text-align: right;
+    grid-area: 1/2/2/4;
+}
+
+.collection__temper {
+    display: flex;
+    flex-direction: column;
+    margin-right: 28px;
+}
+
+.collection__icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.check_purpose {
+    margin-right: 24px;
+}
+
+.collection__title {
+    font-size: 18px;
+    font-family: $lato_font;
+    margin-bottom: 24px;
+
+}
+
+input:-internal-autofill-selected,
+input:-webkit-autofill {
+    background-color: rgb(255, 255, 255);
+}
+
+.collection__filtr_btn {
+    @include standart_btn($h:52px);
+}
+
+.collection__filtr_btn:hover {
+    background: $hover_color;
+}
+
+.collection__filtr_input {
+    @include enter_form();
+    margin-right: 12px;
+}
+
+.serch_item {
+    display: flex;
+    flex-direction: row;
+    height: 10vh;
+    background-color: #F8F8F7;
+    padding: 0px 64px;
+    color: black;
+    font-size: 18px;
+    font-family: $lato_font;
+    margin-top: 16px;
+    border-radius: 10px;
+
+}
+
+.collection__edit_btn {
+    background-color: #883CDA;
+    border: none;
+    cursor: pointer;
+}
+
+.collection__edit_btn:hover {
+    background-color: $hover_color;
+}
+
+.collection__delete_btn {
+    background-color: #883CDA;
+    border: none;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+}
+
+.collection__delete_btn:hover {
+    background-color: $hover_color;
+}

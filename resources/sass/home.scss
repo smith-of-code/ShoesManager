@@ -1,0 +1,48 @@
+@import "variables";
+@import "mixins";
+
+.home__container {
+    padding: 64px;
+    height: auto;
+    width: 100%;
+    background-color: #F8F8F8;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 52px;
+}
+
+.home__title {
+    font-family: $roboto_font;
+    margin-bottom: 24px;
+}
+
+.home__foto {
+    background-size: cover;
+    overflow: hidden;
+    border-top-left-radius: 35px;
+    border-bottom-left-radius: 35px;
+    grid-area: 1/2/3/3;
+}
+
+.home__btn {
+    @include standart_btn($w:231px);
+    text-decoration: none;
+    font-size: 18px;
+    text-align: center;
+
+}
+
+.home__discribe {
+    font-style: italic;
+    margin: 12px 24px;
+}
+
+.home__btn:hover {
+    background-color: $hover_color;
+}
+
+.home__info {
+    font-family: $lato_font;
+    font-size: 18px;
+    margin-bottom: 24px;
+}
