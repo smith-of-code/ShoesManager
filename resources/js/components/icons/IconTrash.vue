@@ -1,6 +1,8 @@
 <template>
   <svg
-    :style="({ width: dimention.width + 'px' }, { height: dimention.height + 'px' })"
+    :style="
+      ({ width: dimention.width + 'px' }, { height: dimention.height + 'px' })
+    "
     viewBox="0 0 24 24"
   >
     <path

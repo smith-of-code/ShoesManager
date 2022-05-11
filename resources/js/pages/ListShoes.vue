@@ -1,86 +1,172 @@
 <template>
-  <h1>Список вашей обуви</h1>
-  <div>
-    <label for="shoes-search">Укажите название пары</label>
-    <input type="search" id="shoes-search" name="q" v-model="searchWord" />
-    <div class="search">
-      <div>
-        <p for="purpose-search">Укажите назначение пары</p>
-        <label for="casual" class="check_purpose" title="Повседневная">
-          <input type="checkbox" id="casual" value="1" v-model="searchPurpose" hidden />
-          <IconCasual :width="40" :height="40" :color="`#2e3e78`" />
-        </label>
-        <label class="check_purpose" title="Спортивная">
-          <input type="checkbox" id="sport" value="2" v-model="searchPurpose" hidden />
-          <IconSport :width="40" :height="40" :color="`#2e3e78`" />
-        </label>
-        <label class="check_purpose" title="Деловая">
-          <input type="checkbox" id="work" value="3" v-model="searchPurpose" hidden />
-          <IconWork :width="40" :height="40" :color="`#2e3e78`" />
-        </label>
-        <label class="check_purpose" title="Праздничная">
-          <input type="checkbox" id="party" value="4" v-model="searchPurpose" hidden />
-          <IconParty :width="40" :height="40" :color="`#2e3e78`" />
-        </label>
+  <div class="container collection_container">
+    <h1 class="shoes_card_form_title">Список вашей обуви</h1>
+    <div class="collection__filter">
+      <label for="shoes-search">
+        <input
+          class="collection__filtr_input"
+          placeholder="Укажите название пары"
+          type="search"
+          id="shoes-search"
+          name="q"
+          v-model="searchWord"
+        />
+      </label>
+      <button @click="eraseAll" class="collection__filtr_btn">
+        Сбросить фильтры
+      </button>
+    </div>
+
+    <div class="collection__purpose">
+      <div class="collection__title">Назначение пары:</div>
+      <label for="casual" class="check_purpose" title="Повседневная">
+        <input
+          type="checkbox"
+          id="casual"
+          value="1"
+          v-model="searchPurpose"
+          hidden
+        />
+        <IconCasual :width="40" :height="40" :color="`#000000`" />
+      </label>
+      <label class="check_purpose" title="Спортивная">
+        <input
+          type="checkbox"
+          id="sport"
+          value="2"
+          v-model="searchPurpose"
+          hidden
+        />
+        <IconSport :width="40" :height="40" :color="`#000000`" />
+      </label>
+      <label class="check_purpose" title="Деловая">
+        <input
+          type="checkbox"
+          id="work"
+          value="3"
+          v-model="searchPurpose"
+          hidden
+        />
+        <IconWork :width="40" :height="40" :color="`#000000`" />
+      </label>
+      <label class="check_purpose" title="Праздничная">
+        <input
+          type="checkbox"
+          id="party"
+          value="4"
+          v-model="searchPurpose"
+          hidden
+        />
+        <IconParty :width="40" :height="40" :color="`#000000`" />
+      </label>
+    </div>
+    <div class="collection__temper">
+      <div class="collection__title">
+        Предпочтительная температура ношения:
+        <span>{{ searchTemp }} &#176;C</span>
       </div>
-      <div>
-        <p>Предпочтительная температура ношения:</p>
-        <input type="range" min="-30" max="30" step="5" v-model="searchTemp" /><span
-          >{{ searchTemp }} &#176;C</span
-        >
-      </div>
-      <div>
-        <p for="purpose-search">Укажите погодные условия</p>
+      <input type="range" min="-30" max="30" step="5" v-model="searchTemp" />
+    </div>
+    <div class="collection__weather">
+      <div class="collection__title">Укажите погодные условия:</div>
+      <div class="collection__icons">
         <label class="check_purpose" title="солнечно">
-          <input type="checkbox" id="sun" value="1" v-model="searchWeather" hidden />
-          <IconSun :width="40" :height="40" :color="`#2e3e78`" />
+          <input
+            type="checkbox"
+            id="sun"
+            value="1"
+            v-model="searchWeather"
+            hidden
+          />
+          <IconSun :width="40" :height="40" :color="`#000000`" />
         </label>
         <label class="check_purpose" title="дождь">
-          <input type="checkbox" id="rain" value="2" v-model="searchWeather" hidden />
-          <IconRain :width="40" :height="40" :color="`#2e3e78`" />
+          <input
+            type="checkbox"
+            id="rain"
+            value="2"
+            v-model="searchWeather"
+            hidden
+          />
+          <IconRain :width="40" :height="40" :color="`#000000`" />
         </label>
         <label class="check_purpose" title="грязь">
-          <input type="checkbox" id="dirt" value="3" v-model="searchWeather" hidden />
-          <IconSpot :width="40" :height="40" :color="`#2e3e78`" />
+          <input
+            type="checkbox"
+            id="dirt"
+            value="3"
+            v-model="searchWeather"
+            hidden
+          />
+          <IconSpot :width="40" :height="40" :color="`#000000`" />
         </label>
         <label class="check_purpose" title="снег">
-          <input type="checkbox" id="snow" value="4" v-model="searchWeather" hidden />
-          <IconSnow :width="40" :height="40" :color="`#2e3e78`" />
+          <input
+            type="checkbox"
+            id="snow"
+            value="4"
+            v-model="searchWeather"
+            hidden
+          />
+          <IconSnow :width="40" :height="40" :color="`#000000`" />
         </label>
       </div>
     </div>
-    <button @click="eraseAll">Сбросить фильтры</button>
-  </div>
-  <div>
-    <li v-for="(item, index) in listSearch.value" :key="index" class="serch_item">
-      <img :src="`/storage/shoes_img/` + item.photo_path" alt="picture" />
-      <SearchList style="width: 10vw">{{ item.name }}</SearchList>
-      <SearchList style="width: 20vw">
-        <div v-for="(ids, index) in item.purposes_ids" :key="index">
-          <div v-if="ids === 1"><IconCasual :width="30" :height="30" /></div>
-          <div v-if="ids === 2"><IconSport :width="30" :height="30" /></div>
-          <div v-if="ids === 3"><IconWork :width="30" :height="30" /></div>
-          <div v-if="ids === 4"><IconParty :width="30" :height="30" /></div>
-        </div>
-      </SearchList>
+    <div>
+      <li
+        v-for="(item, index) in listSearch.value"
+        :key="index"
+        class="serch_item"
+      >
+        <img :src="`/storage/shoes_img/` + item.photo_path" alt="picture" />
+        <SearchList style="width: 10vw">{{ item.name }}</SearchList>
+        <SearchList style="width: 20vw">
+          <div v-for="(ids, index) in item.purposes_ids" :key="index">
+            <div v-if="ids === 1">
+              <IconCasual :width="30" :height="30" :color="`#000000`" />
+            </div>
+            <div v-if="ids === 2">
+              <IconSport :width="30" :height="30" :color="`#000000`" />
+            </div>
+            <div v-if="ids === 3">
+              <IconWork :width="30" :height="30" :color="`#000000`" />
+            </div>
+            <div v-if="ids === 4">
+              <IconParty :width="30" :height="30" :color="`#000000`" />
+            </div>
+          </div>
+        </SearchList>
 
-      <SearchList style="width: 8vw"
-        ><span>От&nbsp;t&nbsp;</span>{{ item.temp_from }}</SearchList
-      >
-      <SearchList style="width: 8vw"
-        ><span>До&nbsp;t&nbsp;</span>{{ item.temp_to }}</SearchList
-      >
-      <SearchList style="width: 20vw">
-        <div v-for="(ids, index) in item.weathers_ids" :key="index">
-          <div v-if="ids === 1"><IconSun :width="30" :height="30" /></div>
-          <div v-if="ids === 2"><IconRain :width="30" :height="30" /></div>
-          <div v-if="ids === 3"><IconSpot :width="30" :height="30" /></div>
-          <div v-if="ids === 4"><IconSnow :width="30" :height="30" /></div>
-        </div>
-      </SearchList>
-      <button @click="editCard(item.id)"><IconEdit :width="30" :height="30" /></button>
-      <button @click="deleteCard(item.id)"><IconTrash :width="30" :height="30" /></button>
-    </li>
+        <SearchList style="width: 8vw"
+          ><span>От&nbsp;t&nbsp;</span>{{ item.temp_from }}</SearchList
+        >
+        <SearchList style="width: 8vw"
+          ><span>До&nbsp;t&nbsp;</span>{{ item.temp_to }}</SearchList
+        >
+        <SearchList style="width: 20vw">
+          <div v-for="(ids, index) in item.weathers_ids" :key="index">
+            <div v-if="ids === 1">
+              <IconSun :width="30" :height="30" :color="`#000000`" />
+            </div>
+            <div v-if="ids === 2">
+              <IconRain :width="30" :height="30" :color="`#000000`" />
+            </div>
+            <div v-if="ids === 3">
+              <IconSpot :width="30" :height="30" :color="`#000000`" />
+            </div>
+            <div v-if="ids === 4">
+              <IconSnow :width="30" :height="30" :color="`#000000`" />
+            </div>
+          </div>
+        </SearchList>
+        <button class="collection__edit_btn" @click="editCard(item.id)">
+          <IconEdit :width="30" :height="30" :color="`#ffffff`" />
+        </button>
+        <button class="collection__delete_btn" @click="deleteCard(item.id)">
+          <IconTrash :width="30" :height="30" :color="`#ffffff`" />
+        </button>
+      </li>
+    </div>
   </div>
 </template>
 
@@ -209,7 +295,7 @@ function deleteCard(shoesID) {
 </script>
 
 <style scoped>
-.serch_item {
+/* .serch_item {
   display: flex;
   flex-direction: row;
   height: 10vh;
@@ -217,5 +303,5 @@ function deleteCard(shoesID) {
 }
 .search {
   display: flex;
-}
+} */
 </style>
