@@ -18,6 +18,13 @@ class UserController extends Controller
         if ($request->exists('ow_city_id')){
             $user->ow_city_id = $request->ow_city_id;
         }
+        if ($request->exists('longitude')){
+            $user->longitude = $request->longituded;
+        }
+        if ($request->exists('latitude')){
+            $user->latitude = $request->latitude;
+        }
+
         return response('',$user->save()?200:400);
     }
 

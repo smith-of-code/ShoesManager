@@ -34,7 +34,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'ow_city_id'
+        'longitude',
+        'latitude'
     ];
 
     /**
