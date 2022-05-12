@@ -112,61 +112,61 @@
         </label>
       </div>
     </div>
-    <div>
-      <li
-        v-for="(item, index) in listSearch.value"
-        :key="index"
-        class="serch_item"
-      >
-        <img :src="`/storage/shoes_img/` + item.photo_path" alt="picture" />
-        <SearchList style="width: 10vw">{{ item.name }}</SearchList>
-        <SearchList style="width: 20vw">
-          <div v-for="(ids, index) in item.purposes_ids" :key="index">
-            <div v-if="ids === 1">
-              <IconCasual :width="30" :height="30" :color="`#000000`" />
-            </div>
-            <div v-if="ids === 2">
-              <IconSport :width="30" :height="30" :color="`#000000`" />
-            </div>
-            <div v-if="ids === 3">
-              <IconWork :width="30" :height="30" :color="`#000000`" />
-            </div>
-            <div v-if="ids === 4">
-              <IconParty :width="30" :height="30" :color="`#000000`" />
-            </div>
+  </div>
+  <div>
+    <li
+      v-for="(item, index) in listSearch.value"
+      :key="index"
+      class="serch_item"
+    >
+      <img :src="`/storage/shoes_img/` + item.photo_path" alt="picture" />
+      <SearchList style="width: 10vw">{{ item.name }}</SearchList>
+      <SearchList style="width: 20vw">
+        <div v-for="(ids, index) in item.purposes_ids" :key="index">
+          <div v-if="ids === 1">
+            <IconCasual :width="30" :height="30" :color="`#000000`" />
           </div>
-        </SearchList>
+          <div v-if="ids === 2">
+            <IconSport :width="30" :height="30" :color="`#000000`" />
+          </div>
+          <div v-if="ids === 3">
+            <IconWork :width="30" :height="30" :color="`#000000`" />
+          </div>
+          <div v-if="ids === 4">
+            <IconParty :width="30" :height="30" :color="`#000000`" />
+          </div>
+        </div>
+      </SearchList>
 
-        <SearchList style="width: 8vw"
-          ><span>От&nbsp;t&nbsp;</span>{{ item.temp_from }}</SearchList
-        >
-        <SearchList style="width: 8vw"
-          ><span>До&nbsp;t&nbsp;</span>{{ item.temp_to }}</SearchList
-        >
-        <SearchList style="width: 20vw">
-          <div v-for="(ids, index) in item.weathers_ids" :key="index">
-            <div v-if="ids === 1">
-              <IconSun :width="30" :height="30" :color="`#000000`" />
-            </div>
-            <div v-if="ids === 2">
-              <IconRain :width="30" :height="30" :color="`#000000`" />
-            </div>
-            <div v-if="ids === 3">
-              <IconSpot :width="30" :height="30" :color="`#000000`" />
-            </div>
-            <div v-if="ids === 4">
-              <IconSnow :width="30" :height="30" :color="`#000000`" />
-            </div>
+      <SearchList style="width: 8vw"
+        ><span>От&nbsp;t&nbsp;</span>{{ item.temp_from }}</SearchList
+      >
+      <SearchList style="width: 8vw"
+        ><span>До&nbsp;t&nbsp;</span>{{ item.temp_to }}</SearchList
+      >
+      <SearchList style="width: 20vw">
+        <div v-for="(ids, index) in item.weathers_ids" :key="index">
+          <div v-if="ids === 1">
+            <IconSun :width="30" :height="30" :color="`#000000`" />
           </div>
-        </SearchList>
-        <button class="collection__edit_btn" @click="editCard(item.id)">
-          <IconEdit :width="30" :height="30" :color="`#ffffff`" />
-        </button>
-        <button class="collection__delete_btn" @click="deleteCard(item.id)">
-          <IconTrash :width="30" :height="30" :color="`#ffffff`" />
-        </button>
-      </li>
-    </div>
+          <div v-if="ids === 2">
+            <IconRain :width="30" :height="30" :color="`#000000`" />
+          </div>
+          <div v-if="ids === 3">
+            <IconSpot :width="30" :height="30" :color="`#000000`" />
+          </div>
+          <div v-if="ids === 4">
+            <IconSnow :width="30" :height="30" :color="`#000000`" />
+          </div>
+        </div>
+      </SearchList>
+      <button class="collection__edit_btn" @click="editCard(item.id)">
+        <IconEdit :width="30" :height="30" :color="`#ffffff`" />
+      </button>
+      <button class="collection__delete_btn" @click="deleteCard(item.id)">
+        <IconTrash :width="30" :height="30" :color="`#ffffff`" />
+      </button>
+    </li>
   </div>
 </template>
 
