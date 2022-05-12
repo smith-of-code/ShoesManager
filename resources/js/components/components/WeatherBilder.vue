@@ -21,8 +21,9 @@
 </template>
 
 <script setup>
+import axios from "axios";
 import { reactive, ref, onBeforeMount } from "vue";
-const city = ref("Самара");
+const city = ref("");
 let weather = reactive({});
 const api_key = "a744ff0924d1107e3e24787a2749ab0c";
 const url_base = "https://api.openweathermap.org/data/2.5/";
@@ -35,10 +36,30 @@ const latitude = ref();
 const longitude = ref();
 const emit = defineEmits(["onweatherdata"]);
 
+const url_getCoordinatesFromOutsideAPI = "http://ip-api.com/json/?lang=ru";
+
 onBeforeMount(() => {
-  if (city) fetchWeather();
+  //если в памяти храниться город пользователя
+  if (city.value) fetchWeather();
+  else getCord();
 });
-//обращение к серверу погоды с запросом
+
+const getCord = async () => {
+  await axios
+    .get(`${url_getCoordinatesFromOutsideAPI}`)
+    .then((response) => {
+      //получение текущих координат и названия города
+      city.value = response.data.city;
+      latitude.value = response.data.lat;
+      longitude.value = response.data.lon;
+      fetchWeatherWithLL();
+    })
+    .catch((error) => {
+      error.response.data;
+    });
+};
+
+//обращение к серверу погоды с запросом по названию города
 function fetchWeather() {
   opps.value = false;
   //https://openweathermap.org/api
@@ -52,7 +73,8 @@ function fetchWeather() {
 //присваивание данных о погоде переменным
 function setResults(results) {
   weather = results;
-  //console.log(weather);
+  //контроль имени города
+  //console.log("name", results.name);
   currentTemp.value = weather.main.temp;
   fillingTemp.value = weather.main.feels_like;
   //weatherCondition.value = weather.weather[0].description;
@@ -75,13 +97,13 @@ function eraseWeather() {
   wind.value = 0;
   opps.value = true;
 }
-
+//уточнение местополения принудительно
 function yourPlace() {
   if (!navigator.geolocation) {
     console.log("Geolocation не поддерживается вашим браузером");
   } else {
     navigator.geolocation.getCurrentPosition(success, error);
-    fetchWeatherWithLL;
+    fetchWeatherWithLL();
   }
 }
 function success(position) {
@@ -92,9 +114,9 @@ function success(position) {
 function error() {
   console.log("Невозможно получить ваше местоположение");
 }
-
+//запрос погоды по широте и долготе
 function fetchWeatherWithLL() {
-  if (this.latitude) {
+  if (latitude.value) {
     fetch(
       `${url_base}weather?lat=${latitude.value}&lon=${longitude.value}&units=metric&APPID=${api_key}&lang=ru`
     )
