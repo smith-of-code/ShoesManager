@@ -2,9 +2,13 @@
   <div class="mainmenu" id="nav">
     <div class="mainmenu_titel">
       <div class="mainmenu_titel__text">Менеджер обуви</div>
-      <img class="mainmenu_titel__logo" src="storage/shoes_img/bootlogo.png" alt="" />
+      <img
+        class="mainmenu_titel__logo"
+        src="storage/images/bootlogo.png"
+        alt="logo"
+      />
     </div>
-    <div class="mainmenu_router">
+    <div class="mainmenu_router" v-if="$attrs.isAuth">
       <div class="mainmenu_router__mask"></div>
       <!-- просто блок маски для прирывистой границы блока. Можно убрать, если меню не нужно как в макете  -->
       <div class="mainmenu_router__box">

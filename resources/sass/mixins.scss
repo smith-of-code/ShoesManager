@@ -1,0 +1,39 @@
+//кнопки подтверждения
+@mixin standart_btn ($h:auto, $w:196px) {
+    color: white;
+    height: $h;
+    width: $w;
+    background-color: $main_color;
+    font-family: $roboto_font;
+    padding: 14px 24px;
+    box-sizing: border-box;
+    border-radius: 35px;
+    border: none;
+}
+
+//внешний вид инпутов
+@mixin enter_form ($w:448px) {
+    outline: 0;
+    height: auto;
+    width: $w;
+    background-color: #FFFFFF;
+    color: black;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 35px;
+    font-family: $lato_font;
+    font-size: 18px;
+}
+
+//кнопки главного меню
+@mixin menu_item($size: 18px, $h:46px, $w:184px) {
+    font-size: $size;
+    font-family: $lato_font;
+    text-decoration: none;
+    color: #141516;
+    box-sizing: border-box;
+    height: $h;
+    width: $w;
+    padding: 10px 0px;
+    text-align: center;
+}

@@ -35,11 +35,18 @@ Route::group(['prefix'=>'auth','as' => 'auth.'],function (){
 
 });
 
+
+Route::group(['prefix'=>'user-info','as' => 'user-info.'],function (){
+    Route::get('/','App\Http\Controllers\UserController@getUserInfo')->name('get-user-info');
+    Route::post('/','App\Http\Controllers\UserController@updateUserInfo')->name('update-user-info');
+
+});
+
 Route::match(['get','post'],'reset-password','App\Http\Controllers\Auth\ResetPasswordController@confirmResetPassword')->name('password.reset');
 
 Route::get('/',function (){
     return view('welcome');
-})->name('home')->middleware('isAuth');
+})->name('home');
 
 Route::get('/{any}', function () {
     return view('welcome');
