@@ -4,7 +4,7 @@
       <div class="mainmenu_titel__text">Менеджер обуви</div>
       <img
         class="mainmenu_titel__logo"
-        src="storage/shoes_img/bootlogo.png"
+        src="storage/images/bootlogo.png"
         alt="logo"
       />
     </div>

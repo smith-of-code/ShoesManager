@@ -12,7 +12,6 @@ import shoesBackground from "../components/images/ShoesPicture.jpg";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
-
 //передача через роутер номера id обуви
 const cardID = defineProps({
   id: {
@@ -140,25 +139,32 @@ function prepareCardForm() {
     for (let entry of formData.entries()) {
       console.log("output new", entry);
     }
-  } else {//для карточки, которая уже была и редактируется
-        if (name.value != shoesData.value.name) formData.append("name", name.value);
-        if (photo.value) formData.append("photo", photo.value);
+  } else {
+    //для карточки, которая уже была и редактируется
+    if (name.value != shoesData.value.name) formData.append("name", name.value);
+    if (photo.value) formData.append("photo", photo.value);
 
-    if (JSON.stringify(purpose.value) != JSON.stringify(shoesData.value.purposes_ids)){
-    //purpose.value.forEach((e,i)=>formData.append(`purposesIds[${i}]`, e[i]));
-    //forEach в применении к данному алгоритму не работает корректно при пропущенных элементах массива!
-        for (let i = 0; i < purpose.value.length; i++) {
-            formData.append(`purposesIds[${i}]`, purpose.value[i]);
-        }
+    if (
+      JSON.stringify(purpose.value) !=
+      JSON.stringify(shoesData.value.purposes_ids)
+    ) {
+      //purpose.value.forEach((e,i)=>formData.append(`purposesIds[${i}]`, e[i]));
+      //forEach в применении к данному алгоритму не работает корректно при пропущенных элементах массива!
+      for (let i = 0; i < purpose.value.length; i++) {
+        formData.append(`purposesIds[${i}]`, purpose.value[i]);
+      }
     }
     if (temp_from.value != shoesData.value.temp_from)
       formData.append("temp_from", temp_from.value);
     if (temp_to.value != shoesData.value.temp_to)
       formData.append("temp_to", temp_to.value);
-    if (JSON.stringify(weather.value) != JSON.stringify(shoesData.value.weathers_ids)){
-        for (let i = 0; i < weather.value.length; i++) {
-      formData.append(`weathersIds[${i}]`, weather.value[i]);
-        }
+    if (
+      JSON.stringify(weather.value) !=
+      JSON.stringify(shoesData.value.weathers_ids)
+    ) {
+      for (let i = 0; i < weather.value.length; i++) {
+        formData.append(`weathersIds[${i}]`, weather.value[i]);
+      }
     }
     axios.post(`/api/shoes/${cardID.id}`, formData);
     for (let entry of formData.entries()) {
@@ -186,7 +192,7 @@ function prepareCardForm() {
 
 //возврат на страницу листинга обуви
 function goToListing() {
-    router.push({ path: '/list' });
+  router.push({ path: "/list" });
 }
 </script>
 
@@ -371,7 +377,7 @@ function goToListing() {
     <div class="shoes_card_img">
       <div class="shoes_card_backimg"></div>
       <div class="shoes_card_titel_img">
-        <img src="storage/shoes_img/cardlogo.jpg" alt="" />
+        <img src="storage/images/cardlogo.jpg" alt="" />
       </div>
     </div>
   </div>
