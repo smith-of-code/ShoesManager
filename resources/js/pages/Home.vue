@@ -19,7 +19,7 @@
     </div>
     <a class="home__btn" href="/auth/signin">Вход/Регистрация</a>
     <div class="home__foto">
-      <img src="storage/shoes_img/home_logo.jpg" alt="" />
+      <img src="storage/images/home_logo.jpg" alt="" />
     </div>
   </div>
 </template>
