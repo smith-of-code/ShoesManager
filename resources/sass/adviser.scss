@@ -1,0 +1,53 @@
+@import "variables";
+@import "mixins";
+
+.adviser__btn {
+    @include standart_btn();
+    font-size: 18px;
+    margin-top: 12px;
+}
+
+.adviser__btn:hover {
+    background-color: $hover_color;
+}
+
+.advaser_input {
+    @include enter_form;
+    margin-top: 12px;
+}
+
+.adviser__container {
+    background-color: #F8F8F7;
+    padding: 24px 64px;
+    font-family: $lato_font;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+.adviser__weather {
+    display: grid;
+    grid-template-columns: 300px auto;
+}
+
+.adviser__label {
+    margin-top: 12px;
+    font-size: 18px;
+    font-family: $lato_font;
+}
+
+.weather-box {
+    margin: 24px 0px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+}
+
+.adviser__weather_box {
+    margin-right: 12px;
+}
+
+.temp {
+    font-weight: bold;
+}

@@ -14,10 +14,24 @@
     grid-area: 1/2/2/4;
 }
 
+.weather-box {
+    grid-area: 3/1/4/3;
+}
+
 .collection__temper {
     display: flex;
     flex-direction: column;
     margin-right: 28px;
+}
+
+.collection_buttons {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+}
+
+.collection_img {
+    margin-right: 20px;
 }
 
 .collection__icons {
@@ -60,7 +74,7 @@ input:-webkit-autofill {
     flex-direction: row;
     height: 10vh;
     background-color: #F8F8F7;
-    padding: 0px 64px;
+    padding-left: 64px;
     color: black;
     font-size: 18px;
     font-family: $lato_font;

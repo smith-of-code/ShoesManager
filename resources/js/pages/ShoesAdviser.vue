@@ -1,18 +1,32 @@
 <template>
-  <h1>Что сейчас одеть?</h1>
-  <WeatherBilder @onweatherdata="(e) => takeWeatherData(e)" />
-  <!-- <DateBilder @ondaydata="(e) => (you = e)" /> -->
-  <DateBilder @ondaydata="(e) => takeDateData(e)" />
+  <div class="adviser__container">
+    <h1>Что сейчас надеть?</h1>
+    <WeatherBilder @onweatherdata="(e) => takeWeatherData(e)" />
+    <!-- <DateBilder @ondaydata="(e) => (you = e)" /> -->
+    <DateBilder @ondaydata="(e) => takeDateData(e)" />
+  </div>
   <div v-if="result">
-    <li v-for="(item, index) in resultList.value" :key="index" class="serch_item">
+    <li
+      v-for="(item, index) in resultList.value"
+      :key="index"
+      class="serch_item"
+    >
       <img :src="`/storage/shoes_img/` + item.photo_path" alt="picture" />
       <SearchList style="width: 10vw">{{ item.name }}</SearchList>
       <SearchList style="width: 20vw">
         <div v-for="(ids, index) in item.purposes_ids" :key="index">
-          <div v-if="ids === 1"><IconCasual :width="30" :height="30" /></div>
-          <div v-if="ids === 2"><IconSport :width="30" :height="30" /></div>
-          <div v-if="ids === 3"><IconWork :width="30" :height="30" /></div>
-          <div v-if="ids === 4"><IconParty :width="30" :height="30" /></div>
+          <div v-if="ids === 1">
+            <IconCasual :width="30" :height="30" :color="`#000000`" />
+          </div>
+          <div v-if="ids === 2">
+            <IconSport :width="30" :height="30" :color="`#000000`" />
+          </div>
+          <div v-if="ids === 3">
+            <IconWork :width="30" :height="30" :color="`#000000`" />
+          </div>
+          <div v-if="ids === 4">
+            <IconParty :width="30" :height="30" :color="`#000000`" />
+          </div>
         </div>
       </SearchList>
 
@@ -24,10 +38,18 @@
       >
       <SearchList style="width: 20vw">
         <div v-for="(ids, index) in item.weathers_ids" :key="index">
-          <div v-if="ids === 1"><IconSun :width="30" :height="30" /></div>
-          <div v-if="ids === 2"><IconRain :width="30" :height="30" /></div>
-          <div v-if="ids === 3"><IconSpot :width="30" :height="30" /></div>
-          <div v-if="ids === 4"><IconSnow :width="30" :height="30" /></div>
+          <div v-if="ids === 1">
+            <IconSun :width="30" :height="30" :color="`#000000`" />
+          </div>
+          <div v-if="ids === 2">
+            <IconRain :width="30" :height="30" :color="`#000000`" />
+          </div>
+          <div v-if="ids === 3">
+            <IconSpot :width="30" :height="30" :color="`#000000`" />
+          </div>
+          <div v-if="ids === 4">
+            <IconSnow :width="30" :height="30" :color="`#000000`" />
+          </div>
         </div>
       </SearchList>
       <SearchList style="width: 20vw">{{ item.comments }}</SearchList>
@@ -63,7 +85,10 @@ const dayType = ref(""); //будни или выходные
 const dayPeriod = ref(""); //время дня в сослагательном
 function takeDateData(e) {
   dateData.value = e;
-  if (dateData.value.day === "Суббота" || dateData.value.day === "Воскресенье") {
+  if (
+    dateData.value.day === "Суббота" ||
+    dateData.value.day === "Воскресенье"
+  ) {
     dayType.value = "выходного";
   } else dayType.value = "буднего";
 
@@ -118,7 +143,9 @@ const loader = async () => {
 //выбираем обувь по температуре
 function byTemp(list) {
   list = shoesStore.value.filter(
-    (e) => dateWeather.value.temp >= e.temp_from && dateWeather.value.temp <= e.temp_to
+    (e) =>
+      dateWeather.value.temp >= e.temp_from &&
+      dateWeather.value.temp <= e.temp_to
   );
   comments.value = { comment: "по температуре" };
   console.log("listSearch byTemp ", list, list.length);
@@ -138,7 +165,9 @@ function byCondition(list) {
         return (
           element === dateWeather.value.condition ||
           //определяем наличие грязи
-          (element === 3 && dateWeather.value.temp <= 5 && dateWeather.value.temp >= -2)
+          (element === 3 &&
+            dateWeather.value.temp <= 5 &&
+            dateWeather.value.temp >= -2)
         );
       }).length //такая конструкция позволяет возвращать истину или ложь из вложенного массива для filter
     ) {
@@ -154,7 +183,9 @@ function byPurpose(list) {
     if (
       e.purposes_ids.filter((element) => {
         return (
-          (element === 1 && dayPeriod.value !== "вечеру" && dayPeriod.value !== "ночи") ||
+          (element === 1 &&
+            dayPeriod.value !== "вечеру" &&
+            dayPeriod.value !== "ночи") ||
           (element === 2 && dayPeriod.value !== "ночи") ||
           (element === 3 &&
             dayPeriod.value !== "вечеру" &&
@@ -175,7 +206,7 @@ function byPurpose(list) {
 </script>
 
 <style scoped>
-.serch_item {
+/*.serch_item {
   display: flex;
   flex-direction: row;
   height: 10vh;
@@ -185,5 +216,5 @@ function byPurpose(list) {
 }
 .search {
   display: flex;
-}
+}*/
 </style>
