@@ -1,22 +1,37 @@
 <template>
-  <label for="your-city"
-    >Введите ваш населенный пункт, если необходимо уточнить погоду</label
-  >
-
-  <input type="text" id="your-city" v-model.lazy="city" @keyup.enter="fetchWeather" />
-  <label for="your-location">или разрешите узнать ваше местоположение</label>
-  <button type="button" id="your-location" @click="yourPlace">определить</button>
-  <div class="weather-box">
-    <p>Текущие погодные условия:</p>
-    <div v-show="wind">
-      <div class="temp">
-        {{ Math.round(currentTemp) }}°c ощущается как {{ Math.round(fillingTemp) }}°c{{
-          weatherCondition
-        }}
-        скорость ветра{{ Math.round(wind) }}м/с
+  <div class="adviser__weather">
+    <label class="adviser__label" for="your-city"
+      >Введите ваш населенный пункт:</label
+    >
+    <input
+      class="advaser_input"
+      type="text"
+      id="your-city"
+      v-model.lazy="city"
+      @keyup.enter="fetchWeather"
+    />
+    <label class="adviser__label" for="your-location"
+      >Или разрешите узнать ваше местоположение:</label
+    >
+    <button
+      class="adviser__btn"
+      type="button"
+      id="your-location"
+      @click="yourPlace"
+    >
+      Определить
+    </button>
+    <div class="weather-box">
+      <div class="adviser__weather_box">Текущие погодные условия:</div>
+      <div v-show="wind">
+        <div class="temp">
+          {{ Math.round(currentTemp) }}°c ощущается как
+          {{ Math.round(fillingTemp) }}°c {{ weatherCondition }} скорость ветра:
+          {{ Math.round(wind) }}м/с
+        </div>
       </div>
+      <div v-show="opps">Не могу получить погоду...</div>
     </div>
-    <div v-show="opps">Не могу полчить погоду...</div>
   </div>
 </template>
 
@@ -42,7 +57,9 @@ onBeforeMount(() => {
 function fetchWeather() {
   opps.value = false;
   //https://openweathermap.org/api
-  fetch(`${url_base}weather?q=${city.value}&units=metric&APPID=${api_key}&lang=ru`)
+  fetch(
+    `${url_base}weather?q=${city.value}&units=metric&APPID=${api_key}&lang=ru`
+  )
     .then((res) => {
       return res.json();
     })
@@ -68,7 +85,10 @@ function setResults(results) {
       weatherCondition.value = 1; //сухо, ясно, облачно, пасмурно
   }
   wind.value = weather.wind.speed; //км/ч? проверить
-  emit("onweatherdata", { temp: fillingTemp.value, condition: weatherCondition.value });
+  emit("onweatherdata", {
+    temp: fillingTemp.value,
+    condition: weatherCondition.value,
+  });
 }
 //обработка ошибки, если не получается получить ответ сервера о погоде
 function eraseWeather() {

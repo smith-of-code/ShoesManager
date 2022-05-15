@@ -119,7 +119,11 @@
       :key="index"
       class="serch_item"
     >
-      <img :src="`/storage/shoes_img/` + item.photo_path" alt="picture" />
+      <img
+        class="collection_img"
+        :src="`/storage/shoes_img/` + item.photo_path"
+        alt="picture"
+      />
       <SearchList style="width: 10vw">{{ item.name }}</SearchList>
       <SearchList style="width: 20vw">
         <div v-for="(ids, index) in item.purposes_ids" :key="index">
@@ -160,12 +164,14 @@
           </div>
         </div>
       </SearchList>
-      <button class="collection__edit_btn" @click="editCard(item.id)">
-        <IconEdit :width="30" :height="30" :color="`#ffffff`" />
-      </button>
-      <button class="collection__delete_btn" @click="deleteCard(item.id)">
-        <IconTrash :width="30" :height="30" :color="`#ffffff`" />
-      </button>
+      <div class="collection_buttons">
+        <button class="collection__edit_btn" @click="editCard(item.id)">
+          <IconEdit :width="30" :height="30" :color="`#ffffff`" />
+        </button>
+        <button class="collection__delete_btn" @click="deleteCard(item.id)">
+          <IconTrash :width="30" :height="30" :color="`#ffffff`" />
+        </button>
+      </div>
     </li>
   </div>
 </template>
