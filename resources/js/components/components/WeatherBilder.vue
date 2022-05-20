@@ -53,8 +53,8 @@ let weather = reactive({});
 //const api_key = "a744ff0924d1107e3e24787a2749ab0c";Москва openweather
 //const api_key = "06e244b17971890dfd276d9e64e89ae8";Амстердам openweather
 const api_key = "9e341092-e547-434f-8444-b2e9055229de"; //Яндекс
-
-const url_base = "https://api.openweathermap.org/data/2.5/";
+//const url_base = "https://api.openweathermap.org/data/2.5/";
+const url_base = "https://api.weather.yandex.ru/v2/informers";
 const currentTemp = ref();
 const fillingTemp = ref();
 const weatherCondition = ref();
@@ -105,26 +105,26 @@ function fetchWeather() {
 function setResults(results) {
   weather = results;
   //контроль имени города
-  //console.log("name", results.name);
-  currentTemp.value = weather.main.temp;
-  fillingTemp.value = weather.main.feels_like;
-  //weatherCondition.value = weather.weather[0].description;
-  switch (weather.weather[0].description) {
-    //грязь предполагаем при темперауре от -2 до +5С
-    case "дождь":
-      weatherCondition.value = 2;
-      break;
-    case "снег":
-      weatherCondition.value = 4;
-      break;
-    default:
-      weatherCondition.value = 1; //сухо, ясно, облачно, пасмурно
-  }
-  wind.value = weather.wind.speed; //км/ч? проверить
-  emit("onweatherdata", {
-    temp: fillingTemp.value,
-    condition: weatherCondition.value,
-  });
+  console.log("result");
+  // currentTemp.value = weather.main.temp;
+  // fillingTemp.value = weather.main.feels_like;
+  // //weatherCondition.value = weather.weather[0].description;
+  // switch (weather.weather[0].description) {
+  //   //грязь предполагаем при темперауре от -2 до +5С
+  //   case "дождь":
+  //     weatherCondition.value = 2;
+  //     break;
+  //   case "снег":
+  //     weatherCondition.value = 4;
+  //     break;
+  //   default:
+  //     weatherCondition.value = 1; //сухо, ясно, облачно, пасмурно
+  // }
+  // wind.value = weather.wind.speed; //км/ч? проверить
+  // emit("onweatherdata", {
+  //   temp: fillingTemp.value,
+  //   condition: weatherCondition.value,
+  // });
 }
 //обработка ошибки, если не получается получить ответ сервера о погоде
 function eraseWeather() {
@@ -163,9 +163,16 @@ function error() {
 //запрос погоды по широте и долготе
 function fetchWeatherWithLL() {
   if (latitude.value) {
-    fetch(
-      `${url_base}weather?lat=${latitude.value}&lon=${longitude.value}&units=metric&APPID=${api_key}&lang=ru`
-    )
+    // fetch(
+    //   `${url_base}weather?lat=${latitude.value}&lon=${longitude.value}&units=metric&APPID=${api_key}&lang=ru`
+    // )
+    //Яндекс
+    fetch(`${url_base}?lat=${latitude.value}&lon=${longitude.value}`, {
+      method: "GET",
+      headers: {
+        "X-Yandex-API-Key": api_key.value,
+      },
+    })
       .then((res) => {
         return res.json();
       })
@@ -173,4 +180,6 @@ function fetchWeatherWithLL() {
       .catch(() => eraseWeather);
   }
 }
+
+//`X-Yandex-API-Key:${api_key}`
 </script>

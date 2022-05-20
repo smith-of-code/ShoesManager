@@ -144,10 +144,7 @@ function prepareCardForm() {
     if (name.value != shoesData.value.name) formData.append("name", name.value);
     if (photo.value) formData.append("photo", photo.value);
 
-    if (
-      JSON.stringify(purpose.value) !=
-      JSON.stringify(shoesData.value.purposes_ids)
-    ) {
+    if (JSON.stringify(purpose.value) != JSON.stringify(shoesData.value.purposes_ids)) {
       //purpose.value.forEach((e,i)=>formData.append(`purposesIds[${i}]`, e[i]));
       //forEach в применении к данному алгоритму не работает корректно при пропущенных элементах массива!
       for (let i = 0; i < purpose.value.length; i++) {
@@ -158,10 +155,7 @@ function prepareCardForm() {
       formData.append("temp_from", temp_from.value);
     if (temp_to.value != shoesData.value.temp_to)
       formData.append("temp_to", temp_to.value);
-    if (
-      JSON.stringify(weather.value) !=
-      JSON.stringify(shoesData.value.weathers_ids)
-    ) {
+    if (JSON.stringify(weather.value) != JSON.stringify(shoesData.value.weathers_ids)) {
       for (let i = 0; i < weather.value.length; i++) {
         formData.append(`weathersIds[${i}]`, weather.value[i]);
       }
@@ -178,7 +172,7 @@ function prepareCardForm() {
   //очистка исходных данных формы до ввода следующей пары
   name.value = "";
   photo.value = {};
-  photoName.value ="";
+  photoName.value = "";
   pathPhoto.value = shoesBackground;
   purpose.value = [];
   temp_from.value = -5;
@@ -189,7 +183,6 @@ function prepareCardForm() {
   //   for (let entry of formData.entries()) {
   //     console.log("output ", entry);
   //   }
-
 }
 
 //возврат на страницу листинга обуви
@@ -249,50 +242,26 @@ function goToListing() {
         <div class="shoes_purpose">
           <div class="shoes">
             <label class="check_purpose" title="Повседневная">
-              <input
-                type="checkbox"
-                id="casual"
-                value="1"
-                v-model="purpose"
-                hidden
-              />
+              <input type="checkbox" id="casual" value="1" v-model="purpose" hidden />
               <IconCasual :width="40" :height="40" :color="`#000000`" />
             </label>
           </div>
           <div class="shoes">
             <label class="check_purpose" title="Спортивная">
-              <input
-                type="checkbox"
-                id="sport"
-                value="2"
-                v-model="purpose"
-                hidden
-              />
+              <input type="checkbox" id="sport" value="2" v-model="purpose" hidden />
               <!-- у иконок можно задавать цвет и размеры -->
               <IconSport :width="40" :height="40" :color="`#000000`" />
             </label>
           </div>
           <div class="shoes">
             <label class="check_purpose" title="Деловая">
-              <input
-                type="checkbox"
-                id="work"
-                value="3"
-                v-model="purpose"
-                hidden
-              />
+              <input type="checkbox" id="work" value="3" v-model="purpose" hidden />
               <IconWork :width="40" :height="40" :color="`#000000`" />
             </label>
           </div>
           <div class="shoes">
             <label class="check_purpose" title="Праздничная">
-              <input
-                type="checkbox"
-                id="party"
-                value="4"
-                v-model="purpose"
-                hidden
-              />
+              <input type="checkbox" id="party" value="4" v-model="purpose" hidden />
               <IconParty :width="40" :height="40" :color="`#000000`" />
             </label>
           </div>
@@ -303,49 +272,25 @@ function goToListing() {
         <div class="shoes_purpose">
           <div class="shoes">
             <label class="check_purpose" title="солнечно">
-              <input
-                type="checkbox"
-                id="sun"
-                value="1"
-                v-model="weather"
-                hidden
-              />
+              <input type="checkbox" id="sun" value="1" v-model="weather" hidden />
               <IconSun :width="40" :height="40" :color="`#000000`" />
             </label>
           </div>
           <div class="shoes">
             <label class="check_purpose" title="дождь">
-              <input
-                type="checkbox"
-                id="rain"
-                value="2"
-                v-model="weather"
-                hidden
-              />
+              <input type="checkbox" id="rain" value="2" v-model="weather" hidden />
               <IconRain :width="40" :height="40" :color="`#000000`" />
             </label>
           </div>
           <div class="shoes">
             <label class="check_purpose" title="грязь">
-              <input
-                type="checkbox"
-                id="dirt"
-                value="3"
-                v-model="weather"
-                hidden
-              />
+              <input type="checkbox" id="dirt" value="3" v-model="weather" hidden />
               <IconSpot :width="40" :height="40" :color="`#000000`" />
             </label>
           </div>
           <div class="shoes">
             <label class="check_purpose" title="снег">
-              <input
-                type="checkbox"
-                id="snow"
-                value="4"
-                v-model="weather"
-                hidden
-              />
+              <input type="checkbox" id="snow" value="4" v-model="weather" hidden />
               <IconSnow :width="40" :height="40" :color="`#000000`" />
             </label>
           </div>
@@ -367,11 +312,7 @@ function goToListing() {
         </div>
       </div>
 
-      <button
-        class="shoes_save_button"
-        type="submit"
-        @click.prevent="prepareCardForm"
-      >
+      <button class="shoes_save_button" type="submit" @click.prevent="prepareCardForm">
         Сохранить
       </button>
     </form>
@@ -379,11 +320,11 @@ function goToListing() {
     <div class="shoes_card_img">
       <div class="shoes_card_backimg"></div>
       <div class="shoes_card_titel_img">
-        <img src="storage/images/cardlogo.jpg" alt="" />
+        <img src="//storage/app/public/images/cardlogo.jpg" alt="Картинка" />
+        <!-- storage/images/cardlogo.jpg -->
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
