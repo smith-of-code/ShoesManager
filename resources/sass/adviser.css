@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lato:wght@300&family=Orelega+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lato:wght@300&family=Orelega+One&family=Roboto&display=swap");
+.adviser__btn {
+  color: white;
+  height: auto;
+  width: 196px;
+  background-color: #883CDA;
+  font-family: "Roboto", sans-serif;
+  padding: 14px 24px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 35px;
+  border: none;
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+.adviser__btn:hover {
+  background-color: #CB9BFF;
+}
+
+.advaser_input {
+  outline: 0;
+  height: auto;
+  width: 448px;
+  background-color: #FFFFFF;
+  color: black;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 35px;
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+.adviser__container {
+  background-color: #F8F8F7;
+  padding: 24px 64px;
+  font-family: "Lato", sans-serif;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+.adviser__weather {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 300px auto;
+      grid-template-columns: 300px auto;
+}
+
+.adviser__label {
+  margin-top: 12px;
+  font-size: 18px;
+  font-family: "Lato", sans-serif;
+}
+
+.weather-box {
+  margin: 24px 0px;
+  font-size: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.adviser__weather_box {
+  margin-right: 12px;
+}
+
+.temp {
+  font-weight: bold;
+}
+/*# sourceMappingURL=adviser.css.map */

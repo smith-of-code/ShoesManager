@@ -1,8 +1,6 @@
 <template>
   <div class="adviser__weather">
-    <label class="adviser__label" for="your-city"
-      >Введите ваш населенный пункт:</label
-    >
+    <label class="adviser__label" for="your-city">{{ question }}</label>
     <input
       class="advaser_input"
       type="text"
@@ -10,24 +8,36 @@
       v-model.lazy="city"
       @keyup.enter="fetchWeather"
     />
+    <div v-show="showButtons">
+      <button
+        class="adviser__btn"
+        type="button"
+        id="your-city-yes"
+        @click="aproveLocation(1)"
+      >
+        ДА
+      </button>
+      <button
+        class="adviser__btn"
+        type="button"
+        id="your-city-yes"
+        @click="aproveLocation(0)"
+      >
+        НЕТ
+      </button>
+    </div>
     <label class="adviser__label" for="your-location"
       >Или разрешите узнать ваше местоположение:</label
     >
-    <button
-      class="adviser__btn"
-      type="button"
-      id="your-location"
-      @click="yourPlace"
-    >
+    <button class="adviser__btn" type="button" id="your-location" @click="yourPlace">
       Определить
     </button>
     <div class="weather-box">
       <div class="adviser__weather_box">Текущие погодные условия:</div>
       <div v-show="wind">
         <div class="temp">
-          {{ Math.round(currentTemp) }}°c ощущается как
-          {{ Math.round(fillingTemp) }}°c {{ weatherCondition }} скорость ветра:
-          {{ Math.round(wind) }}м/с
+          {{ Math.round(currentTemp) }}°c ощущается как {{ Math.round(fillingTemp) }}°c
+          {{ weatherCondition }} скорость ветра: {{ Math.round(wind) }}м/с
         </div>
       </div>
       <div v-show="opps">Не могу получить погоду...</div>
@@ -40,13 +50,18 @@ import axios from "axios";
 import { reactive, ref, onBeforeMount } from "vue";
 const city = ref("");
 let weather = reactive({});
-const api_key = "a744ff0924d1107e3e24787a2749ab0c";
+//const api_key = "a744ff0924d1107e3e24787a2749ab0c";Москва openweather
+//const api_key = "06e244b17971890dfd276d9e64e89ae8";Амстердам openweather
+const api_key = "9e341092-e547-434f-8444-b2e9055229de"; //Яндекс
+
 const url_base = "https://api.openweathermap.org/data/2.5/";
 const currentTemp = ref();
 const fillingTemp = ref();
 const weatherCondition = ref();
 const wind = ref();
-const opps = ref(false);
+const opps = ref(false); //условие объявления, что координаты не определить
+const showButtons = ref(true); //показ кнопок подтверждения города
+const question = ref("Ваш населенный пункт?");
 const latitude = ref();
 const longitude = ref();
 const emit = defineEmits(["onweatherdata"]);
@@ -67,6 +82,7 @@ const getCord = async () => {
       city.value = response.data.city;
       latitude.value = response.data.lat;
       longitude.value = response.data.lon;
+      console.log("Запрос сделала", city.value);
       fetchWeatherWithLL();
     })
     .catch((error) => {
@@ -78,9 +94,7 @@ const getCord = async () => {
 function fetchWeather() {
   opps.value = false;
   //https://openweathermap.org/api
-  fetch(
-    `${url_base}weather?q=${city.value}&units=metric&APPID=${api_key}&lang=ru`
-  )
+  fetch(`${url_base}weather?q=${city.value}&units=metric&APPID=${api_key}&lang=ru`)
     .then((res) => {
       return res.json();
     })
@@ -117,6 +131,18 @@ function eraseWeather() {
   wind.value = 0;
   opps.value = true;
 }
+
+//Подтверждение города в запросе
+function aproveLocation(aprove) {
+  if (aprove) {
+    showButtons.value = false;
+    return;
+  } else {
+    city.value = "";
+    question.value = "Укажите ваш город:";
+  }
+}
+
 //уточнение местополения принудительно
 function yourPlace() {
   if (!navigator.geolocation) {

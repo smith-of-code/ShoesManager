@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lato:wght@300&family=Orelega+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lato:wght@300&family=Orelega+One&family=Roboto&display=swap");
+.collection_container {
+  padding: 24px 64px;
+  margin: 0px;
+  height: auto;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: 100px 100px;
+      grid-template-rows: 100px 100px;
+}
+
+.collection__filter {
+  text-align: right;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: 1/2/2/4;
+}
+
+.weather-box {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: 3/1/4/3;
+}
+
+.collection__temper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-right: 28px;
+}
+
+.collection_buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-left: auto;
+}
+
+.collection_img {
+  margin-right: 20px;
+}
+
+.collection__icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+}
+
+.check_purpose {
+  margin-right: 24px;
+}
+
+.collection__title {
+  font-size: 18px;
+  font-family: "Lato", sans-serif;
+  margin-bottom: 24px;
+}
+
+input:-internal-autofill-selected,
+input:-webkit-autofill {
+  background-color: white;
+}
+
+.collection__filtr_btn {
+  color: white;
+  height: 52px;
+  width: 196px;
+  background-color: #883CDA;
+  font-family: "Roboto", sans-serif;
+  padding: 14px 24px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 35px;
+  border: none;
+}
+
+.collection__filtr_btn:hover {
+  background: #CB9BFF;
+}
+
+.collection__filtr_input {
+  outline: 0;
+  height: auto;
+  width: 448px;
+  background-color: #FFFFFF;
+  color: black;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 35px;
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  margin-right: 12px;
+}
+
+.serch_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 10vh;
+  background-color: #F8F8F7;
+  padding-left: 64px;
+  color: black;
+  font-size: 18px;
+  font-family: "Lato", sans-serif;
+  margin-top: 16px;
+  border-radius: 10px;
+}
+
+.collection__edit_btn {
+  background-color: #883CDA;
+  border: none;
+  cursor: pointer;
+}
+
+.collection__edit_btn:hover {
+  background-color: #CB9BFF;
+}
+
+.collection__delete_btn {
+  background-color: #883CDA;
+  border: none;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  cursor: pointer;
+}
+
+.collection__delete_btn:hover {
+  background-color: #CB9BFF;
+}
+/*# sourceMappingURL=collection.css.map */
