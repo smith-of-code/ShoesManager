@@ -9,6 +9,7 @@ import IconSport from "../components/icons/IconSport.vue";
 import IconCasual from "../components/icons/IconCasual.vue";
 import IconParty from "../components/icons/IconParty.vue";
 import shoesBackground from "../components/images/ShoesPicture.jpg";
+import cardLogo from "../../../storage/app/public/images/cardlogo.jpg";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
@@ -320,8 +321,9 @@ function goToListing() {
     <div class="shoes_card_img">
       <div class="shoes_card_backimg"></div>
       <div class="shoes_card_titel_img">
-        <img src="//storage/app/public/images/cardlogo.jpg" alt="Картинка" />
-        <!-- storage/images/cardlogo.jpg -->
+        <!-- заменил способ получения имиджа, сначал подгружаем при сборке -->
+        <img :src="cardLogo" alt="Картинка" />
+        <!-- <img src="storage/images/cardlogo.jpg" alt="Картинка1" /> -->
       </div>
     </div>
   </div>

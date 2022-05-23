@@ -160,13 +160,15 @@ function success(position) {
 function error() {
   console.log("Невозможно получить ваше местоположение");
 }
+
 //запрос погоды по широте и долготе
 function fetchWeatherWithLL() {
   if (latitude.value) {
+    //openweather
     // fetch(
     //   `${url_base}weather?lat=${latitude.value}&lon=${longitude.value}&units=metric&APPID=${api_key}&lang=ru`
     // )
-    //Яндекс
+    Яндекс;
     fetch(`${url_base}?lat=${latitude.value}&lon=${longitude.value}`, {
       method: "GET",
       headers: {
