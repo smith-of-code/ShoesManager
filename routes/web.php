@@ -21,6 +21,8 @@ Route::group([
     Route::resource('purpose','App\Http\Controllers\PurposeController');
 
     Route::resource('weather','App\Http\Controllers\WeatherController');
+
+    Route::match(['get','post'],'/yandex-weather','App\Http\Controllers\YandexApiController@index');
 });
 
 Route::group(['prefix'=>'auth','as' => 'auth.'],function (){
