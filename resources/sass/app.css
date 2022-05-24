@@ -21,7 +21,7 @@ body {
   text-align: left;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -59,8 +59,6 @@ body {
 }
 
 .shoes_card_titel_img {
-  width: 832px;
-  height: 640px;
   border-top-right-radius: 400px;
   border-bottom-right-radius: 400px;
   position: relative;
@@ -70,8 +68,6 @@ body {
 }
 
 .shoes_card_backimg {
-  height: 800px;
-  width: 640px;
   background-color: #883CDA;
   position: absolute;
 }
@@ -172,7 +168,7 @@ body {
 }
 
 .check_purpose :checked + svg path {
-  fill: #883CDA;
+  fill: #883cda;
 }
 
 input::-webkit-input-placeholder {
@@ -191,7 +187,7 @@ input::placeholder {
   color: black;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   background: -webkit-gradient(linear, left top, right top, from(#181e34), to(#a11d35));
   background: linear-gradient(to right, #181e34, #a11d35);
   border: none;
@@ -200,7 +196,7 @@ input[type=range]::-webkit-slider-runnable-track {
   cursor: pointer;
 }
 
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   width: 20px;
   height: 20px;
   background: #2e3e78;
@@ -209,7 +205,7 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
 }
 
-input[type=range]::-moz-range-track {
+input[type="range"]::-moz-range-track {
   background: linear-gradient(to right, #181e34, #a11d35);
   border: 1px solid #000000;
   width: 100%;
@@ -217,7 +213,7 @@ input[type=range]::-moz-range-track {
   cursor: pointer;
 }
 
-input[type=range]::-moz-range-thumb {
+input[type="range"]::-moz-range-thumb {
   width: 20px;
   height: 20px;
   background: #2e3e78;

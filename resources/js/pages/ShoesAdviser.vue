@@ -6,11 +6,7 @@
     <DateBilder @ondaydata="(e) => takeDateData(e)" />
   </div>
   <div v-if="result">
-    <li
-      v-for="(item, index) in resultList.value"
-      :key="index"
-      class="serch_item"
-    >
+    <li v-for="(item, index) in resultList.value" :key="index" class="serch_item">
       <img :src="`/storage/shoes_img/` + item.photo_path" alt="picture" />
       <SearchList style="width: 10vw">{{ item.name }}</SearchList>
       <SearchList style="width: 20vw">
@@ -85,10 +81,7 @@ const dayType = ref(""); //будни или выходные
 const dayPeriod = ref(""); //время дня в сослагательном
 function takeDateData(e) {
   dateData.value = e;
-  if (
-    dateData.value.day === "Суббота" ||
-    dateData.value.day === "Воскресенье"
-  ) {
+  if (dateData.value.day === "суббота" || dateData.value.day === "воскресенье") {
     dayType.value = "выходного";
   } else dayType.value = "буднего";
 
@@ -96,7 +89,7 @@ function takeDateData(e) {
     case "утро":
       dayPeriod.value = "утру";
       break;
-    case "день":
+    case "середина дня":
       dayPeriod.value = "середине";
       break;
     case "вечер":
@@ -143,9 +136,7 @@ const loader = async () => {
 //выбираем обувь по температуре
 function byTemp(list) {
   list = shoesStore.value.filter(
-    (e) =>
-      dateWeather.value.temp >= e.temp_from &&
-      dateWeather.value.temp <= e.temp_to
+    (e) => dateWeather.value.temp >= e.temp_from && dateWeather.value.temp <= e.temp_to
   );
   comments.value = { comment: "по температуре" };
   console.log("listSearch byTemp ", list, list.length);
@@ -165,9 +156,7 @@ function byCondition(list) {
         return (
           element === dateWeather.value.condition ||
           //определяем наличие грязи
-          (element === 3 &&
-            dateWeather.value.temp <= 5 &&
-            dateWeather.value.temp >= -2)
+          (element === 3 && dateWeather.value.temp <= 5 && dateWeather.value.temp >= -2)
         );
       }).length //такая конструкция позволяет возвращать истину или ложь из вложенного массива для filter
     ) {
@@ -183,9 +172,7 @@ function byPurpose(list) {
     if (
       e.purposes_ids.filter((element) => {
         return (
-          (element === 1 &&
-            dayPeriod.value !== "вечеру" &&
-            dayPeriod.value !== "ночи") ||
+          (element === 1 && dayPeriod.value !== "вечеру" && dayPeriod.value !== "ночи") ||
           (element === 2 && dayPeriod.value !== "ночи") ||
           (element === 3 &&
             dayPeriod.value !== "вечеру" &&

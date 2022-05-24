@@ -12,51 +12,25 @@
           v-model="searchWord"
         />
       </label>
-      <button @click="eraseAll" class="collection__filtr_btn">
-        Сбросить фильтры
-      </button>
+      <button @click="eraseAll" class="collection__filtr_btn">Сбросить фильтры</button>
     </div>
 
     <div class="collection__purpose">
       <div class="collection__title">Назначение пары:</div>
       <label for="casual" class="check_purpose" title="Повседневная">
-        <input
-          type="checkbox"
-          id="casual"
-          value="1"
-          v-model="searchPurpose"
-          hidden
-        />
+        <input type="checkbox" id="casual" value="1" v-model="searchPurpose" hidden />
         <IconCasual :width="40" :height="40" :color="`#000000`" />
       </label>
       <label class="check_purpose" title="Спортивная">
-        <input
-          type="checkbox"
-          id="sport"
-          value="2"
-          v-model="searchPurpose"
-          hidden
-        />
+        <input type="checkbox" id="sport" value="2" v-model="searchPurpose" hidden />
         <IconSport :width="40" :height="40" :color="`#000000`" />
       </label>
       <label class="check_purpose" title="Деловая">
-        <input
-          type="checkbox"
-          id="work"
-          value="3"
-          v-model="searchPurpose"
-          hidden
-        />
+        <input type="checkbox" id="work" value="3" v-model="searchPurpose" hidden />
         <IconWork :width="40" :height="40" :color="`#000000`" />
       </label>
       <label class="check_purpose" title="Праздничная">
-        <input
-          type="checkbox"
-          id="party"
-          value="4"
-          v-model="searchPurpose"
-          hidden
-        />
+        <input type="checkbox" id="party" value="4" v-model="searchPurpose" hidden />
         <IconParty :width="40" :height="40" :color="`#000000`" />
       </label>
     </div>
@@ -71,54 +45,26 @@
       <div class="collection__title">Укажите погодные условия:</div>
       <div class="collection__icons">
         <label class="check_purpose" title="солнечно">
-          <input
-            type="checkbox"
-            id="sun"
-            value="1"
-            v-model="searchWeather"
-            hidden
-          />
+          <input type="checkbox" id="sun" value="1" v-model="searchWeather" hidden />
           <IconSun :width="40" :height="40" :color="`#000000`" />
         </label>
         <label class="check_purpose" title="дождь">
-          <input
-            type="checkbox"
-            id="rain"
-            value="2"
-            v-model="searchWeather"
-            hidden
-          />
+          <input type="checkbox" id="rain" value="2" v-model="searchWeather" hidden />
           <IconRain :width="40" :height="40" :color="`#000000`" />
         </label>
         <label class="check_purpose" title="грязь">
-          <input
-            type="checkbox"
-            id="dirt"
-            value="3"
-            v-model="searchWeather"
-            hidden
-          />
+          <input type="checkbox" id="dirt" value="3" v-model="searchWeather" hidden />
           <IconSpot :width="40" :height="40" :color="`#000000`" />
         </label>
         <label class="check_purpose" title="снег">
-          <input
-            type="checkbox"
-            id="snow"
-            value="4"
-            v-model="searchWeather"
-            hidden
-          />
+          <input type="checkbox" id="snow" value="4" v-model="searchWeather" hidden />
           <IconSnow :width="40" :height="40" :color="`#000000`" />
         </label>
       </div>
     </div>
   </div>
   <div>
-    <li
-      v-for="(item, index) in listSearch.value"
-      :key="index"
-      class="serch_item"
-    >
+    <li v-for="(item, index) in listSearch.value" :key="index" class="serch_item">
       <img
         class="collection_img"
         :src="`/storage/shoes_img/` + item.photo_path"
@@ -224,12 +170,12 @@ onMounted(async () => {
   loader();
 });
 
-//динамический поиск и вывод результата
+//динамический поиск и вывод результата волатилен к прописным и строчным
 watch(
   () => searchWord.value,
   () => {
     listSearch.value = shoesStore.value.filter(
-      (e) => e.name.indexOf(searchWord.value) != -1
+      (e) => e.name.toLowerCase().indexOf(searchWord.value.toLowerCase()) != -1
     );
   }
 );
@@ -283,6 +229,8 @@ watch(
 function eraseAll() {
   searchWord.value = "";
   searchPurpose.value = [];
+  searchTemp.value = 0;
+  searchWeather.value = [];
   loader();
 }
 
@@ -294,9 +242,11 @@ function editCard(shoesID) {
 
 //удаление карточки
 function deleteCard(shoesID) {
-  axios.delete(`/api/shoes/${shoesID}`);
-  //loader() ради принудительного обновления страницы
-  loader();
+  axios.delete(`/api/shoes/${shoesID}`).then((response) => {
+    console.log("delete", response);
+    //loader() ради принудительного обновления страницы
+    loader();
+  });
 }
 </script>
 

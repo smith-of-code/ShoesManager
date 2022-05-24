@@ -2,11 +2,7 @@
   <div class="mainmenu" id="nav">
     <div class="mainmenu_titel">
       <div class="mainmenu_titel__text">Менеджер обуви</div>
-      <img
-        class="mainmenu_titel__logo"
-        src="storage/images/bootlogo.png"
-        alt="logo"
-      />
+      <img class="mainmenu_titel__logo" src="/storage/images/bootlogo.png" alt="l2ogo2" />
     </div>
     <div class="mainmenu_router" v-if="$attrs.isAuth">
       <div class="mainmenu_router__mask"></div>
@@ -30,6 +26,11 @@
     </div>
   </div>
   <router-view />
+  <div v-show="!$attrs.isAuth">
+    <a class="home__btn" href="/auth/signin">Вход/Регистрация</a>
+  </div>
 </template>
+
 <script setup></script>
+
 <style scoped></style>

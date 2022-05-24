@@ -10,32 +10,32 @@ const routes = [
   {
     path: "/about",
     name: "About",
-    component: () => import("./pages/About.vue")
+    component: () => import("./pages/About.vue"),
   },
   {
     path: "/card",
     name: "Card",
     props: true,
-   component: () => import("./pages/CardFormShoes.vue"),
+    component: () => import("./pages/CardFormShoes.vue"),
     children: [
-        {
-        path: '/card/:id',
+      {
+        path: "/card/:id",
         name: "CardID",
         props: true,
-        component: () => import('./pages/CardFormShoes.vue')
-        },
-            ]
-    },
-    {
-        path: "/list",
-        name: "ListShoes",
-        component: () => import('./pages/ListShoes.vue')
-    },
-    {
-        path: "/adviser",
-        name: "ShoesAdviser",
-        component: () => import('./pages/ShoesAdviser.vue')
-    },
+        component: () => import("./pages/CardFormShoes.vue"),
+      },
+    ],
+  },
+  {
+    path: "/list",
+    name: "ListShoes",
+    component: () => import("./pages/ListShoes.vue"),
+  },
+  {
+    path: "/adviser",
+    name: "ShoesAdviser",
+    component: () => import("./pages/ShoesAdviser.vue"),
+  },
 ];
 
 const router = createRouter({

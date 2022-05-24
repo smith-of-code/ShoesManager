@@ -14,16 +14,11 @@
       <p><b>"что же сегодня надеть?"</b></p>
       <p>На основе актуального прогноза погоды вашего города.</p>
     </div>
-    <a class="home__btn" href="/auth/signin">Вход/Регистрация</a>
     <div class="home__foto">
-      <img :src="homeLogo" alt="Картинка0" />
-      <!-- <img src="storage/images/home_logo.jpg" alt="Картинка0" /> -->
+      <img style="height: 100px" src="storage/images/home_logo.jpg" alt="Картинка0" />
     </div>
   </div>
 </template>
-
-<script setup>
-import homeLogo from "../../../storage/app/public/images/home_logo.jpg";
-</script>
+<script setup></script>
 
 <style scoped></style>

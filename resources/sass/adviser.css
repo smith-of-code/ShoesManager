@@ -35,7 +35,6 @@
 
 .adviser__container {
   background-color: #F8F8F7;
-  padding: 24px 64px;
   font-family: "Lato", sans-serif;
 }
 
@@ -51,13 +50,11 @@ h1 {
 }
 
 .adviser__label {
-  margin-top: 12px;
   font-size: 18px;
   font-family: "Lato", sans-serif;
 }
 
 .weather-box {
-  margin: 24px 0px;
   font-size: 18px;
   display: -webkit-box;
   display: -ms-flexbox;

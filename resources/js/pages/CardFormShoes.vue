@@ -9,11 +9,11 @@ import IconSport from "../components/icons/IconSport.vue";
 import IconCasual from "../components/icons/IconCasual.vue";
 import IconParty from "../components/icons/IconParty.vue";
 import shoesBackground from "../components/images/ShoesPicture.jpg";
-import cardLogo from "../../../storage/app/public/images/cardlogo.jpg";
+//import cardLogo from "../../../storage/app/public/images/cardlogo.jpg";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
-//передача через роутер номера id обуви
+//передача через роутер номера id обуви из компонента "моя коллекция" для редактирования
 const cardID = defineProps({
   id: {
     type: String,
@@ -321,9 +321,7 @@ function goToListing() {
     <div class="shoes_card_img">
       <div class="shoes_card_backimg"></div>
       <div class="shoes_card_titel_img">
-        <!-- заменил способ получения имиджа, сначал подгружаем при сборке -->
-        <img :src="cardLogo" alt="Картинка" />
-        <!-- <img src="storage/images/cardlogo.jpg" alt="Картинка1" /> -->
+        <img style="height: 100px" src="/storage/images/cardlogo.jpg" alt="Картинка1" />
       </div>
     </div>
   </div>
