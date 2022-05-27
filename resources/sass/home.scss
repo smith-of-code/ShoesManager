@@ -2,9 +2,7 @@
 @import "mixins";
 
 .home__container {
-    padding: 64px;
-    height: auto;
-    width: 100%;
+    padding: 64px 0px 64px 64px;
     background-color: #F8F8F8;
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -1,6 +1,6 @@
 <template>
   <div class="adviser__container">
-    <h1>Что сейчас надеть?</h1>
+    <h1 class="home__title">Что сейчас надеть?</h1>
     <WeatherBilder @onweatherdata="(e) => takeWeatherData(e)" />
     <!-- <DateBilder @ondaydata="(e) => (you = e)" /> -->
     <DateBilder @ondaydata="(e) => takeDateData(e)" />

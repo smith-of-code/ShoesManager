@@ -178,7 +178,7 @@ function prepareCardForm() {
   //очистка исходных данных формы до ввода следующей пары
   name.value = "";
   photo.value = {};
-  photoName.value ="";
+  photoName.value = "";
   pathPhoto.value = shoesBackground;
   purpose.value = [];
   temp_from.value = -5;
@@ -189,7 +189,6 @@ function prepareCardForm() {
   //   for (let entry of formData.entries()) {
   //     console.log("output ", entry);
   //   }
-
 }
 
 //возврат на страницу листинга обуви
@@ -201,7 +200,7 @@ function goToListing() {
 <template>
   <div class="container">
     <form class="shoes_card_form" method="post" enctype="multipart/form-data">
-      <h1 class="shoes_card_form_title">Карточка обуви</h1>
+      <h1 class="home__title">Карточка обуви</h1>
       <div class="shoes shoes_name">
         <label for="shoes-name">
           <input

@@ -6,7 +6,7 @@
     margin: 0px;
     height: auto;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 100px 100px;
+    grid-template-rows: 120px 120px;
 }
 
 .collection__filter {
@@ -42,13 +42,6 @@
 
 .check_purpose {
     margin-right: 24px;
-}
-
-.collection__title {
-    font-size: 18px;
-    font-family: $lato_font;
-    margin-bottom: 24px;
-
 }
 
 input:-internal-autofill-selected,

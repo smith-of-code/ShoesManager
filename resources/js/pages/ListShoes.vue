@@ -1,6 +1,6 @@
 <template>
   <div class="container collection_container">
-    <h1 class="shoes_card_form_title">Список вашей обуви</h1>
+    <h1 class="home__title">Список вашей обуви</h1>
     <div class="collection__filter">
       <label for="shoes-search">
         <input
