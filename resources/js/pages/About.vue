@@ -1,16 +1,18 @@
 <template>
-  <h1>О приложении</h1>
-  <div v-for="page in pages" :key="pageNumber.value">
-    <example :info="page" />
-  </div>
-  <div class="button">
-    <p @click="previos">
-      <IconArrowLeft :width="40" :height="40" :color="`#2e3e78`" />
-    </p>
-    <p @click="pageCount">Нажмите для продолжения</p>
-    <p @click="pageCount">
-      <IconArrowRight :width="40" :height="40" :color="`#2e3e78`" />
-    </p>
+  <div class="container about__container">
+    <h1 class="home__title">О приложении</h1>
+    <div v-for="page in pages" :key="pageNumber.value">
+      <example :info="page" />
+    </div>
+    <div class="about__button">
+      <p @click="previos">
+        <IconArrowLeft :width="40" :height="40" :color="`#883CDA`" />
+      </p>
+      <p @click="pageCount">Нажмите для продолжения</p>
+      <p @click="pageCount">
+        <IconArrowRight :width="40" :height="40" :color="`#883CDA`" />
+      </p>
+    </div>
   </div>
 </template>
 
@@ -29,15 +31,13 @@ const data = ref([
   {
     header: "Почему вам необходимо это приложение?",
     miniheader: "Цитата",
-    text:
-      "Склероз, это когда ты зыбываешь, куда положил бумажку, на которой написал, что не забыть... Александр Ширвинт",
+    text: "Склероз, это когда ты зыбываешь, куда положил бумажку, на которой написал, что не забыть... Александр Ширвинт",
     picture: shirvint,
   },
   {
     header: "Что оно делает?",
     miniheader: "В любой момент советует какую обувь надеть",
-    text:
-      "Необходимо только ввести данные обуви в приложение и вы всегда будете знать, что одеть в зависимости от погоды, времни суток и дня недели",
+    text: "Необходимо только ввести данные обуви в приложение и вы всегда будете знать, что одеть в зависимости от погоды, времни суток и дня недели",
     picture: mainScreen,
   },
   {
@@ -49,12 +49,11 @@ const data = ref([
   {
     header: "Как посмотреть весь список моей обуви?",
     miniheader: "В разделе Моя коллекция можно ... ",
-    text:
-      "С помощью разных настроек можно вывести на экран только интересующие вас пары обуви...",
+    text: "С помощью разных настроек можно вывести на экран только интересующие вас пары обуви...",
     picture: listing,
   },
   {
-    header: "Как узначть, что сейчас одеть?",
+    header: "Как узначть, что сейчас надеть?",
     miniheader: "В разделе Рекомендации будут показаны все варианты ... ",
     text: "Алгоритм рекомендации построен на ...",
     picture: recomend,
@@ -82,9 +81,4 @@ function previos() {
 </script>
 
 <style scoped>
-.button {
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-}
 </style>

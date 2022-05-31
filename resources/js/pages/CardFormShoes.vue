@@ -244,7 +244,7 @@ function goToListing() {
         </label>
       </div>
       <div class="shoes">
-        <p>Отметьте назначение обуви:</p>
+        <p class="card__p">Отметьте назначение обуви:</p>
         <div class="shoes_purpose">
           <div class="shoes">
             <label class="check_purpose" title="Повседневная">
@@ -298,7 +298,7 @@ function goToListing() {
         </div>
       </div>
       <div class="shoes shoes_weather">
-        <p>Отметьте погодные условия:</p>
+        <p class="card__p">Отметьте погодные условия:</p>
         <div class="shoes_purpose">
           <div class="shoes">
             <label class="check_purpose" title="солнечно">
