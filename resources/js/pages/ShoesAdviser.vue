@@ -26,11 +26,17 @@
         </div>
       </SearchList>
 
-      <SearchList style="width: 8vw"
-        ><span>От&nbsp;t&nbsp;</span>{{ item.temp_from }}</SearchList
+      <SearchList style="width: 8vw">
+        <span>от&nbsp;&nbsp;</span>
+        <span :class="[item.temp_from <= 0 ? lowTemp : highTemp]"
+          >{{ item.temp_from }}C°</span
+        ></SearchList
       >
       <SearchList style="width: 8vw"
-        ><span>До&nbsp;t&nbsp;</span>{{ item.temp_to }}</SearchList
+        ><span>до&nbsp;&nbsp;</span
+        ><span :class="[item.temp_to <= 0 ? lowTemp : highTemp]"
+          >{{ item.temp_to }}C°</span
+        ></SearchList
       >
       <SearchList style="width: 20vw">
         <div v-for="(ids, index) in item.weathers_ids" :key="index">
@@ -79,6 +85,9 @@ function takeWeatherData(e) {
 const dateData = ref([]); //объект данных
 const dayType = ref(""); //будни или выходные
 const dayPeriod = ref(""); //время дня в сослагательном
+const lowTemp = ref("temp_low");
+const highTemp = ref("temp_high");
+
 function takeDateData(e) {
   dateData.value = e;
   if (dateData.value.day === "суббота" || dateData.value.day === "воскресенье") {

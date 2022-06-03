@@ -1,6 +1,6 @@
 <template>
   <div class="container collection_container">
-    <h1 class="shoes_card_form_title">Список вашей обуви</h1>
+    <h1 class="collection_header">Список вашей обуви</h1>
     <div class="collection__filter">
       <label for="shoes-search">
         <input
@@ -14,52 +14,57 @@
       </label>
       <button @click="eraseAll" class="collection__filtr_btn">Сбросить фильтры</button>
     </div>
-
-    <div class="collection__purpose">
-      <div class="collection__title">Назначение пары:</div>
-      <label for="casual" class="check_purpose" title="Повседневная">
-        <input type="checkbox" id="casual" value="1" v-model="searchPurpose" hidden />
-        <IconCasual :width="40" :height="40" :color="`#000000`" />
-      </label>
-      <label class="check_purpose" title="Спортивная">
-        <input type="checkbox" id="sport" value="2" v-model="searchPurpose" hidden />
-        <IconSport :width="40" :height="40" :color="`#000000`" />
-      </label>
-      <label class="check_purpose" title="Деловая">
-        <input type="checkbox" id="work" value="3" v-model="searchPurpose" hidden />
-        <IconWork :width="40" :height="40" :color="`#000000`" />
-      </label>
-      <label class="check_purpose" title="Праздничная">
-        <input type="checkbox" id="party" value="4" v-model="searchPurpose" hidden />
-        <IconParty :width="40" :height="40" :color="`#000000`" />
-      </label>
-    </div>
-    <div class="collection__temper">
-      <div class="collection__title">
-        Предпочтительная температура ношения:
-        <span>{{ searchTemp }} &#176;C</span>
+    <div class="collection__lowblock">
+      <div class="collection__purpose">
+        <div class="collection__title collection__title_lf">Назначение пары:</div>
+        <div class="collection__icons">
+          <label for="casual" class="check_purpose" title="Повседневная">
+            <input type="checkbox" id="casual" value="1" v-model="searchPurpose" hidden />
+            <IconCasual :width="40" :height="40" :color="iconColor" />
+          </label>
+          <label class="check_purpose" title="Спортивная">
+            <input type="checkbox" id="sport" value="2" v-model="searchPurpose" hidden />
+            <IconSport :width="40" :height="40" :color="iconColor" />
+          </label>
+          <label class="check_purpose" title="Деловая">
+            <input type="checkbox" id="work" value="3" v-model="searchPurpose" hidden />
+            <IconWork :width="40" :height="40" :color="iconColor" />
+          </label>
+          <label class="check_purpose check_purpose_rt" title="Праздничная">
+            <input type="checkbox" id="party" value="4" v-model="searchPurpose" hidden />
+            <IconParty :width="40" :height="40" :color="iconColor" />
+          </label>
+        </div>
       </div>
-      <input type="range" min="-30" max="30" step="5" v-model="searchTemp" />
-    </div>
-    <div class="collection__weather">
-      <div class="collection__title">Укажите погодные условия:</div>
-      <div class="collection__icons">
-        <label class="check_purpose" title="солнечно">
-          <input type="checkbox" id="sun" value="1" v-model="searchWeather" hidden />
-          <IconSun :width="40" :height="40" :color="`#000000`" />
-        </label>
-        <label class="check_purpose" title="дождь">
-          <input type="checkbox" id="rain" value="2" v-model="searchWeather" hidden />
-          <IconRain :width="40" :height="40" :color="`#000000`" />
-        </label>
-        <label class="check_purpose" title="грязь">
-          <input type="checkbox" id="dirt" value="3" v-model="searchWeather" hidden />
-          <IconSpot :width="40" :height="40" :color="`#000000`" />
-        </label>
-        <label class="check_purpose" title="снег">
-          <input type="checkbox" id="snow" value="4" v-model="searchWeather" hidden />
-          <IconSnow :width="40" :height="40" :color="`#000000`" />
-        </label>
+      <div class="collection__temper">
+        <div class="collection__title_weather">
+          Температура ношения:
+          <span>{{ searchTemp }}&nbsp;C</span>
+        </div>
+        <input type="range" min="-30" max="30" step="5" v-model="searchTemp" />
+      </div>
+      <div class="collection__weather">
+        <div class="collection__title collection__title_rt">
+          Укажите погодные условия:
+        </div>
+        <div class="collection__icons">
+          <label class="check_purpose" title="солнечно">
+            <input type="checkbox" id="sun" value="1" v-model="searchWeather" hidden />
+            <IconSun :width="40" :height="40" :color="iconColor" />
+          </label>
+          <label class="check_purpose" title="дождь">
+            <input type="checkbox" id="rain" value="2" v-model="searchWeather" hidden />
+            <IconRain :width="40" :height="40" :color="iconColor" />
+          </label>
+          <label class="check_purpose" title="грязь">
+            <input type="checkbox" id="dirt" value="3" v-model="searchWeather" hidden />
+            <IconSpot :width="40" :height="40" :color="iconColor" />
+          </label>
+          <label class="check_purpose check_purpose_rt" title="снег">
+            <input type="checkbox" id="snow" value="4" v-model="searchWeather" hidden />
+            <IconSnow :width="40" :height="40" :color="iconColor" />
+          </label>
+        </div>
       </div>
     </div>
   </div>
@@ -70,9 +75,11 @@
         :src="`/storage/shoes_img/` + item.photo_path"
         alt="picture"
       />
-      <SearchList style="width: 10vw">{{ item.name }}</SearchList>
-      <SearchList style="width: 20vw">
-        <div v-for="(ids, index) in item.purposes_ids" :key="index">
+      <SearchList style="width: 15vw; justify-content: flex-start">{{
+        item.name
+      }}</SearchList>
+      <SearchList style="width: 14vw">
+        <div v-for="(ids, index) in item.purposes_ids" :key="index" class="">
           <div v-if="ids === 1">
             <IconCasual :width="30" :height="30" :color="`#000000`" />
           </div>
@@ -88,14 +95,20 @@
         </div>
       </SearchList>
 
-      <SearchList style="width: 8vw"
-        ><span>От&nbsp;t&nbsp;</span>{{ item.temp_from }}</SearchList
+      <SearchList style="width: 10vw"
+        ><span>от&nbsp;&nbsp;</span
+        ><span :class="[item.temp_from <= 0 ? lowTemp : highTemp]"
+          >{{ item.temp_from }}C°</span
+        ></SearchList
       >
-      <SearchList style="width: 8vw"
-        ><span>До&nbsp;t&nbsp;</span>{{ item.temp_to }}</SearchList
+      <SearchList style="width: 10vw"
+        ><span>до&nbsp;&nbsp;</span
+        ><span :class="[item.temp_to <= 0 ? lowTemp : highTemp]"
+          >{{ item.temp_to }}C°</span
+        ></SearchList
       >
-      <SearchList style="width: 20vw">
-        <div v-for="(ids, index) in item.weathers_ids" :key="index">
+      <SearchList style="width: 14vw">
+        <div v-for="(ids, index) in item.weathers_ids" :key="index" class="">
           <div v-if="ids === 1">
             <IconSun :width="30" :height="30" :color="`#000000`" />
           </div>
@@ -110,11 +123,14 @@
           </div>
         </div>
       </SearchList>
-      <div class="collection_buttons">
+      <div class="collection_buttons" style="width: 12vw">
         <button class="collection__edit_btn" @click="editCard(item.id)">
           <IconEdit :width="30" :height="30" :color="`#ffffff`" />
         </button>
-        <button class="collection__delete_btn" @click="deleteCard(item.id)">
+        <button
+          class="collection__edit_btn collection__delete_btn"
+          @click="deleteCard(item.id)"
+        >
           <IconTrash :width="30" :height="30" :color="`#ffffff`" />
         </button>
       </div>
@@ -150,7 +166,9 @@ const searchWeather = ref([]);
 const shoesStore = reactive([]);
 const listSearch = reactive([]);
 const router = useRouter();
-
+const lowTemp = ref("temp_low");
+const highTemp = ref("temp_high");
+const iconColor = ref(`#800000`);
 //непосредственно загрузчик обуви
 const loader = async () => {
   await axios

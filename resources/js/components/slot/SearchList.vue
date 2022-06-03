@@ -8,8 +8,9 @@
 .search_element {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 5px;
-  margin: 5px 10px;
+  justify-content: center;
+  margin: 5px 0;
+  flex-wrap: wrap;
+  padding-top: 0.2rem;
 }
 </style>
