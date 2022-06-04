@@ -231,7 +231,7 @@
   }
 }
 
-.collection__title_weather, span {
+.collection__title_weather span {
   font-family: sans-serif;
   text-align: center;
   color: rgba(27, 27, 27, 0.767);
@@ -239,7 +239,7 @@
 }
 
 @media screen and (min-width: 1050px) {
-  .collection__title_weather, span {
+  .collection__title_weather span {
     font-size: 1.3rem;
   }
 }
@@ -349,9 +349,11 @@ input:-webkit-autofill {
 
 .temp_low {
   color: #883cda;
+  font-weight: 600;
 }
 
 .temp_high {
   color: brown;
+  font-weight: 600;
 }
 /*# sourceMappingURL=collection.css.map */

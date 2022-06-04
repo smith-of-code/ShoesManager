@@ -1,5 +1,5 @@
 <template>
-  <div class="container collection_container">
+  <div class="container collection_container collection_container_bgr">
     <h1 class="collection_header">Список вашей обуви</h1>
     <div class="collection__filter">
       <label for="shoes-search">

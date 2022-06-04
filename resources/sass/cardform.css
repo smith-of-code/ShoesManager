@@ -3,17 +3,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lato:wght@300&family=Orelega+One&family=Roboto&display=swap");
 .container {
   font-family: "Lato", sans-serif;
-  height: 800px;
-  width: 100%;
-  margin: 0px 64px;
-  text-align: left;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  background-color: #f8f8f8;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  background: -webkit-gradient(linear, left top, right top, from(white), color-stop(70%), to(rgba(255, 255, 255, 0.4))), url("/storage/images/card_shoes.png");
+  background: linear-gradient(to right, white, 70%, rgba(255, 255, 255, 0.4)), url("/storage/images/card_shoes.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: top right;
 }
 
 .shoes_card_form_title {
@@ -21,18 +15,10 @@
   font-family: "Roboto", sans-serif;
   font-size: calc(1rem + 1.3vw);
   line-height: 1;
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-area: 1/1/1/3;
 }
 
 .shoes_card_form {
-  padding: 24px;
-  border-radius: 5px;
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2/3;
+  width: 100%;
 }
 
 .shoes_card_img {
@@ -46,7 +32,7 @@
 
 /* внутреняя часть инпута с фото */
 .shoes_img__tag {
-  color: #000000;
+  color: #535353;
   font-family: "Lato", sans-serif;
   font-size: 18px;
 }
@@ -73,7 +59,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-right: 2em;
+  margin-left: 0.5rem;
   position: relative;
 }
 
@@ -88,34 +74,38 @@
   border-radius: 35px;
   font-family: "Lato", sans-serif;
   font-size: 18px;
+  background-color: antiquewhite;
+  -webkit-box-shadow: 16px 12px 46px -31px #000000 inset;
+          box-shadow: 16px 12px 46px -31px #000000 inset;
+  font-size: 1rem;
 }
 
 .shoes_photo {
-  margin: 20px 0px;
+  margin: 20px 0 0 0.5rem;
   background: #ffffff;
   border-radius: 35px;
   font-size: 1em;
   overflow: hidden;
   position: relative;
   width: 448px;
-  height: 52px;
-  padding: 12px 24px;
+  padding: 5px 24px;
   border: none;
   cursor: pointer;
+  -webkit-box-shadow: 2px 4px 12px 4px #975dd6, 40px 20px 30px -40px #535353 inset;
+          box-shadow: 2px 4px 12px 4px #975dd6, 40px 20px 30px -40px #535353 inset;
 }
 
 .shoes_img__label {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   width: auto;
-  height: 8vh;
+  height: 12vh;
   cursor: pointer;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
   margin-top: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -123,6 +113,10 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.shoes_mrg {
+  margin: 1rem 1.5rem 0.2rem;
 }
 
 .shoes_photo:hover,
@@ -162,6 +156,8 @@
 
 .check_purpose :checked + svg path {
   fill: #883cda;
+  -webkit-animation: blinker 2s linear infinite;
+          animation: blinker 2s linear infinite;
 }
 
 input::-webkit-input-placeholder {
@@ -238,6 +234,8 @@ p {
   text-transform: uppercase;
   margin-left: 24px;
   margin-top: 24px;
+  height: 50px;
+  width: 150px;
 }
 
 .shoes_save_button:hover {
@@ -245,21 +243,37 @@ p {
 }
 
 .temper {
-  height: 180px;
   width: 448px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  margin-left: 24px;
+  margin-left: 1.8rem;
 }
 
 .range_label {
-  margin-top: 32px;
+  margin-top: 24px;
   margin-bottom: 5px;
   font-size: 18px;
 }
 
 .temper_note {
   font-size: 12px;
+  position: absolute;
+  top: 76px;
+  color: brown;
+  -webkit-animation: blinker 1s linear infinite;
+          animation: blinker 1s linear infinite;
+}
+
+@-webkit-keyframes blinker {
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0.6;
+  }
 }
 
 @media (max-width: 375px) {

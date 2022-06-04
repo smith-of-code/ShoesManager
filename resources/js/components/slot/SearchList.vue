@@ -8,7 +8,7 @@
 .search_element {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   margin: 5px 0;
   flex-wrap: wrap;
   padding-top: 0.2rem;

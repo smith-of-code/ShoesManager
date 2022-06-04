@@ -1,10 +1,24 @@
 @import "variables";
 @import "mixins";
 
+.collection_container_bgr {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)),
+        url("/storage/images/main_picture.png");
+    background-size: cover;
+    background-position: center 100%;
+}
+.collection_container_bgr_vert {
+    background-position: center 98%;
+}
 .adviser__btn {
     @include standart_btn();
-    font-size: 18px;
-    margin-top: 12px;
+    margin-right: 0.3rem;
+    width: 140px;
+    padding: 6px 12px;
+    font-size: calc(0.4rem + 1vw);
+    @media screen and (min-width: 1050px) {
+        font-size: 1rem;
+    }
 }
 
 .adviser__btn:hover {
@@ -17,7 +31,7 @@
 }
 
 .adviser__container {
-    background-color: #F8F8F7;
+    background-color: #f8f8f7;
     //padding: 24px 64px;
     font-family: $lato_font;
 }
@@ -27,27 +41,82 @@ h1 {
 }
 
 .adviser__weather {
-    display: grid;
-    grid-template-columns: 300px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .adviser__label {
-    //margin-top: 12px;
-    font-size: 18px;
+    margin: -0.5rem auto 0.3rem;
     font-family: $lato_font;
+    font-size: calc(0.6rem + 1vw);
+    color: $main_color;
+
+    @media screen and (min-width: 1050px) {
+        font-size: 1.3rem;
+    }
+}
+.adviser__label_bld {
+    font-weight: bold;
+}
+.adviser__label_coord {
+    margin: 0 0.5rem;
+    display: flex;
+    align-items: center;
+    color: dimgray;
+    font-size: calc(0.4rem + 1vw);
+    @media screen and (min-width: 1050px) {
+        font-size: 1rem;
+    }
+}
+
+.adviser_coordinaty {
+    display: flex;
+    flex: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
 }
 
 .weather-box {
-    //margin: 24px 0px;
-    font-size: 18px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: $lato_font;
+    //font-size: 18px;
+    font-size: calc(0.6rem + 1vw);
+    @media screen and (min-width: 1050px) {
+        font-size: 1.35rem;
+    }
 }
 
 .adviser__weather_box {
-    margin-right: 12px;
+    display: flex;
+    margin-left: 0.5rem;
 }
-
+.adviser__weather_city {
+    display: flex;
+    flex: 100%;
+    justify-content: center;
+    text-transform: uppercase;
+    font-family: $lato_font;
+    font-weight: 600;
+    margin: 0.6rem 0 0.3rem;
+    color: brown;
+    text-shadow: 1px 1px 2px pink;
+}
+.adviser__wind {
+    color: $main_color;
+    font-weight: 600;
+}
 .temp {
-    font-weight: bold;
+    display: flex;
+}
+.adviser__recomend {
+    font-size: calc(0.3rem + 1.1vw);
+    padding-right: 1rem;
+    @media screen and (min-width: 1050px) {
+        font-size: 1rem;
+    }
 }

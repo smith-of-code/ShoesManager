@@ -1,5 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lato:wght@300&family=Orelega+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lato:wght@300&family=Orelega+One&family=Roboto&display=swap");
+.collection_container_bgr {
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.9)), to(rgba(255, 255, 255, 0.5))), url("/storage/images/main_picture.png");
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)), url("/storage/images/main_picture.png");
+  background-size: cover;
+  background-position: center 100%;
+}
+
+.collection_container_bgr_vert {
+  background-position: center 98%;
+}
+
 .adviser__btn {
   color: white;
   height: auto;
@@ -11,8 +22,16 @@
           box-sizing: border-box;
   border-radius: 35px;
   border: none;
-  font-size: 18px;
-  margin-top: 12px;
+  margin-right: 0.3rem;
+  width: 140px;
+  padding: 6px 12px;
+  font-size: calc(0.4rem + 1vw);
+}
+
+@media screen and (min-width: 1050px) {
+  .adviser__btn {
+    font-size: 1rem;
+  }
 }
 
 .adviser__btn:hover {
@@ -34,7 +53,7 @@
 }
 
 .adviser__container {
-  background-color: #F8F8F7;
+  background-color: #f8f8f7;
   font-family: "Lato", sans-serif;
 }
 
@@ -43,19 +62,6 @@ h1 {
 }
 
 .adviser__weather {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 300px auto;
-      grid-template-columns: 300px auto;
-}
-
-.adviser__label {
-  font-size: 18px;
-  font-family: "Lato", sans-serif;
-}
-
-.weather-box {
-  font-size: 18px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -63,13 +69,130 @@ h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.adviser__label {
+  margin: -0.5rem auto 0.3rem;
+  font-family: "Lato", sans-serif;
+  font-size: calc(0.6rem + 1vw);
+  color: #883CDA;
+}
+
+@media screen and (min-width: 1050px) {
+  .adviser__label {
+    font-size: 1.3rem;
+  }
+}
+
+.adviser__label_bld {
+  font-weight: bold;
+}
+
+.adviser__label_coord {
+  margin: 0 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: dimgray;
+  font-size: calc(0.4rem + 1vw);
+}
+
+@media screen and (min-width: 1050px) {
+  .adviser__label_coord {
+    font-size: 1rem;
+  }
+}
+
+.adviser_coordinaty {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+          flex: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.weather-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "Lato", sans-serif;
+  font-size: calc(0.6rem + 1vw);
+}
+
+@media screen and (min-width: 1050px) {
+  .weather-box {
+    font-size: 1.35rem;
+  }
 }
 
 .adviser__weather_box {
-  margin-right: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 0.5rem;
+}
+
+.adviser__weather_city {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+          flex: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-transform: uppercase;
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
+  margin: 0.6rem 0 0.3rem;
+  color: brown;
+  text-shadow: 1px 1px 2px pink;
+}
+
+.adviser__wind {
+  color: #883CDA;
+  font-weight: 600;
 }
 
 .temp {
-  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.adviser__recomend {
+  font-size: calc(0.3rem + 1.1vw);
+  padding-right: 1rem;
+}
+
+@media screen and (min-width: 1050px) {
+  .adviser__recomend {
+    font-size: 1rem;
+  }
 }
 /*# sourceMappingURL=adviser.css.map */

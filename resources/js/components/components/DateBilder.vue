@@ -1,6 +1,6 @@
 <template>
-  <div class="adviser__label">
-    Сейчас&nbsp;{{ currentDate.day }},&nbsp; {{ currentDate.period }}.
+  <div class="adviser__label adviser__label_bld">
+    сейчас&nbsp;{{ currentDate.day }},&nbsp; {{ currentDate.period }}
   </div>
 </template>
 

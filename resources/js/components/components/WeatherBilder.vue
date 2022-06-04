@@ -1,22 +1,29 @@
 <template>
   <div class="adviser__weather">
-    <label class="adviser__label" for="your-location"
-      >Если город определился не верно, разрешите уточнить ваше местоположение?</label
-    >
-    <button class="adviser__btn" type="button" id="your-location" @click="yourPlace">
-      Определить
-    </button>
     <div class="weather-box">
       <div class="adviser__weather_box">{{ city }}, текущие погодные условия:</div>
-      <div v-show="wind">
-        <div class="temp">
-          температура&nbsp;{{ Math.round(currentTemp) }}°C&nbsp;ощущается как
-          {{ Math.round(fillingTemp) }}°C,&nbsp;скорость ветра&nbsp;{{
-            Math.round(wind)
-          }}м/с.&nbsp;{{ condition }}
+      <div v-if="wind">
+        <div class="adviser__weather_box">
+          температура&nbsp;<span :class="[currentTemp <= 0 ? lowTemp : highTemp]"
+            >{{ Math.round(currentTemp) }}°C</span
+          >&nbsp;ощущается как&nbsp;
+          <span :class="[fillingTemp <= 0 ? lowTemp : highTemp]"
+            >{{ Math.round(fillingTemp) }}°C</span
+          >,&nbsp;скорость ветра&nbsp;<span class="adviser__wind">{{ Math.round(wind) }}&nbsp;м/с</span>
         </div>
       </div>
-      <div v-show="opps">Не могу получить погоду...</div>
+      <div v-else class="adviser__label adviser__label_coord">
+        Не могу получить погоду...
+      </div>
+      <div class="adviser__weather_city">{{ condition }}</div>
+    </div>
+    <div class="adviser_coordinaty">
+      <label class="adviser__label adviser__label_coord" for="your-location"
+        >Если город определился не верно, разрешите уточнить ваше местоположение?</label
+      >
+      <button class="adviser__btn" type="button" id="your-location" @click="yourPlace">
+        Определить
+      </button>
     </div>
   </div>
 </template>
@@ -48,6 +55,8 @@ const longitude = ref();
 const emit = defineEmits(["onweatherdata"]);
 //сторонний источник координат
 const url_getCoordinatesFromOutsideAPI = "http://ip-api.com/json/?lang=ru";
+const lowTemp = ref("temp_low");
+const highTemp = ref("temp_high");
 
 onBeforeMount(() => {
   //получаем координаты из открытого стороннего источника
@@ -111,18 +120,18 @@ function setResults(results) {
       "thunderstorm-with-hail":
       {
         weatherCondition.value = 2;
-        condition.value = " Берегите обувь от дождя.";
+        condition.value = " Берегите обувь от дождя";
       } //дождь
       break;
     case "showers" || "wet-snow" || "light-snow" || "snow" || "snow-showers":
       {
         weatherCondition.value = 4;
-        condition.value = " Ваша обувь будет ходить по снегу.";
+        condition.value = " Ваша обувь будет ходить по снегу";
       } //снег
       break;
     default: {
       weatherCondition.value = 1;
-      condition.value = " Вашей обуви будет комфортно.";
+      condition.value = " Вашей обуви будет комфортно";
     } //сухо, ясно, облачно, пасмурно
   }
   wind.value = weather.data.fact.wind_speed;

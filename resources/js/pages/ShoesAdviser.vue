@@ -1,15 +1,21 @@
 <template>
-  <div class="adviser__container">
-    <h1>Что сейчас надеть?</h1>
+  <div
+    class="collection_container collection_container_bgr collection_container_bgr_vert"
+  >
+    <h1 class="collection_header">Что сейчас надеть?</h1>
+    <DateBilder @ondaydata="(e) => takeDateData(e)" />
     <WeatherBilder @onweatherdata="(e) => takeWeatherData(e)" />
     <!-- <DateBilder @ondaydata="(e) => (you = e)" /> -->
-    <DateBilder @ondaydata="(e) => takeDateData(e)" />
   </div>
   <div v-if="result">
     <li v-for="(item, index) in resultList.value" :key="index" class="serch_item">
-      <img :src="`/storage/shoes_img/` + item.photo_path" alt="picture" />
-      <SearchList style="width: 10vw">{{ item.name }}</SearchList>
-      <SearchList style="width: 20vw">
+      <img
+        class="collection_img"
+        :src="`/storage/shoes_img/` + item.photo_path"
+        alt="picture"
+      />
+      <SearchList style="width: 15vw">{{ item.name }}</SearchList>
+      <SearchList style="width: 12vw">
         <div v-for="(ids, index) in item.purposes_ids" :key="index">
           <div v-if="ids === 1">
             <IconCasual :width="30" :height="30" :color="`#000000`" />
@@ -26,19 +32,19 @@
         </div>
       </SearchList>
 
-      <SearchList style="width: 8vw">
+      <SearchList style="width: 10vw">
         <span>от&nbsp;&nbsp;</span>
         <span :class="[item.temp_from <= 0 ? lowTemp : highTemp]"
           >{{ item.temp_from }}C°</span
         ></SearchList
       >
-      <SearchList style="width: 8vw"
+      <SearchList style="width: 10vw"
         ><span>до&nbsp;&nbsp;</span
         ><span :class="[item.temp_to <= 0 ? lowTemp : highTemp]"
           >{{ item.temp_to }}C°</span
         ></SearchList
       >
-      <SearchList style="width: 20vw">
+      <SearchList style="width: 12vw">
         <div v-for="(ids, index) in item.weathers_ids" :key="index">
           <div v-if="ids === 1">
             <IconSun :width="30" :height="30" :color="`#000000`" />
@@ -54,7 +60,9 @@
           </div>
         </div>
       </SearchList>
-      <SearchList style="width: 20vw">{{ item.comments }}</SearchList>
+      <SearchList style="width: 24vw" class="adviser__recomend">{{
+        item.comments
+      }}</SearchList>
     </li>
   </div>
 </template>

@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0 0 1rem 0;
   height: auto;
+  //font-family: $lato_font;
   //grid-template-columns: 1fr 1fr 1fr;
   //grid-template-rows: 10vh 10vh 10vh 10vh;
   max-width: 1050px;
@@ -57,14 +58,12 @@
   margin: 0 0.5rem;
 }
 .collection__temper {
-  display: flex;
-  flex-direction: column;
-  flex: 33%;
-  //margin-right: 28px;
-
-  font-family: $lato_font;
+    display: flex;
+    flex-direction: column;
+    flex: 33%;
+    font-family: $lato_font;
     color: rgba(27, 27, 27, 0.767);
-font-size: calc(0.6rem + 1vw);
+    font-size: calc(0.6rem + 1vw);
 }
 .collection__weather {
   display: flex;
@@ -109,16 +108,16 @@ font-size: calc(0.6rem + 1vw);
     margin-right: 0;
   }
 .collection__title {
-  display: flex;
-  flex: 100%;
-  justify-content: center;
+    display: flex;
+    flex: 100%;
+    justify-content: center;
     font-family: $lato_font;
-  margin-bottom: 0.3rem;
-  color: rgba(27, 27, 27, 0.767);
-font-size: calc(0.6rem + 1vw);
-@media screen and (min-width: 1050px) {
-    font-size: 1.3rem;
-  }
+    margin-bottom: 0.3rem;
+    color: rgba(27, 27, 27, 0.767);
+    font-size: calc(0.6rem + 1vw);
+    @media screen and (min-width: 1050px) {
+        font-size: 1.3rem;
+    }
 }
 .collection__title_lf{
     justify-content: left;
@@ -137,14 +136,14 @@ font-size: calc(0.6rem + 1vw);
     font-size: 1.3rem;
   }
 }
-.collection__title_weather, span {
+.collection__title_weather span {
     font-family: sans-serif;
-   text-align: center;
-        color: rgba(27, 27, 27, 0.767);
-  font-size: calc(0.6rem + 1vw);
-  @media screen and (min-width: 1050px) {
+    text-align: center;
+    color: rgba(27, 27, 27, 0.767);
+    font-size: calc(0.6rem + 1vw);
+    @media screen and (min-width: 1050px) {
     font-size: 1.3rem;
-  }
+    }
   }
 
 input:-internal-autofill-selected,
@@ -227,7 +226,10 @@ input:-webkit-autofill {
 
 .temp_low {
   color: #883cda;
+  font-weight: 600;
 }
 .temp_high {
   color: brown;
+  font-weight: 600;
+
 }

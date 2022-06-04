@@ -8,7 +8,7 @@ import IconWork from "../components/icons/IconWork.vue";
 import IconSport from "../components/icons/IconSport.vue";
 import IconCasual from "../components/icons/IconCasual.vue";
 import IconParty from "../components/icons/IconParty.vue";
-import shoesBackground from "../components/images/ShoesPicture.jpg";
+import shoesBackground from "/storage/images/foot.png";
 //import cardLogo from "../../../storage/app/public/images/cardlogo.jpg";
 import axios from "axios";
 import { useRouter } from "vue-router";
@@ -193,13 +193,13 @@ function goToListing() {
 </script>
 
 <template>
-  <div class="container">
+  <div class="collection_container container">
     <form class="shoes_card_form" method="post" enctype="multipart/form-data">
-      <h1 class="shoes_card_form_title">Карточка обуви</h1>
+      <h1 class="collection_header">Карточка обуви</h1>
       <div class="shoes shoes_name">
         <label for="shoes-name">
           <input
-            placeholder="Ваша любимая пара"
+            placeholder="Введите название обуви"
             type="text"
             id="shoes-name"
             class="shoes_name__input"
@@ -235,11 +235,11 @@ function goToListing() {
             name="file"
           />
           <div class="shoes_img__tag">Загрузить изображение:</div>
-          <div class="shoes_img__load_foto">{{ photoName }}</div>
+          <!-- <div class="shoes_img__load_foto">{{ photoName }}</div> -->
         </label>
       </div>
       <div class="shoes">
-        <p>Отметьте назначение обуви:</p>
+        <p class="shoes_mrg">Выбор назначения обуви:</p>
         <div class="shoes_purpose">
           <div class="shoes">
             <label class="check_purpose" title="Повседневная">
@@ -269,7 +269,7 @@ function goToListing() {
         </div>
       </div>
       <div class="shoes shoes_weather">
-        <p>Отметьте погодные условия:</p>
+        <p class="shoes_mrg">Выбор погодных условий:</p>
         <div class="shoes_purpose">
           <div class="shoes">
             <label class="check_purpose" title="солнечно">
@@ -303,14 +303,14 @@ function goToListing() {
           <span>{{ temp_from }} &#176;C</span>
         </div>
         <input type="range" min="-30" max="30" step="5" v-model="temp_from" />
+        <div class="temper_note" v-show="note">
+          Макисмальная температура не может быть ниже минимальной
+        </div>
         <div class="range_label">
           Максимальная температура использования:
           <span>{{ temp_to }} &#176;C</span>
         </div>
         <input type="range" min="-30" max="30" step="5" v-model="temp_to" />
-        <div class="temper_note" v-show="note">
-          Макисмальная температура не может быть ниже минимальной
-        </div>
       </div>
 
       <button class="shoes_save_button" type="submit" @click.prevent="prepareCardForm">
@@ -318,12 +318,12 @@ function goToListing() {
       </button>
     </form>
     <!-- блок слева с картинками и фоном -->
-    <div class="shoes_card_img">
+    <!-- <div class="shoes_card_img">
       <div class="shoes_card_backimg"></div>
       <div class="shoes_card_titel_img">
-        <img style="height: 100px" src="/storage/images/cardlogo.jpg" alt="Картинка1" />
+        <img style="height: 100px" src="/storage/images/card_shoes.png" alt="Картинка1" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
