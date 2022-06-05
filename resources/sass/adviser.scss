@@ -8,7 +8,7 @@
     background-position: center 100%;
 }
 .collection_container_bgr_vert {
-    background-position: center 98%;
+    background-position: center 99%;
 }
 .adviser__btn {
     @include standart_btn();
@@ -119,4 +119,32 @@ h1 {
     @media screen and (min-width: 1050px) {
         font-size: 1rem;
     }
+}
+
+.adviser__serch_item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1050px;
+    height: 10vh;
+    color: rgba(27, 27, 27, 0.767);
+    font-size: calc(0.5rem + 1.3vw);
+    @media screen and (min-width: 1050px) {
+        font-size: 1.4rem;
+    }
+    //font-family: $lato_font;
+    font-family: sans-serif;
+    margin-top: 0.6rem;
+    border-radius: 10px;
+    min-height: 80px;
+    font-weight: 600;
+    box-shadow: 5px 6px 9px 0px rgba(34, 60, 80, 0.6);
+    background-color: chartreuse;
+}
+
+.adviser__search_bgr_temp {
+    background-color: $hover_color;
+}
+.adviser__search_bgr_cond {
+    background-color: gold;
 }

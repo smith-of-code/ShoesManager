@@ -175,13 +175,35 @@ const loader = async () => {
     .get("/api/shoes")
     .then((response) => {
       shoesStore.value = response.data;
-      console.log(response.status, shoesStore.value);
+      //console.log(response.status, shoesStore.value);
+      storeList(shoesStore.value);
       listSearch.value = shoesStore.value;
     })
     .catch((error) => {
       error.response.data;
     });
 };
+
+function storeList(listForSort) {
+  //сортировка списка обуви от большей к меньшей средней температуре ношения
+  //console.log("listForSort BEFORE", listForSort);
+  //console.log("temp0", listForSort[0].temp_from);
+  function middleVar(c, d) {
+    //вычисляем среднюю температуру ношения пары
+    return (c + d) / 2;
+  }
+  listForSort.sort(function (a, b) {
+    if (middleVar(a.temp_from, a.temp_to) < middleVar(b.temp_from, b.temp_to)) {
+      return 1;
+    }
+    if (middleVar(a.temp_from, a.temp_to) > middleVar(b.temp_from, b.temp_to)) {
+      return -1;
+    }
+    // a должно быть равным b
+    return 0;
+  });
+  //console.log("listForSort AFTER", listForSort);
+}
 
 //загрузка списка обуви при первой отрисовке
 onMounted(async () => {
@@ -190,6 +212,7 @@ onMounted(async () => {
 
 //динамический поиск и вывод результата волатилен к прописным и строчным
 watch(
+  //сортируем по названию
   () => searchWord.value,
   () => {
     listSearch.value = shoesStore.value.filter(
@@ -199,6 +222,7 @@ watch(
 );
 
 watch(
+  //сортируем по назначению
   () => searchPurpose.value,
   () => {
     if (searchPurpose.value.length !== 0) {
@@ -217,6 +241,7 @@ watch(
 );
 
 watch(
+  //сортируем по температуре
   () => searchTemp.value,
   () => {
     listSearch.value = shoesStore.value.filter(
@@ -226,6 +251,7 @@ watch(
 );
 
 watch(
+  //сортируем по погоде
   () => searchWeather.value,
   () => {
     if (searchWeather.value.length !== 0) {

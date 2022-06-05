@@ -325,6 +325,10 @@ input:-webkit-autofill {
   background-color: #ffa483;
 }
 
+.search__bgr_temp {
+  background-color: #CB9BFF;
+}
+
 .collection__edit_btn {
   background-color: #883cda;
   border: none;

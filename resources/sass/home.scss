@@ -1,14 +1,40 @@
 @import "variables";
 @import "mixins";
 
+// .home__container {
+//     padding: 64px;
+//     height: auto;
+//     width: 100%;
+//     background-color: #f8f8f8;
+//     display: grid;
+//     grid-template-columns: 1fr 1fr;
+//     grid-template-rows: 1fr 52px;
+// }
+
 .home__container {
-    padding: 64px;
-    height: auto;
-    width: 100%;
-    background-color: #F8F8F8;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 52px;
+    font-family: $lato_font;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), 70%, rgba(255, 255, 255, 0.4)),
+        url("/storage/images/home_logo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.home__text {
+    display: flex;
+    flex: 100%;
+    font-size: calc(0.4rem + 1vw);
+    @media screen and (min-width: 1050px) {
+        font-size: 1.1rem;
+    }
+    margin: 0.5rem 1rem;
+    padding: 10px 20px;
+    background-color: rgb(250, 243, 233);
+    border-radius: 30px;
+    box-shadow: 2px 4px 12px 4px #b888ec;
+}
+.home__text_mt {
+    margin-top: 1rem;
 }
 
 .home__title {
@@ -18,24 +44,33 @@
 }
 
 .home__foto {
+    display: flex;
+    flex: 100%;
     background-size: cover;
     overflow: hidden;
     border-top-left-radius: 35px;
     border-bottom-left-radius: 35px;
-    grid-area: 1/2/3/3;
+    margin-left: 1rem;
+    max-width: 364px;
 }
 
 .home__btn {
-    @include standart_btn($w:231px);
+    @include standart_btn($w: 231px);
     text-decoration: none;
     font-size: 18px;
     text-align: center;
-
 }
 
 .home__discribe {
+    display: flex;
+    flex: 100%;
     font-style: italic;
-    margin: 12px 24px;
+    margin: 0.5rem 1rem;
+    color: darkblue;
+    font-size: calc(0.5rem + 1vw);
+    @media screen and (min-width: 1050px) {
+        font-size: 1.2rem;
+    }
 }
 
 .home__btn:hover {

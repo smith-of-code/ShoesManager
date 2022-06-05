@@ -8,7 +8,7 @@
 }
 
 .collection_container_bgr_vert {
-  background-position: center 98%;
+  background-position: center 99%;
 }
 
 .adviser__btn {
@@ -194,5 +194,44 @@ h1 {
   .adviser__recomend {
     font-size: 1rem;
   }
+}
+
+.adviser__serch_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 1050px;
+  height: 10vh;
+  color: rgba(27, 27, 27, 0.767);
+  font-size: calc(0.5rem + 1.3vw);
+  font-family: sans-serif;
+  margin-top: 0.6rem;
+  border-radius: 10px;
+  min-height: 80px;
+  font-weight: 600;
+  -webkit-box-shadow: 5px 6px 9px 0px rgba(34, 60, 80, 0.6);
+          box-shadow: 5px 6px 9px 0px rgba(34, 60, 80, 0.6);
+  background-color: chartreuse;
+}
+
+@media screen and (min-width: 1050px) {
+  .adviser__serch_item {
+    font-size: 1.4rem;
+  }
+}
+
+.adviser__search_bgr_temp {
+  background-color: #CB9BFF;
+}
+
+.adviser__search_bgr_cond {
+  background-color: gold;
 }
 /*# sourceMappingURL=adviser.css.map */

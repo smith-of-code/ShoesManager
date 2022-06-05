@@ -8,7 +8,15 @@
     <!-- <DateBilder @ondaydata="(e) => (you = e)" /> -->
   </div>
   <div v-if="result">
-    <li v-for="(item, index) in resultList.value" :key="index" class="serch_item">
+    <li
+      v-for="(item, index) in resultList.value"
+      :key="index"
+      class="adviser__serch_item"
+      :class="[
+        item.comments == `по температуре` ? bgrTemp : ``,
+        item.comments == `по температуре и погодным условиям` ? bgrCond : ``,
+      ]"
+    >
       <img
         class="collection_img"
         :src="`/storage/shoes_img/` + item.photo_path"
@@ -31,7 +39,6 @@
           </div>
         </div>
       </SearchList>
-
       <SearchList style="width: 10vw">
         <span>от&nbsp;&nbsp;</span>
         <span :class="[item.temp_from <= 0 ? lowTemp : highTemp]"
@@ -68,7 +75,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive } from "vue";
 import DateBilder from "../components/components/DateBilder.vue";
 import WeatherBilder from "../components/components/WeatherBilder.vue";
 import IconSun from "../components/icons/IconSun.vue";
@@ -93,8 +100,10 @@ function takeWeatherData(e) {
 const dateData = ref([]); //объект данных
 const dayType = ref(""); //будни или выходные
 const dayPeriod = ref(""); //время дня в сослагательном
-const lowTemp = ref("temp_low");
-const highTemp = ref("temp_high");
+const lowTemp = ref("temp_low"); //цвет температуры, если холодно
+const highTemp = ref("temp_high"); //цвет температуры, если жарко
+const bgrTemp = ref("adviser__search_bgr_temp");
+const bgrCond = ref("adviser__search_bgr_cond");
 
 function takeDateData(e) {
   dateData.value = e;

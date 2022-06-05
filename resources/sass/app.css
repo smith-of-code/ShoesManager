@@ -15,17 +15,11 @@ body {
 
 .container {
   font-family: "Lato", sans-serif;
-  height: 800px;
-  width: 100%;
-  margin: 0px 64px;
-  text-align: left;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  background-color: #f8f8f8;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  background: -webkit-gradient(linear, left top, right top, from(white), color-stop(70%), to(rgba(255, 255, 255, 0.4))), url("/storage/images/card_shoes.png");
+  background: linear-gradient(to right, white, 70%, rgba(255, 255, 255, 0.4)), url("/storage/images/card_shoes.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: top right;
 }
 
 .shoes_card_form_title {
@@ -33,18 +27,10 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: calc(1rem + 1.3vw);
   line-height: 1;
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-area: 1/1/1/3;
 }
 
 .shoes_card_form {
-  padding: 24px;
-  border-radius: 5px;
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2/3;
+  width: 100%;
 }
 
 .shoes_card_img {
@@ -58,7 +44,7 @@ body {
 
 /* внутреняя часть инпута с фото */
 .shoes_img__tag {
-  color: #000000;
+  color: #535353;
   font-family: "Lato", sans-serif;
   font-size: 18px;
 }
@@ -85,7 +71,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-right: 2em;
+  margin-left: 0.5rem;
   position: relative;
 }
 
@@ -100,34 +86,38 @@ body {
   border-radius: 35px;
   font-family: "Lato", sans-serif;
   font-size: 18px;
+  background-color: antiquewhite;
+  -webkit-box-shadow: 16px 12px 46px -31px #000000 inset;
+          box-shadow: 16px 12px 46px -31px #000000 inset;
+  font-size: 1rem;
 }
 
 .shoes_photo {
-  margin: 20px 0px;
+  margin: 20px 0 0 0.5rem;
   background: #ffffff;
   border-radius: 35px;
   font-size: 1em;
   overflow: hidden;
   position: relative;
   width: 448px;
-  height: 52px;
-  padding: 12px 24px;
+  padding: 5px 24px;
   border: none;
   cursor: pointer;
+  -webkit-box-shadow: 2px 4px 12px 4px #975dd6, 40px 20px 30px -40px #535353 inset;
+          box-shadow: 2px 4px 12px 4px #975dd6, 40px 20px 30px -40px #535353 inset;
 }
 
 .shoes_img__label {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   width: auto;
-  height: 8vh;
+  height: 12vh;
   cursor: pointer;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
   margin-top: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -135,6 +125,10 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.shoes_mrg {
+  margin: 1rem 1.5rem 0.2rem;
 }
 
 .shoes_photo:hover,
@@ -174,6 +168,8 @@ body {
 
 .check_purpose :checked + svg path {
   fill: #883cda;
+  -webkit-animation: blinker 2s linear infinite;
+          animation: blinker 2s linear infinite;
 }
 
 input::-webkit-input-placeholder {
@@ -250,6 +246,8 @@ p {
   text-transform: uppercase;
   margin-left: 24px;
   margin-top: 24px;
+  height: 50px;
+  width: 150px;
 }
 
 .shoes_save_button:hover {
@@ -257,21 +255,37 @@ p {
 }
 
 .temper {
-  height: 180px;
   width: 448px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  margin-left: 24px;
+  margin-left: 1.8rem;
 }
 
 .range_label {
-  margin-top: 32px;
+  margin-top: 24px;
   margin-bottom: 5px;
   font-size: 18px;
 }
 
 .temper_note {
   font-size: 12px;
+  position: absolute;
+  top: 76px;
+  color: brown;
+  -webkit-animation: blinker 1s linear infinite;
+          animation: blinker 1s linear infinite;
+}
+
+@-webkit-keyframes blinker {
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0.6;
+  }
 }
 
 @media (max-width: 375px) {
@@ -315,10 +329,10 @@ p {
   height: 80px;
   max-width: 1050px;
   margin: 0.5rem 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0.8))), url("/storage/images/main_picture.png");
-  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8)), url("/storage/images/main_picture.png");
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.4))), url("/storage/images/main_picture.png");
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4)), url("/storage/images/main_picture.png");
   background-size: cover;
-  background-position: center 63%;
+  background-position: center 57%;
   border-radius: 0.5rem;
 }
 
@@ -993,11 +1007,14 @@ input:-webkit-autofill {
 }
 
 .collection_container_bgr {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0.8))), url("/storage/images/main_picture.png");
-  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8)), url("/storage/images/main_picture.png");
-  opacity: 0.8;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.9)), to(rgba(255, 255, 255, 0.5))), url("/storage/images/main_picture.png");
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)), url("/storage/images/main_picture.png");
   background-size: cover;
-  background-position: center 63%;
+  background-position: center 100%;
+}
+
+.collection_container_bgr_vert {
+  background-position: center 98%;
 }
 
 .adviser__btn {
@@ -1067,13 +1084,16 @@ h1 {
   font-family: "Lato", sans-serif;
   font-size: calc(0.6rem + 1vw);
   color: #883CDA;
-  font-weight: bold;
 }
 
 @media screen and (min-width: 1050px) {
   .adviser__label {
     font-size: 1.3rem;
   }
+}
+
+.adviser__label_bld {
+  font-weight: bold;
 }
 
 .adviser__label_coord {
@@ -1122,6 +1142,9 @@ h1 {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   font-family: "Lato", sans-serif;
   font-size: calc(0.6rem + 1vw);
 }

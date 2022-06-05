@@ -1,16 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lato:wght@300&family=Orelega+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lato:wght@300&family=Orelega+One&family=Roboto&display=swap");
 .home__container {
-  padding: 64px;
-  height: auto;
-  width: 100%;
-  background-color: #F8F8F8;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-  -ms-grid-rows: 1fr 52px;
-      grid-template-rows: 1fr 52px;
+  font-family: "Lato", sans-serif;
+  background: -webkit-gradient(linear, left top, right top, from(white), color-stop(70%), to(rgba(255, 255, 255, 0.4))), url("/storage/images/home_logo.jpg");
+  background: linear-gradient(to right, white, 70%, rgba(255, 255, 255, 0.4)), url("/storage/images/home_logo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.home__text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+          flex: 100%;
+  font-size: calc(0.4rem + 1vw);
+  margin: 0.5rem 1rem;
+  padding: 10px 20px;
+  background-color: #faf3e9;
+  border-radius: 30px;
+  -webkit-box-shadow: 2px 4px 12px 4px #b888ec;
+          box-shadow: 2px 4px 12px 4px #b888ec;
+}
+
+@media screen and (min-width: 1050px) {
+  .home__text {
+    font-size: 1.1rem;
+  }
+}
+
+.home__text_mt {
+  margin-top: 1rem;
 }
 
 .home__title {
@@ -20,15 +42,18 @@
 }
 
 .home__foto {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+          flex: 100%;
   background-size: cover;
   overflow: hidden;
   border-top-left-radius: 35px;
   border-bottom-left-radius: 35px;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-area: 1/2/3/3;
+  margin-left: 1rem;
+  max-width: 364px;
 }
 
 .home__btn {
@@ -48,8 +73,22 @@
 }
 
 .home__discribe {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+          flex: 100%;
   font-style: italic;
-  margin: 12px 24px;
+  margin: 0.5rem 1rem;
+  color: darkblue;
+  font-size: calc(0.5rem + 1vw);
+}
+
+@media screen and (min-width: 1050px) {
+  .home__discribe {
+    font-size: 1.2rem;
+  }
 }
 
 .home__btn:hover {
