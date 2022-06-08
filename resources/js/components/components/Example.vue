@@ -1,9 +1,19 @@
 <template>
   <div class="ramka">
-    <h2>{{ screenInfo.info.header }}</h2>
-    <h4>{{ screenInfo.info.miniheader }}</h4>
-    <p>{{ screenInfo.info.text }}</p>
-    <img class="picture" :src="screenInfo.info.picture" alt="picture" />
+    <div class="ramka__left">
+      <img class="picture" :src="screenInfo.info.picture" alt="picture" />
+    </div>
+    <div class="ramka__right">
+      <div class="ramka__text ramka__text_bg collection__title">
+        {{ screenInfo.info.header }}
+      </div>
+      <div class="ramka__text ramka__text_md collection__title">
+        {{ screenInfo.info.miniheader }}
+      </div>
+      <div class="ramka__text ramka__text_sm collection__title">
+        {{ screenInfo.info.text }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -32,18 +42,41 @@ const screenInfo = defineProps({
 <style scoped>
 .ramka {
   display: flex;
-  flex-direction: column;
-  border: 2px solid slateblue;
-  background-color: beige;
+  flex: 100%;
+  flex-direction: row;
   height: 60vh;
-  width: 60vw;
+  max-width: 1050px;
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
 }
-h4 {
-  margin: 0;
+
+.ramka__left {
+  display: flex;
+  flex: 100%;
+  min-width: 450px;
+  max-width: 650px;
+}
+.ramka__right {
+  display: flex;
+  flex: 35%;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 0.5rem;
+}
+.ramka__text {
+  justify-content: left;
+}
+.ramka__text_bg {
+  font-size: 1.2rem;
+  color: #883cda;
+}
+.ramka__text_md {
+  font-size: 1rem;
+}
+.ramka__text_sm {
+  font-size: 0.8rem;
 }
 .picture {
-  height: 25vh;
-  object-fit: contain;
-  align-self: flex-start;
+  width: 100%;
 }
 </style>

@@ -56,9 +56,12 @@
 
 .home__btn {
     @include standart_btn($w: 231px);
+    margin-left: 1rem;
+    padding: 12px 18px;
     text-decoration: none;
     font-size: 18px;
     text-align: center;
+    text-shadow: none;
 }
 
 .home__discribe {

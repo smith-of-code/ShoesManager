@@ -19,7 +19,7 @@ body {
   background: linear-gradient(to right, white, 70%, rgba(255, 255, 255, 0.4)), url("/storage/images/card_shoes.png");
   background-size: auto 100%;
   background-repeat: no-repeat;
-  background-position: top right;
+  background-position: right;
 }
 
 .shoes_card_form_title {
@@ -912,6 +912,10 @@ input:-webkit-autofill {
   background-color: #ffa483;
 }
 
+.search__bgr_temp {
+  background-color: #CB9BFF;
+}
+
 .collection__edit_btn {
   background-color: #883cda;
   border: none;
@@ -945,16 +949,38 @@ input:-webkit-autofill {
 }
 
 .home__container {
-  padding: 64px;
-  height: auto;
-  width: 100%;
-  background-color: #F8F8F8;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-  -ms-grid-rows: 1fr 52px;
-      grid-template-rows: 1fr 52px;
+  font-family: "Lato", sans-serif;
+  background: -webkit-gradient(linear, left top, right top, from(white), color-stop(70%), to(rgba(255, 255, 255, 0.4))), url("/storage/images/home_logo.jpg");
+  background: linear-gradient(to right, white, 70%, rgba(255, 255, 255, 0.4)), url("/storage/images/home_logo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.home__text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+          flex: 100%;
+  font-size: calc(0.4rem + 1vw);
+  margin: 0.5rem 1rem;
+  padding: 10px 20px;
+  background-color: #faf3e9;
+  border-radius: 30px;
+  -webkit-box-shadow: 2px 4px 12px 4px #b888ec;
+          box-shadow: 2px 4px 12px 4px #b888ec;
+}
+
+@media screen and (min-width: 1050px) {
+  .home__text {
+    font-size: 1.1rem;
+  }
+}
+
+.home__text_mt {
+  margin-top: 1rem;
 }
 
 .home__title {
@@ -964,15 +990,18 @@ input:-webkit-autofill {
 }
 
 .home__foto {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+          flex: 100%;
   background-size: cover;
   overflow: hidden;
   border-top-left-radius: 35px;
   border-bottom-left-radius: 35px;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-area: 1/2/3/3;
+  margin-left: 1rem;
+  max-width: 364px;
 }
 
 .home__btn {
@@ -986,14 +1015,31 @@ input:-webkit-autofill {
           box-sizing: border-box;
   border-radius: 35px;
   border: none;
+  margin-left: 1rem;
+  padding: 12px 18px;
   text-decoration: none;
   font-size: 18px;
   text-align: center;
+  text-shadow: none;
 }
 
 .home__discribe {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+          flex: 100%;
   font-style: italic;
-  margin: 12px 24px;
+  margin: 0.5rem 1rem;
+  color: darkblue;
+  font-size: calc(0.5rem + 1vw);
+}
+
+@media screen and (min-width: 1050px) {
+  .home__discribe {
+    font-size: 1.2rem;
+  }
 }
 
 .home__btn:hover {
@@ -1014,7 +1060,7 @@ input:-webkit-autofill {
 }
 
 .collection_container_bgr_vert {
-  background-position: center 98%;
+  background-position: center 99%;
 }
 
 .adviser__btn {
@@ -1200,5 +1246,48 @@ h1 {
   .adviser__recomend {
     font-size: 1rem;
   }
+}
+
+.adviser__serch_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 1050px;
+  height: 10vh;
+  color: rgba(27, 27, 27, 0.767);
+  font-size: calc(0.5rem + 1.3vw);
+  font-family: sans-serif;
+  margin-top: 0.6rem;
+  border-radius: 10px;
+  min-height: 80px;
+  font-weight: 600;
+  -webkit-box-shadow: 5px 6px 9px 0px rgba(34, 60, 80, 0.6);
+          box-shadow: 5px 6px 9px 0px rgba(34, 60, 80, 0.6);
+  background-color: chartreuse;
+}
+
+@media screen and (min-width: 1050px) {
+  .adviser__serch_item {
+    font-size: 1.4rem;
+  }
+}
+
+.adviser__search_bgr_temp {
+  background-color: #CB9BFF;
+}
+
+.adviser__search_bgr_cond {
+  background-color: gold;
+}
+
+.main__window {
+  min-width: 850px;
 }
 /*# sourceMappingURL=app.css.map */

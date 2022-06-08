@@ -212,8 +212,20 @@ function byPurpose(list) {
       }).length //такая конструкция позволяет возвращать истину или ложь из вложенного массива для filter
     ) {
       e.comments = `по температуре, погодным условиям, ${dayPeriod.value} ${dayType.value} дня`;
-      console.log("purpose conditions ", e);
+      console.log("purpose conditions ", e.comments, list[0].comments);
     }
+  });
+  //преобразование надписи-пояснения в число количества слов
+  function wordCount(str) {
+    let m = str.match(/[^\s]+/g);
+    return m ? m.length : 0;
+  }
+  //сортировка списка рекомендаций от менее к более значимым
+  list.sort(function (a, b) {
+    if (wordCount(a.comments) < wordCount(b.comments)) return 1;
+    if (wordCount(a.comments) > wordCount(b.comments)) return -1;
+    //console.log("comments ", wordCount(a.comments));
+    return 0;
   });
 }
 </script>
