@@ -22,4 +22,3 @@ yarn-error.log
 /public/mix-manifest.json
 !/public/storage/images/
 !/storage/app/public/images/
-/public/storage/
